@@ -1,0 +1,194 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F42FE4E1-7A66-4C56-9BDE-727ED437A32E}|HotelManagementSystem.IdentityServer\\HotelManagementSystem.IdentityServer.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.identityserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F42FE4E1-7A66-4C56-9BDE-727ED437A32E}|HotelManagementSystem.IdentityServer\\HotelManagementSystem.IdentityServer.csproj|solutionrelative:hotelmanagementsystem.identityserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\entities\\userpasswordreset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\entities\\userpasswordreset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\entities\\roleassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\entities\\roleassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\entities\\permissionassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\entities\\permissionassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\entities\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\entities\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\entities\\hotelbranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\entities\\hotelbranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.dataaccess\\hotelmanagementsystem.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D314830F-2448-4166-8BB6-334637974D5F}|HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj|solutionrelative:hotelmanagementsystem.dataaccess\\hotelmanagementsystem.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F42FE4E1-7A66-4C56-9BDE-727ED437A32E}|HotelManagementSystem.IdentityServer\\HotelManagementSystem.IdentityServer.csproj|c:\\users\\aksha\\onedrive\\documents\\msc docs\\python\\assignment\\b9is123-ca1\\src\\hotelmanagementsystem\\hotelmanagementsystem.identityserver\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F42FE4E1-7A66-4C56-9BDE-727ED437A32E}|HotelManagementSystem.IdentityServer\\HotelManagementSystem.IdentityServer.csproj|solutionrelative:hotelmanagementsystem.identityserver\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.IdentityServer\\appsettings.json",
+              "RelativeDocumentMoniker": "HotelManagementSystem.IdentityServer\\appsettings.json",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.IdentityServer\\appsettings.json",
+              "RelativeToolTip": "HotelManagementSystem.IdentityServer\\appsettings.json",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACkAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-01T00:00:22.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HotelBranch.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\HotelBranch.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\Entities\\HotelBranch.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\HotelBranch.cs",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\Entities\\HotelBranch.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T23:54:52.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PermissionAssignment.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\PermissionAssignment.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\Entities\\PermissionAssignment.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\PermissionAssignment.cs",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\Entities\\PermissionAssignment.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T23:49:35.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserPasswordReset.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\UserPasswordReset.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\Entities\\UserPasswordReset.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\UserPasswordReset.cs",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\Entities\\UserPasswordReset.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAowAsAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T23:45:41.161Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Permission.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\Permission.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\Entities\\Permission.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\Permission.cs",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\Entities\\Permission.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T23:40:43.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoleAssignment.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\RoleAssignment.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\Entities\\RoleAssignment.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\RoleAssignment.cs",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\Entities\\RoleAssignment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T23:35:47.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\User.cs",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\Entities\\User.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T23:31:47.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\Role.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\Entities\\Role.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\Entities\\Role.cs",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\Entities\\Role.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T23:18:33.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.IdentityServer\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "HotelManagementSystem.IdentityServer\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.IdentityServer\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "HotelManagementSystem.IdentityServer\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-31T21:04:21.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HotelManagementSystem.DataAccess",
+              "DocumentMoniker": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj",
+              "RelativeDocumentMoniker": "HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj",
+              "ToolTip": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj",
+              "RelativeToolTip": "HotelManagementSystem.DataAccess\\HotelManagementSystem.DataAccess.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-03-31T20:10:23.525Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

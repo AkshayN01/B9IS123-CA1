@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CPE6xZLvcHxOmYTG3gzYKHHBwAM5XZKnlzLBYaqujDdGgWPWZTm2uPjZ2PYv8jV6W8tqakpElZ9SaqzSXisWeQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\aksha\\OneDrive\\Documents\\MSc Docs\\Python\\Assignment\\B9IS123-CA1\\src\\HotelManagementSystem\\HotelManagementSystem.IdentityServer\\HotelManagementSystem.IdentityServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aksha\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512"
+  ],
+  "logs": []
+}
