@@ -20,7 +20,7 @@ namespace HotelManagementSystem.DataAccess.Entities
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public ICollection<RoleAssignment> RoleAssignments { get; set; }
-        public ICollection<PermissionAssignment> PermissionAssignments { get; set; }
+        public virtual ICollection<RoleAssignment> RoleAssignments { get; set; }
+        public virtual ICollection<PermissionAssignment> PermissionAssignments { get; set; }
     }
 }
