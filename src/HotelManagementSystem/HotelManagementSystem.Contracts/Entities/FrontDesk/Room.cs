@@ -18,5 +18,6 @@ namespace HotelManagementSystem.Contracts.Entities.FrontDesk
         public int RoomTypeId { get; set; }
         public RoomType RoomType { get; set; } = null!;
 
+        public ICollection<RoomReservation> Reservations { get; set; } = new List<RoomReservation>();
     }
 }

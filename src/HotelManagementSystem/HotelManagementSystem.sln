@@ -5,17 +5,23 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.IdentityServer", "HotelManagementSystem.IdentityServer\HotelManagementSystem.IdentityServer.csproj", "{F42FE4E1-7A66-4C56-9BDE-727ED437A32E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.DataAccess", "HotelManagementSystem.DataAccess\HotelManagementSystem.DataAccess.csproj", "{D314830F-2448-4166-8BB6-334637974D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.DataAccess", "Admin\HotelManagementSystem.DataAccess\HotelManagementSystem.DataAccess.csproj", "{D314830F-2448-4166-8BB6-334637974D5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.FrontDeskAPI", "HotelManagementSystem.FrontDeskAPI\HotelManagementSystem.FrontDeskAPI.csproj", "{58B9BFDE-308B-468C-B2D5-13E6C51D0177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.FrontDeskAPI", "FrontDesk\HotelManagementSystem.FrontDeskAPI\HotelManagementSystem.FrontDeskAPI.csproj", "{58B9BFDE-308B-468C-B2D5-13E6C51D0177}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Administrator", "HotelManagementSystem.Administrator\HotelManagementSystem.Administrator.csproj", "{B36FD795-681E-440F-88D8-37B18A0BCF06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Administrator.API", "Admin\HotelManagementSystem.Administrator\HotelManagementSystem.Administrator.API.csproj", "{B36FD795-681E-440F-88D8-37B18A0BCF06}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "HotelManagementSystem.FrontDesk.ClientApp", "HotelManagementSystem.FrontDesk.ClientApp\HotelManagementSystem.FrontDesk.ClientApp.esproj", "{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "HotelManagementSystem.FrontDesk.ClientApp", "FrontDesk\HotelManagementSystem.FrontDesk.ClientApp\HotelManagementSystem.FrontDesk.ClientApp.esproj", "{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Library", "HotelManagementSystem.Library\HotelManagementSystem.Library.csproj", "{F5BB354A-01DD-407D-90D5-FBBF94ECD439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Library", "HotelManagementSystem.Library\HotelManagementSystem.Library.csproj", "{F5BB354A-01DD-407D-90D5-FBBF94ECD439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Contracts", "HotelManagementSystem.Contracts\HotelManagementSystem.Contracts.csproj", "{55658EC9-665D-43DB-A121-4348FD50822B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Contracts", "HotelManagementSystem.Contracts\HotelManagementSystem.Contracts.csproj", "{55658EC9-665D-43DB-A121-4348FD50822B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Admin", "Admin", "{72E07379-B4F7-41BE-9478-E68F387C4595}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontDesk", "FrontDesk", "{CB274C57-8A68-49E1-A302-B7071517E501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.FrontDesk.DataAccess", "FrontDesk\HotelManagementSystem.FrontDesk.DataAccess\HotelManagementSystem.FrontDesk.DataAccess.csproj", "{108BC074-1721-4F96-9B0F-EE7B5127C444}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,9 +59,20 @@ Global
 		{55658EC9-665D-43DB-A121-4348FD50822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55658EC9-665D-43DB-A121-4348FD50822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55658EC9-665D-43DB-A121-4348FD50822B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{108BC074-1721-4F96-9B0F-EE7B5127C444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{108BC074-1721-4F96-9B0F-EE7B5127C444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{108BC074-1721-4F96-9B0F-EE7B5127C444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{108BC074-1721-4F96-9B0F-EE7B5127C444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D314830F-2448-4166-8BB6-334637974D5F} = {72E07379-B4F7-41BE-9478-E68F387C4595}
+		{58B9BFDE-308B-468C-B2D5-13E6C51D0177} = {CB274C57-8A68-49E1-A302-B7071517E501}
+		{B36FD795-681E-440F-88D8-37B18A0BCF06} = {72E07379-B4F7-41BE-9478-E68F387C4595}
+		{CE021210-92D7-47F6-A42A-61F6A0E7DD3B} = {CB274C57-8A68-49E1-A302-B7071517E501}
+		{108BC074-1721-4F96-9B0F-EE7B5127C444} = {CB274C57-8A68-49E1-A302-B7071517E501}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1DC2882-8800-434C-9595-079B2F205685}

@@ -1,10 +1,9 @@
-using HotelManagementSystem.Contracts.Generic;
-using HotelManagementSystem.DataAccess;
 using HotelManagementSystem.DataAccess.Repositories;
 using HotelManagementSystem.Library.Services;
-using HotelManagementSystem.Library.Services.Data;
+using HotelManagementSystem.Library.Services.Data.Admin;
 using IdentityServer4.Models;
 using Microsoft.EntityFrameworkCore;
+using HotelManagementSystem.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +12,9 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetSection("AdminConnectionString").Value ?? "";
 builder.Services.AddDbContext<AdminDbContext>(options => options.UseMySQL(connectionString));
-builder.Services.AddScoped<IUnitOfWork, AdminUnitOfWork>();
-builder.Services.AddTransient<UserService>();
+builder.Services.AddScoped<IAdminUnitOfWork, AdminUnitOfWork>();
 builder.Services.AddTransient<HotelBranchService>();
+builder.Services.AddTransient<UserService>();
 
 var clients = builder.Configuration.GetSection("Clients").Get<List<Client>>();
 var scopes = builder.Configuration.GetSection("ApiScopes").Get<List<ApiScope>>();

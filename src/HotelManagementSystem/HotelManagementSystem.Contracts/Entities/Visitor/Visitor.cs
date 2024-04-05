@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagementSystem.Contracts.Entities.Visitor
 {
+    [Index(nameof(UserName), IsUnique = true), Index(nameof(Email), IsUnique = true), Index(nameof(Phone), IsUnique = true)]
     public class Visitor
     {
         public int VisitorId { get; set; }

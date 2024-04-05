@@ -15,13 +15,26 @@ namespace HotelManagementSystem.Library.Services
             _branchService = branchService ?? throw new ArgumentNullException(nameof(branchService));
         }
 
-        public async Task<User> GetUserByUsername(string username)
+        public async Task<bool> ValidateCredentialsAsync(int branchId, string username, string password)
         {
-            HotelBranch branch = await _branchService.GetCurrentInstance();
-            if (branch == null)
-                throw new Exception("No branch found");
+            bool IsValid = false;
 
-            User user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username, branch.Id);
+            try
+            {
+                User user = await GetUserByUsernameAsync(branchId, username);
+                if(user != null)
+                {
+                    IsValid = password == user.Password;
+                }
+            }
+            catch (Exception ex) { }
+
+            return IsValid;
+        }
+
+        public async Task<User> GetUserByUsernameAsync(int branchId, string username)
+        {
+            User user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username, branchId);
 
             return user;
         }

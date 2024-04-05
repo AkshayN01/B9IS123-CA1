@@ -10,7 +10,9 @@
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public Double TotalAmount { get; set; }
+        public int IsActive { get; set; }
         public int RoomStatusId { get; set; }
-        public virtual RoomStatus RoomStatus { get; set; }
+        public Booking Booking { get; set; } = null!;
+        public Room Room { get; set; } = null!;
     }
 }

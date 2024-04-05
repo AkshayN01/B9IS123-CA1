@@ -7,7 +7,7 @@ namespace HotelManagementSystem.Contracts.Entities.FrontDesk
         [Key]
         public int Id { get; set; }
         public int VisitorId { get; set; }
-        public int TravelPartnerId { get; set; }
+        public int VisitorPartnerId { get; set; }
         public int BookingId { get; set; }
     }
 }

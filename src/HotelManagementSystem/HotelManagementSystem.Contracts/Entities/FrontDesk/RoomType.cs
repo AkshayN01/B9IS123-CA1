@@ -3,9 +3,9 @@
     public class RoomType
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public String ShortName { get; set; } = String.Empty;
+        public string ShortName { get; set; } = string.Empty;
         public Double Price { get; set; }
         public int MaxCapacity { get; set; }
 

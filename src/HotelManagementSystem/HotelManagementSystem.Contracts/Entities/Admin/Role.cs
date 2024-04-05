@@ -15,7 +15,7 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         [Required]
         [MaxLength(250)]
         public string Description { get; set; } = string.Empty;
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
         public string? CreatedBy { get; set; }
         public string? UpdatedBy { get; set; }
         public string? DeletedBy { get; set; }

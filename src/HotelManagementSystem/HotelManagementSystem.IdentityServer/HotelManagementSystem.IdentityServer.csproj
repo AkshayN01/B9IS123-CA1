@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HotelManagementSystem.DataAccess\HotelManagementSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\Admin\HotelManagementSystem.DataAccess\HotelManagementSystem.DataAccess.csproj" />
     <ProjectReference Include="..\HotelManagementSystem.Library\HotelManagementSystem.Library.csproj" />
   </ItemGroup>
 

@@ -2,7 +2,10 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using HotelManagementSystem.DataAccess;
+using HotelManagementSystem.DataAccess.Repositories;
 using HotelManagementSystem.Library.Services;
+using HotelManagementSystem.Library.Services.Data.Admin;
 using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Events;
@@ -37,16 +40,37 @@ namespace IdentityServerHost.Quickstart.UI
         private readonly IEventService _events;
         private readonly UserService _userService;
         private readonly HotelBranchService _branchService;
+        private readonly AdminUnitOfWork adminUnitOfWork;
 
-        public AccountController(TestUserStore users, IIdentityServerInteractionService interaction, IClientStore clientStore, IAuthenticationSchemeProvider schemeProvider, IEventService events, UserService userService, HotelBranchService branchService)
+        public AccountController(IIdentityServerInteractionService interaction, IClientStore clientStore, IAuthenticationSchemeProvider schemeProvider, IEventService events, UserService userService, HotelBranchService branchService, AdminDbContext context)
         {
-            _users = users ?? throw new ArgumentNullException(nameof(users));
+            //_users = users ?? throw new ArgumentNullException(nameof(users));
             _interaction = interaction ?? throw new ArgumentNullException(nameof(interaction));
             _clientStore = clientStore ?? throw new ArgumentNullException(nameof(clientStore));
             _schemeProvider = schemeProvider ?? throw new ArgumentNullException(nameof(schemeProvider));
             _events = events ?? throw new ArgumentNullException(nameof(events));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _branchService = branchService ?? throw new ArgumentNullException(nameof(branchService));
+
+            adminUnitOfWork = new AdminUnitOfWork(context);
+        }
+
+        /// <summary>
+        /// Entry point into the login workflow
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> Login(string returnUrl)
+        {
+            // build a model so we know what to show on the login page
+            var vm = await BuildLoginViewModelAsync(returnUrl);
+
+            if (vm.IsExternalLoginOnly)
+            {
+                // we only have one option for logging in and it's an external provider
+                return RedirectToAction("Challenge", "External", new { scheme = vm.ExternalLoginScheme, returnUrl });
+            }
+
+            return View(vm);
         }
 
         /// <summary>
@@ -89,10 +113,11 @@ namespace IdentityServerHost.Quickstart.UI
             if (ModelState.IsValid)
             {
                 // validate username/password against in-memory store
-                var instance = _branchService.GetCurrentInstance();
+                var instance = await _branchService.GetCurrentInstance();
+                //var branch = await adminUnitOfWork.HotelBranchRepository.GetCurrentBranchAsync();
                 var isValidResult = await _userService.ValidateCredentialsAsync(instance.Id, model.Username, model.Password);
                 //var isValid = _users.ValidateCredentials(model.Username, model.Password);
-                if (isValidResult.IsSuccess)
+                if (isValidResult)
                 {
                     var user = await _userService.GetUserByUsernameAsync(instance.Id, model.Username);
                     //var user = _users.FindByUsername(model.Username);
