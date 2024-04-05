@@ -1,5 +1,0 @@
-C:\Users\aksha\OneDrive\Documents\MSc Docs\Python\Assignment\B9IS123-CA1\src\HotelManagementSystem\HotelManagementSystem.Contracts\obj\Debug\net8.0\HotelManagementSystem.Contracts.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\aksha\OneDrive\Documents\MSc Docs\Python\Assignment\B9IS123-CA1\src\HotelManagementSystem\HotelManagementSystem.Contracts\obj\Debug\net8.0\HotelManagementSystem.Contracts.AssemblyInfoInputs.cache
-C:\Users\aksha\OneDrive\Documents\MSc Docs\Python\Assignment\B9IS123-CA1\src\HotelManagementSystem\HotelManagementSystem.Contracts\obj\Debug\net8.0\HotelManagementSystem.Contracts.AssemblyInfo.cs
-C:\Users\aksha\OneDrive\Documents\MSc Docs\Python\Assignment\B9IS123-CA1\src\HotelManagementSystem\HotelManagementSystem.Contracts\obj\Debug\net8.0\HotelManagementSystem.Contracts.csproj.CoreCompileInputs.cache
-C:\Users\aksha\OneDrive\Documents\MSc Docs\Python\Assignment\B9IS123-CA1\src\HotelManagementSystem\HotelManagementSystem.Contracts\obj\Debug\net8.0\HotelManagementSystem.Contracts.sourcelink.json

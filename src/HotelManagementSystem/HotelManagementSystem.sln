@@ -5,7 +5,17 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.IdentityServer", "HotelManagementSystem.IdentityServer\HotelManagementSystem.IdentityServer.csproj", "{F42FE4E1-7A66-4C56-9BDE-727ED437A32E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.DataAccess", "HotelManagementSystem.DataAccess\HotelManagementSystem.DataAccess.csproj", "{D314830F-2448-4166-8BB6-334637974D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.DataAccess", "HotelManagementSystem.DataAccess\HotelManagementSystem.DataAccess.csproj", "{D314830F-2448-4166-8BB6-334637974D5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.FrontDeskAPI", "HotelManagementSystem.FrontDeskAPI\HotelManagementSystem.FrontDeskAPI.csproj", "{58B9BFDE-308B-468C-B2D5-13E6C51D0177}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Administrator", "HotelManagementSystem.Administrator\HotelManagementSystem.Administrator.csproj", "{B36FD795-681E-440F-88D8-37B18A0BCF06}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "HotelManagementSystem.FrontDesk.ClientApp", "HotelManagementSystem.FrontDesk.ClientApp\HotelManagementSystem.FrontDesk.ClientApp.esproj", "{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Library", "HotelManagementSystem.Library\HotelManagementSystem.Library.csproj", "{F5BB354A-01DD-407D-90D5-FBBF94ECD439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Contracts", "HotelManagementSystem.Contracts\HotelManagementSystem.Contracts.csproj", "{55658EC9-665D-43DB-A121-4348FD50822B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +31,28 @@ Global
 		{D314830F-2448-4166-8BB6-334637974D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D314830F-2448-4166-8BB6-334637974D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D314830F-2448-4166-8BB6-334637974D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58B9BFDE-308B-468C-B2D5-13E6C51D0177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B9BFDE-308B-468C-B2D5-13E6C51D0177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B9BFDE-308B-468C-B2D5-13E6C51D0177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B9BFDE-308B-468C-B2D5-13E6C51D0177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B36FD795-681E-440F-88D8-37B18A0BCF06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B36FD795-681E-440F-88D8-37B18A0BCF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B36FD795-681E-440F-88D8-37B18A0BCF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B36FD795-681E-440F-88D8-37B18A0BCF06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE021210-92D7-47F6-A42A-61F6A0E7DD3B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F5BB354A-01DD-407D-90D5-FBBF94ECD439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5BB354A-01DD-407D-90D5-FBBF94ECD439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5BB354A-01DD-407D-90D5-FBBF94ECD439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5BB354A-01DD-407D-90D5-FBBF94ECD439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55658EC9-665D-43DB-A121-4348FD50822B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55658EC9-665D-43DB-A121-4348FD50822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55658EC9-665D-43DB-A121-4348FD50822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55658EC9-665D-43DB-A121-4348FD50822B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
