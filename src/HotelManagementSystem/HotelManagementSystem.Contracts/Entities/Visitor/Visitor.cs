@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HotelManagementSystem.Contracts.Entities.Admin
+namespace HotelManagementSystem.Contracts.Entities.Visitor
 {
-    public class User
+    public class Visitor
     {
-        [Key]
-        public int UserId { get; set; }
-        public int HotelBranchId { get; set; }
-        public Guid Guid { get; set; }
+        public int VisitorId { get; set; }
         [Required]
         [MaxLength(50)]
         public string UserName { get; set; } = string.Empty;
@@ -22,10 +19,10 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         [Required]
         [MaxLength(50)]
         public string LastName { get; set; } = string.Empty;
-        [Required]
+        
         [MaxLength(100)]
         public string Email { get; set; } = string.Empty;
-        [Required]
+        
         [MaxLength(16)]
         public string Phone { get; set; } = string.Empty;
         public DateTime? DateOfBirth { get; set; }
@@ -48,9 +45,5 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-
-        public ICollection<Roster> Rosters { get; set; } = new HashSet<Roster>();
-        public ICollection<RoleAssignment> RoleAssignments { get; set; } = new HashSet<RoleAssignment>();
-        public ICollection<UserPasswordResets> UserPasswordResets { get; set; } = new HashSet<UserPasswordResets>();
     }
 }

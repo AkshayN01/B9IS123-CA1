@@ -6,8 +6,5 @@ namespace HotelManagementSystem.Library.Services.Data
     {
         void Commit();
         void Rollback();
-        IUserRepository UserRepository { get; }
-        IHotelBranchRepository HotelBranchRepository { get; }
-        IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
     }
 }

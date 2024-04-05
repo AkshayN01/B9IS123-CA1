@@ -4,6 +4,7 @@ using HotelManagementSystem.DataAccess.Repositories;
 using HotelManagementSystem.Library.Services;
 using HotelManagementSystem.Library.Services.Data;
 using IdentityServer4.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetSection("AdminConnectionString").Value ?? "";
-//builder.Services.AddDbContext<AdminDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect));
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddDbContext<AdminDbContext>(options => options.UseMySQL(connectionString));
+builder.Services.AddScoped<IUnitOfWork, AdminUnitOfWork>();
 builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<HotelBranchService>();
 

@@ -6,10 +6,10 @@ namespace HotelManagementSystem.Library.Services
 {
     public class UserService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAdminUnitOfWork _unitOfWork;
         private readonly HotelBranchService _branchService;
 
-        public UserService(IUnitOfWork unitOfWork, HotelBranchService branchService)
+        public UserService(IAdminUnitOfWork unitOfWork, HotelBranchService branchService)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _branchService = branchService ?? throw new ArgumentNullException(nameof(branchService));
@@ -19,7 +19,7 @@ namespace HotelManagementSystem.Library.Services
         {
             HotelBranch branch = await _branchService.GetCurrentInstance();
             if (branch == null)
-                return new Exception('No branch found');
+                throw new Exception("No branch found");
 
             User user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username, branch.Id);
 

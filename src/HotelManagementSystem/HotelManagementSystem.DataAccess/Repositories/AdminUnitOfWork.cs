@@ -5,18 +5,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagementSystem.DataAccess.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class AdminUnitOfWork : IAdminUnitOfWork
     {
         private IUserRepository _userRepository;
         private IHotelBranchRepository _hotelBranchRepository;
 
-        private readonly DbContext _context;
-        private Dictionary<Type, object> _repositories;
+        private readonly AdminDbContext _context;
 
-        public UnitOfWork(DbContext context)
+        public AdminUnitOfWork(AdminDbContext context)
         {
             _context = context;
-            _repositories = new Dictionary<Type, object>();
         }
 
         public void Commit()
@@ -36,18 +34,6 @@ namespace HotelManagementSystem.DataAccess.Repositories
         public IHotelBranchRepository HotelBranchRepository
         {
             get { return _hotelBranchRepository ??= new HotelBranchRepository(_context); }
-        }
-
-        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
-        {
-            if (_repositories.ContainsKey(typeof(TEntity)))
-            {
-                return (IRepository<TEntity>)_repositories[typeof(TEntity)];
-            }
-
-            var repository = new Repository<TEntity>(_context);
-            _repositories.Add(typeof(TEntity), repository);
-            return repository;
         }
 
         public void Dispose()
