@@ -55,6 +55,18 @@ builder.Services.AddSwaggerGen(c =>
             }
         }
     });
+
+    // Define the security requirements
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
+                },
+                new[] { "adminscope" }
+            }
+        });
 });
 
 var app = builder.Build();
@@ -69,6 +81,8 @@ if (app.Environment.IsDevelopment())
         // Configure OAuth2
         c.OAuthClientId("adminclient");
         c.OAuthClientSecret("secret");
+        c.OAuthAppName("HotelManagementSystem Administrator API");
+        c.OAuthUsePkce();
     });
 }
 
