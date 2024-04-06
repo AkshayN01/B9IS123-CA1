@@ -17,7 +17,7 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         public int RoleId { get; set; } // Required foreign key property
         public string? CreatedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public bool IsDeleted { get; set; } = false
+        public bool IsDeleted { get; set; } = false;
         public string? DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
 

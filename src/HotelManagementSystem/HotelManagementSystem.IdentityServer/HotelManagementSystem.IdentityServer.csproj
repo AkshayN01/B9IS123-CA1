@@ -4,22 +4,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>92563a73-b07b-4ae0-8fdd-79e321a60f59</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="IdentityServer4" Version="4.1.2" />
-    <PackageReference Include="IdentityServer4.Storage" Version="4.1.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.0" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.5.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.0" />
-    <PackageReference Include="System.Text.Encodings.Web" Version="8.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Admin\HotelManagementSystem.DataAccess\HotelManagementSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\Admin\HotelManagementSystem.Admin.DataAccess\HotelManagementSystem.Admin.DataAccess.csproj" />
     <ProjectReference Include="..\HotelManagementSystem.Library\HotelManagementSystem.Library.csproj" />
   </ItemGroup>
 
