@@ -6,8 +6,4 @@ using System.Threading.Tasks;
 
 namespace HotelManagementSystem.Contracts.Generic.Response
 {
-    public class HTTPResponse
-    {
-        public 
-    }
 }
