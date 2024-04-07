@@ -1,0 +1,10 @@
+{
+    "production": true,
+    "apiUrl": "",
+    "oAuth": {
+      "issuer": "https://localhost:7016",
+      "redirectUri": "https://localhost:4002/login-completed",
+      "postLogoutRedirectUri": "https://localhost:4002/logout-completed"
+    }
+  }
+  

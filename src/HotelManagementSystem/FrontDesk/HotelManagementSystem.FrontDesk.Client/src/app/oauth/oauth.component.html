@@ -1,0 +1,20 @@
+<div class="session bg-primary bg-viking-cruise" *ngIf="this.showPage">
+    <div class="session-content">
+        <div class="session-wrapper">
+            <mat-card>
+                <mat-card-content>
+                    <div class="text-xs-center pb-1">
+                        <img src="assets/images/vikinglogo_black.png" alt="" width="100" />
+                        <p class="mat-text-muted">The Wangchuks Hotel</p>
+                        <p class="mat-text-muted">Dear Admin, you can login using your hotel identity crendentials
+                        </p>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="space-around">
+                        <button color="primary" mat-raised-button (click)="signIn()">Login with Hotel
+                            Identity</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
