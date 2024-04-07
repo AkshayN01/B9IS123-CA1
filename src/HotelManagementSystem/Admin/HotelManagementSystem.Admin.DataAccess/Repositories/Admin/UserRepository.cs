@@ -19,6 +19,11 @@ namespace HotelManagementSystem.DataAccess.Repositories.Admin
             _dbSet = _context.Set<User>();
         }
 
+        public async Task<User> GetUserByGuid(Guid guid)
+        {
+            return await _dbSet.FirstOrDefaultAsync(x => x.Guid == guid);
+        }
+
         public async Task<User> GetUserByUsernameAsync(string username, int branchId)
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.UserName == username && x.HotelBranchId == branchId);

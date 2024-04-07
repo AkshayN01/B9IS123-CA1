@@ -10,5 +10,7 @@ namespace HotelManagementSystem.Library.Services.Data.Admin
     {
         IUserRepository UserRepository { get; }
         IHotelBranchRepository HotelBranchRepository { get; }
+        IRoleRepository RoleRepository { get; }
+        IPermissionRepository PermissionRepository { get; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using HotelManagementSystem.DataAccess.Repositories.Admin;
+﻿using HotelManagementSystem.Admin.DataAccess.Repositories.Admin;
+using HotelManagementSystem.Contracts.Entities.Admin;
+using HotelManagementSystem.DataAccess.Repositories.Admin;
 using HotelManagementSystem.Library.Services.Data;
 using HotelManagementSystem.Library.Services.Data.Admin;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,8 @@ namespace HotelManagementSystem.DataAccess.Repositories
     {
         private IUserRepository _userRepository;
         private IHotelBranchRepository _hotelBranchRepository;
+        private IRoleRepository _roleRepository;
+        private IPermissionRepository _permissionRepository;
 
         private readonly AdminDbContext _context;
 
@@ -34,6 +38,16 @@ namespace HotelManagementSystem.DataAccess.Repositories
         public IHotelBranchRepository HotelBranchRepository
         {
             get { return _hotelBranchRepository ??= new HotelBranchRepository(_context); }
+        }
+
+        public IRoleRepository RoleRepository
+        {
+            get { return _roleRepository ??= new RoleRepository(_context); }
+        }
+
+        public IPermissionRepository PermissionRepository
+        {
+            get { return _permissionRepository ??= new PermissionRepository(_context); }
         }
 
         public void Dispose()

@@ -22,7 +22,7 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public virtual ICollection<RoleAssignment> RoleAssignments { get; set; } = new List<RoleAssignment>();
-        public virtual ICollection<PermissionAssignment> PermissionAssignments { get; set; } = new List<PermissionAssignment>();
+        public ICollection<RoleAssignment> RoleAssignments { get; set; } = new List<RoleAssignment>();
+        public ICollection<PermissionAssignment> PermissionAssignments { get; set; } = new List<PermissionAssignment>();
     }
 }

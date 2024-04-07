@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using HotelManagementSystem.DataAccess;
 using HotelManagementSystem.DataAccess.Repositories;
 using IdentityServer4.Models;
+using HotelManagementSystem.IdentityServer;
+using IdentityServer4.Services;
+using IdentityServer4.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,8 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiScopes(scopes)
     .AddInMemoryClients(clients)
     .AddInMemoryIdentityResources(resources);
+builder.Services.AddTransient<IProfileService, UserProfileService>();
+builder.Services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
 
 builder.Services.AddAuthentication();
 
