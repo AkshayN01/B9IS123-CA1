@@ -1,1 +1,16 @@
 <p>booking-details works!</p>
+<div class=" booking-details">
+    <h2>Booking Details</h2>
+    <p>From Date: {{ booking.fromDate }} </p>
+    <p>To Date {{ booking.toDate }} </p>
+    <p>Room Type: {{ booking.roomType }}</p>
+
+    <h3>Visitor Details</h3>
+    <div *ngFor="let visitor of booking. visitorDetails">
+        <p>Name: {{ visitor.FirstName }} {{ visitor.lastName }}</p>
+        <p>Email: {{ visitor.emailId }}</p>
+    </div>
+
+    <button>Declain</button> 
+    <button >Accept</button>
+</div>
