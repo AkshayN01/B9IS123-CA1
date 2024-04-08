@@ -2,6 +2,7 @@
 using HotelManagementSystem.Library.Services.Data.Admin;
 using IdentityModel;
 using Newtonsoft.Json;
+using System.Data;
 using System.Security.Claims;
 
 namespace HotelManagementSystem.Library.Services
@@ -90,6 +91,26 @@ namespace HotelManagementSystem.Library.Services
             return claims.ToArray();
         }
 
+        public async Task<List<string>> GetUserPermissions(int userId, int branchId)
+        {
+            List<string> permissions = new List<string>();
+
+            List<Role> userRoles = await GetUserRolesAsync(userId, branchId);
+
+            if (userRoles != null && userRoles.Count > 0)
+            {
+                foreach (Role role in userRoles)
+                {
+                    var permissionByRole = await GetRolePermissionsAsync(role.RoleId, role.HotelBranchId);
+                    if (permissionByRole.Any())
+                    {
+                        permissions.AddRange(permissionByRole?.Select(x => x.Name).ToList() ?? []);
+                    }
+                }
+            }
+
+            return permissions;
+        }
         public async Task<List<Role>> GetUserRolesAsync(int userId, int instanceId)
         {
             var roles = await _unitOfWork.RoleRepository.GetRoleByUserIdAsync(userId, instanceId);
