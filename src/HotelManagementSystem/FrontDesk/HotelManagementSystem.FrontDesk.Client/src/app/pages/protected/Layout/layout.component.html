@@ -10,21 +10,32 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
         <div class="container-fluid">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-        </div>
+            <a class="navbar-brand" routerLink="/home">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" routerLink="/newbooking">NewBooking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="/booking">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="/rooms">Rooms</a>
+                     </li>
+                    <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" routerLink="/booking-calendar">BookingCalendar</a>
+                     </li>
+                </ul>
+
+                <form class="d-flex">
+                <h6>{{loggedUserData?.userName}}</h6>
+                <button class="btn btn-success" type="button" (click)="onlogout">Logout</button>
+                </form>
+            </div>
+         </div>
       </nav>
   </body>
 </html>
