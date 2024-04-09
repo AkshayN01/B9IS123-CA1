@@ -9,6 +9,7 @@ import { isAuthGuard } from './oauth/oauth.guard';
 
 import { PageComponent } from './pages/protected/page/page.component';
 import { HomeComponent } from './pages/protected/home/home.component';
+import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home',},
@@ -23,7 +24,13 @@ const routes: Routes = [
     component: PageComponent,
     canActivate: [isAuthGuard],
     children: [
-      {path: 'home', component: HomeComponent},
+      {path: 'home', 
+      component: HomeComponent
+      },
+      {path: 'bookin-details', 
+      component: BookingDetailsComponent
+      },
+
     ]
   },
 ];

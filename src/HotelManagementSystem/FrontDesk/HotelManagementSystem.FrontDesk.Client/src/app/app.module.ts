@@ -19,8 +19,10 @@ import { LoginCompletedComponent } from './pages/login-completed/login-completed
 import { LogoutCompletedComponent } from './pages/logout-completed/logout-completed.component';
 import { HomeComponent } from './pages/protected/home/home.component';
 import { PageComponent } from './pages/protected/page/page.component';
-import { BookingDescriptionComponent } from './pages/protected/booking-description/booking-description.component';
 import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
+import { FormsModule } from '@angular/forms';
+import { LayoutComponent } from './pages/protected/Layout/layout.component';
+
 
 @NgModule({
   declarations: [
@@ -31,14 +33,16 @@ import { BookingDetailsComponent } from './pages/protected/booking-details/booki
     LogoutCompletedComponent,
     HomeComponent,
     PageComponent,
-    BookingDescriptionComponent,
-    BookingDetailsComponent
-  ],
+    BookingDetailsComponent,
+    LayoutComponent,
+],
+
   imports: [
     BrowserModule,
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
+    FormsModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],
