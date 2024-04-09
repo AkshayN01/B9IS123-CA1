@@ -19,13 +19,3 @@ export class ReasonModalComponent {
         this.activeModal.class(this.reason);
     }
 }   
-@NgModule({
-    declarations: [
-      ReasonModalComponent
-    ],
-    imports: [
-      FormsModule // Add FormsModule here
-    ],
-    providers: [],
-    bootstrap: [ReasonModalComponent]
-  })
