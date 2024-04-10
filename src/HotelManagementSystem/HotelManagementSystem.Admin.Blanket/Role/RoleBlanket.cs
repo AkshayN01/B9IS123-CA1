@@ -21,19 +21,14 @@ namespace HotelManagementSystem.Admin.Blanket.Role
             _userService = userService;
         }
 
-        public async Task<HTTPResponse> GetAllRoles(int branchId, int userid)
+        public async Task<HTTPResponse> GetAllRoles(int branchId, string userGuid)
         {
-            List<string> requiredPermission = new List<string>() { AdministratorPermissions.ViewRole };
             Object data = default(Object);
             int retVal = -40;
             string message = string.Empty;
 
             try
             {
-                bool hasPermission = await _userService.HasPermissions(userid, branchId, requiredPermission);
-                if (!hasPermission)
-                    throw new Exception("User doesn't have permissions");
-
                 List<Contracts.Entities.Admin.Role> roles = await _managementService.GetRolesAsync(branchId);
 
                 data = roles;

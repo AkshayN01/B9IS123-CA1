@@ -124,13 +124,18 @@ namespace HotelManagementSystem.Library.Services
             return permissions;
         }
         
-        public async Task<bool> HasPermissions(int userId, int branchId, List<string> permissions)
+        public async Task<bool> HasPermissions(string userGuid, List<string> permissions)
         {
             bool hasPermission = false;
 
             try
             {
-                List<string> userPermissions = await GetUserPermissions(userId, branchId);
+                var currentBranch = await _branchService.GetCurrentInstance();
+                if (currentBranch == null)
+                    throw new Exception("No current branch details found");
+
+                var user = await GetUserByGuidAsync(userGuid);
+                List<string> userPermissions = await GetUserPermissions(user.UserId, currentBranch.Id);
                 if (userPermissions.Any())
                 {
                     foreach (var p in permissions)
