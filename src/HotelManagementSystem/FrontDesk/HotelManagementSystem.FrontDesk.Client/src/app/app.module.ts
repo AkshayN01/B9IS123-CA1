@@ -22,6 +22,7 @@ import { PageComponent } from './pages/protected/page/page.component';
 import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './pages/protected/Layout/layout.component';
+import { ReasonModalComponent } from './pages/protected/reason-modal/reason-modal.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { LayoutComponent } from './pages/protected/Layout/layout.component';
     PageComponent,
     BookingDetailsComponent,
     LayoutComponent,
+    ReasonModalComponent,
 ],
 
   imports: [

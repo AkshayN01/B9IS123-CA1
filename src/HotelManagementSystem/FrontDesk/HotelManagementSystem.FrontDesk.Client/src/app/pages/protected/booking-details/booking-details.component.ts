@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BookingService } from '../services/booking.service';
-import { Booking } from '../models/booking';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
-import { Room } from '../models/room';
+import { MatDialog } from '@angular/material/dialog';
+import { ReasonModalComponent } from './reason-modal/reason-modal.component';
 import { RoomService } from '../services/room.service';
 
 @Component({
@@ -13,39 +9,55 @@ import { RoomService } from '../services/room.service';
   styleUrls: ['./booking-details.component.css']
 })
 export class BookingDetailsComponent implements OnInit {
-  booking: Booking;
-  rooms: Room[];
+  bookingDetails: any;
+  availableRooms: any[];
+  roomSelected: boolean = false; 
 
-  constructor(private route: ActivatedRoute, private bookingService: BookingService, private roomService: RoomService, private modalService: NgbModal) { }
+  constructor(private dialog: MatDialog, private roomService: RoomService) { }
 
-  ngOnInit(): void {
-    this.getBookingDetails();
+  ngOnInit() {
+    this.fetchBookingDetails();
   }
 
-  getBookingDetails(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.bookingService.getBooking(id)
-      .subscribe(booking => {
-        this.booking = booking;
-        this.loadAvailableRooms(booking.roomType.id);
+  fetchBookingDetails() {
+  }
+
+  acceptBooking() {
+    this.roomService.getAvailableRooms(this.bookingDetails.roomType.id)
+      .subscribe(response => {
+        this.availableRooms = response;
       });
   }
-      loadAvailableRooms(roomTypeId: number): void {
-        this.roomService.getAvailableRooms(roomTypeId)
-          .subscribe(rooms => this.rooms = rooms);
-    }
 
-      declineBooking(): void {
-        const modalRef = this.modalService.open(ReasonModalComponent);
-        modalRef.componentInstance.bookingId = this.booking.id;
-        modalRef.result.then((reason) => {
-          // Call API to decline booking with reason
-          this.bookingService.declineBooking(this.booking.id, reason)
-            .subscribe(response => {
-            });
-        }, () => {
-        });
+  selectRoom(roomId: number) {
+    this.bookingDetails.roomDetails = {
+      branchId: this.bookingDetails.branchId,
+      bookingId: this.bookingDetails.id,
+      requestStatus: 'Accepted',
+      roomId: roomId
+    };
+
+    
+    this.roomService.assignRoom(this.bookingDetails.roomDetails)
+      .subscribe(response => {
+        
+      });
+
+    this.roomSelected = true;
+  }
+
+  declineBooking() {
+    const dialogRef = this.dialog.open(ReasonModalComponent, {
+      width: '400px',
+      data: { reason: '' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.roomService.declineBooking(this.bookingDetails.id, result)
+          .subscribe(response => {
+          });
       }
-      acceptBooking(): void {
-      }
+    });
+  }
 }
