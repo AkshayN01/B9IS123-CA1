@@ -75,11 +75,11 @@ namespace HotelManagementSystem.Admin.DataAccess.Data
         public static List<User> GetAllUsers()
         {
             return new List<User> { 
-                new User(){ UserId = 1, UserName = "akshayn", FirstName = "Akshay", MiddleName="Mohanan", LastName="Nambly", Email="namblyakshay@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=new Guid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
-                new User(){ UserId = 2, UserName = "chaitrau", FirstName = "Chaitra", MiddleName="", LastName="Umesh", Email="chaitraumesh.96@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=new Guid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
-                new User(){ UserId = 3, UserName = "jittyt", FirstName = "Jitty", MiddleName="", LastName="Thomas", Email="jittythomas774@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=new Guid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
-                new User(){ UserId = 4, UserName = "robinss", FirstName = "Robins", MiddleName="", LastName="Sojan", Email="robinssojan26@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=new Guid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
-                new User(){ UserId = 5, UserName = "superAdmin", FirstName = "Super", MiddleName="", LastName="Admin", Email="test.admin@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=new Guid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
+                new User(){ UserId = 1, UserName = "akshayn", FirstName = "Akshay", MiddleName="Mohanan", LastName="Nambly", Phone="12345", Email="namblyakshay@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=Guid.NewGuid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
+                new User(){ UserId = 2, UserName = "chaitrau", FirstName = "Chaitra", MiddleName="", LastName="Umesh", Phone="123456", Email="chaitraumesh.96@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=Guid.NewGuid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
+                new User(){ UserId = 3, UserName = "jittyt", FirstName = "Jitty", MiddleName="", LastName="Thomas", Phone="123457", Email="jittythomas774@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=Guid.NewGuid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
+                new User(){ UserId = 4, UserName = "robinss", FirstName = "Robins", MiddleName="", LastName="Sojan", Phone="123458", Email="robinssojan26@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=Guid.NewGuid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
+                new User(){ UserId = 5, UserName = "superAdmin", FirstName = "Super", MiddleName="", LastName="Admin", Phone="123459", Email="test.admin@gmail.com", HotelBranchId=1, IsDeleted=false,Guid=Guid.NewGuid(), IsActive = true, Password="Test1234", IsEmailVerified = true, CreatedAt = DateTime.UtcNow, CreatedBy = "System"},
             };
         }
 
@@ -122,7 +122,7 @@ namespace HotelManagementSystem.Admin.DataAccess.Data
                 new PermissionAssignment(){PermissionAssignmentId = 18, HotelBranchId = 1, PermissionId = 16, RoleId = 2, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
 
                 //Manager
-                new PermissionAssignment(){PermissionAssignmentId = 18, HotelBranchId = 1, PermissionId = 18, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 32, HotelBranchId = 1, PermissionId = 18, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 19, HotelBranchId = 1, PermissionId = 19, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 20, HotelBranchId = 1, PermissionId = 20, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 21, HotelBranchId = 1, PermissionId = 21, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
@@ -136,7 +136,7 @@ namespace HotelManagementSystem.Admin.DataAccess.Data
                 new PermissionAssignment(){PermissionAssignmentId = 27, HotelBranchId = 1, PermissionId = 19, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 28, HotelBranchId = 1, PermissionId = 20, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 29, HotelBranchId = 1, PermissionId = 22, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
-                new PermissionAssignment(){PermissionAssignmentId = 20, HotelBranchId = 1, PermissionId = 24, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 30, HotelBranchId = 1, PermissionId = 24, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 31, HotelBranchId = 1, PermissionId = 25, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
             };
         }

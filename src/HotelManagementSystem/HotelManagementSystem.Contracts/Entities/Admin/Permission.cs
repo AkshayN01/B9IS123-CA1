@@ -9,7 +9,7 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         [Required]
         public int HotelBranchId { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string Name { get; set; } = string.Empty;
         [Required]
         [MaxLength(250)]

@@ -8,7 +8,7 @@ namespace HotelManagementSystem.Contracts.Entities.FrontDesk
         public int BookingId { get; set; }
         public int VisitorId { get; set; }
         public int RoomTypeId { get; set; }
-        public int TravelPartner { get; set; }
+        public int TravelPartnerId { get; set; }
         public int Branchd {  get; set; }
         public DateTime BookingFromDate { get; set; }
         public DateTime BookingToDate { get; set; }
