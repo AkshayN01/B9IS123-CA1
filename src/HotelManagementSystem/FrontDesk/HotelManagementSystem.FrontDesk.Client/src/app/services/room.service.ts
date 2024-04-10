@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -15,12 +15,12 @@ export class RoomService {
     }
 
     assignRoom(roomDetails: any) {
-        const url = `${this.apiUrl}/booking/${roomDetails.bookingId}/room`;
+        const url = `${this.apiurl}/booking/${roomDetails.bookingId}/room`;
         return this.http.post(url, roomDetails);
       }
     
       declineBooking(bookingId: number, reason: string) {
-        const url = `${this.apiUrl}/booking/${bookingId}/decline`;
+        const url = `${this.apiurl}/booking/${bookingId}/decline`;
         return this.http.post(url, { reason });
       }
 }

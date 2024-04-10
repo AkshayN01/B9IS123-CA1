@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReasonModalComponent } from './reason-modal/reason-modal.component';
+import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
 import { RoomService } from '../services/room.service';
 
 @Component({
@@ -10,10 +10,10 @@ import { RoomService } from '../services/room.service';
 })
 export class BookingDetailsComponent implements OnInit {
   bookingDetails: any;
-  availableRooms: any[];
-  roomSelected: boolean = false; 
+  availableRooms!: any[];
+  roomSelected: boolean = false;
 
-  constructor(private dialog: MatDialog, private roomService: RoomService) { }
+  constructor(private dialog: MatDialog, private room: RoomService) { }
 
   ngOnInit() {
     this.fetchBookingDetails();
@@ -23,7 +23,7 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   acceptBooking() {
-    this.roomService.getAvailableRooms(this.bookingDetails.roomType.id)
+    this.room.getAvailableRooms(this.bookingDetails.roomType.id)
       .subscribe(response => {
         this.availableRooms = response;
       });
@@ -38,9 +38,8 @@ export class BookingDetailsComponent implements OnInit {
     };
 
     
-    this.roomService.assignRoom(this.bookingDetails.roomDetails)
+    this.room.assignRoom(this.bookingDetails.roomDetails)
       .subscribe(response => {
-        
       });
 
     this.roomSelected = true;
@@ -54,8 +53,10 @@ export class BookingDetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.roomService.declineBooking(this.bookingDetails.id, result)
+
+        this.room.declineBooking(this.bookingDetails.id, result)
           .subscribe(response => {
+           
           });
       }
     });

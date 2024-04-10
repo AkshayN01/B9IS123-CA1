@@ -1,16 +1,29 @@
-<p>booking-details works!</p>
-<div class=" booking-details">
-    <h2>Booking Details</h2>
-    <p>From Date: {{ booking.fromDate }} </p>
-    <p>To Date {{ booking.toDate }} </p>
-    <p>Room Type: {{ booking.roomType }}</p>
-
-    <h3>Visitor Details</h3>
-    <div *ngFor="let visitor of booking. visitorDetails">
-        <p>Name: {{ visitor.FirstName }} {{ visitor.lastName }}</p>
-        <p>Email: {{ visitor.emailId }}</p>
+<div *ngIf="bookingDetails">
+    <h3>Booking Details</h3>
+    <p>From Date: {{ bookingDetails.fromDate }}</p>
+    <p>To Date: {{ bookingDetails.toDate }}</p>
+    <p>Room Type: {{ bookingDetails.roomType.name }}</p>
+    <p>Visitor Details: {{ bookingDetails.visitorDetails }}</p>
+  
+    <ng-container *ngIf="!bookingDetails.roomDetails">
+      <button mat-raised-button color="primary" (click)="acceptBooking()">Accept</button>
+      <button mat-raised-button color="warn" (click)="declineBooking()">Decline</button>
+    </ng-container>
+  
+    <div *ngIf="bookingDetails.roomDetails">
+      <h4>Room Details</h4>
+      <p>Room Number: {{ bookingDetails.roomDetails.roomNumber }}</p>
+      <p>Room Level: {{ bookingDetails.roomDetails.roomLevel }}</p>
+      <p>Room Type: {{ bookingDetails.roomType.name }}</p>
     </div>
-
-    <button>Declain</button> 
-    <button >Accept</button>
-</div>
+  
+    <div *ngIf="availableRooms && !roomSelected">
+      <h4>Available Rooms</h4>
+      <ul>
+        <li *ngFor="let room of availableRooms">
+          {{ room.name }} - Room Number: {{ room.roomNumber }} - Level: {{ roomroomLevel }}
+          <button mat-button color="primary" (click)="selectRoom(room.id)">Select</button>
+        </li>
+      </ul>
+    </div>
+  </div>

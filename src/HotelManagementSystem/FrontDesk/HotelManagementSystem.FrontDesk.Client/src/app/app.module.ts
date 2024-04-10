@@ -35,6 +35,7 @@ import { ReasonModalComponent } from './pages/protected/reason-modal/reason-moda
     HomeComponent,
     PageComponent,
     BookingDetailsComponent,
+    FormsModule,
     LayoutComponent,
     ReasonModalComponent,
 ],
