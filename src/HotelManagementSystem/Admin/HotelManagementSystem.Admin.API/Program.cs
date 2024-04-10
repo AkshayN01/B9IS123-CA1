@@ -1,14 +1,22 @@
 using HotelManagementSystem.DataAccess;
+using HotelManagementSystem.DataAccess.Repositories;
+using HotelManagementSystem.Library.Services.Data.Admin;
+using HotelManagementSystem.Library.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using HotelManagementSystem.Library;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetSection("AdminConnectionString").Value ?? "";
 builder.Services.AddDbContext<AdminDbContext>(options => options.UseMySQL(connectionString));
+builder.Services.AddScoped<IAdminUnitOfWork, AdminUnitOfWork>();
+builder.Services.AddTransient<HotelBranchService>();
+builder.Services.AddTransient<ManagementService>();
+builder.Services.AddTransient<UserService>();
 
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(options =>

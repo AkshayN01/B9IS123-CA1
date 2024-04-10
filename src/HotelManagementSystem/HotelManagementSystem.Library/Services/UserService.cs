@@ -117,12 +117,32 @@ namespace HotelManagementSystem.Library.Services
 
             return roles;
         }
-
         public async Task<List<Permission>> GetRolePermissionsAsync(int roleId, int instanceId)
         {
             var permissions = await _unitOfWork.PermissionRepository.GetRolePermissionsAsync(roleId, instanceId);
 
             return permissions;
+        }
+        
+        public async Task<bool> HasPermissions(int userId, int branchId, List<string> permissions)
+        {
+            bool hasPermission = false;
+
+            try
+            {
+                List<string> userPermissions = await GetUserPermissions(userId, branchId);
+                if (userPermissions.Any())
+                {
+                    foreach (var p in permissions)
+                    {
+                        if (!userPermissions.Contains(p)) { return false; }
+                        else { hasPermission = true; }
+                    }
+                }
+            }
+            catch(Exception ex) { }
+
+            return hasPermission;
         }
     }
 }
