@@ -18,5 +18,12 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
         {
             _context = context;
         }
+
+        public async Task<int> AddBookingDetails(Booking booking)
+        {
+            _context.Add<Booking>(booking);
+            await _context.SaveChangesAsync();
+            return booking.BookingId;
+        }
     }
 }
