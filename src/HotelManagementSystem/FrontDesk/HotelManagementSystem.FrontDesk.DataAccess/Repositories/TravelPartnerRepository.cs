@@ -27,5 +27,10 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
             }
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<TravelPartner> GetByBookingId(int bookingId)
+        {
+            return _travelPartnerSet.Where(x => x.BookingId ==  bookingId).AsEnumerable();
+        }
     }
 }

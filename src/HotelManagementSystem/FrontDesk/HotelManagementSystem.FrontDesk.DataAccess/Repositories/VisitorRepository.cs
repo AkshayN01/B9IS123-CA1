@@ -37,6 +37,14 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
             await _context.SaveChangesAsync();
             return visitors.Select(x => x.VisitorId).ToList();
         }
+        public IEnumerable<Visitor> GetAllVisitors(List<int> visitorIds)
+        {
+            IEnumerable<Visitor> result;
+
+            result = _dbSet.Where(x => visitorIds.Contains(x.VisitorId)).AsEnumerable<Visitor>();
+
+            return result;
+        }
 
         public Task<Visitor> GetByBookingId(int branchId, int bookingId)
         {

@@ -46,5 +46,29 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("/userId/{userGuid}/booking/{bookingId}")]
+        public async Task<IActionResult> GetBookingDetails(string userGuid, int bookingId)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            List<string> requiredPermission = new List<string>() { AdministratorPermissions.ViewRole };
+
+            bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
+            if (!hasPermission)
+                return Unauthorized();
+
+            try
+            {
+                var httpResponse = await _BookingBlanket.GetBookingDetails(bookingId);
+                return Ok(httpResponse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
     }
 }
