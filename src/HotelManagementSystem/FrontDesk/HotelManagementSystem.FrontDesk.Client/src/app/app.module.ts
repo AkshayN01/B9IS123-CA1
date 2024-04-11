@@ -19,6 +19,7 @@ import { LoginCompletedComponent } from './pages/login-completed/login-completed
 import { LogoutCompletedComponent } from './pages/logout-completed/logout-completed.component';
 import { HomeComponent } from './pages/protected/home/home.component';
 import { PageComponent } from './pages/protected/page/page.component';
+import { BookingsComponent } from './pages/protected/bookings/bookings.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PageComponent } from './pages/protected/page/page.component';
     LoginCompletedComponent,
     LogoutCompletedComponent,
     HomeComponent,
-    PageComponent
+    PageComponent,
+    BookingsComponent
   ],
   imports: [
     BrowserModule,
