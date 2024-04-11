@@ -5,7 +5,7 @@
         public int RoomReservationId { get; set; }
         public int BookingId { get; set; }
         public int BranchId { get; set; }
-        public int UserId { get; set; }
+        public string UserGuid { get; set; }
         public int RoomId { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }

@@ -12,5 +12,7 @@ namespace HotelManagementSystem.Library.Services.Data.FrontDesk
         IRoomRepository RoomRepository { get; }
         IVisitorRepository VisitorRepository { get; }
         IRoomTypeRepository RoomTypeRepository { get; }
+        IReservationRepository ReservationRepository { get; }
+        ITravelPartnerRepository TravelPartnerRepository { get; }
     }
 }

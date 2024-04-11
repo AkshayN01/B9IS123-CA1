@@ -11,5 +11,7 @@ namespace HotelManagementSystem.Library.Services.Data.FrontDesk
     {
         Task<Room> GetRoomByBookingId(int branchId, int bookingId);
         Task<List<Room>> GetAllRooms(int branchId, int roomLevel, int isActive);
+
+        IEnumerable<Room> GetRoomsByRoomIds(List<int> roomIds);
     }
 }

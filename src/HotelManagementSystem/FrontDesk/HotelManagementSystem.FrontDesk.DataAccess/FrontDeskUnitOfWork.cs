@@ -9,6 +9,8 @@ namespace HotelManagementSystem.FrontDesk.DataAccess
         private IBookingRepository? _bookingRepository;
         private IVisitorRepository? _visitorRepository;
         private IRoomTypeRepository? _roomTypeRepository;
+        private IReservationRepository? _reservationRepository;
+        private ITravelPartnerRepository? _travelPartnerRepository;
 
         private readonly FrontDeskDbContext _context;
         public FrontDeskUnitOfWork(FrontDeskDbContext context)
@@ -23,6 +25,8 @@ namespace HotelManagementSystem.FrontDesk.DataAccess
         public IVisitorRepository VisitorRepository => _visitorRepository ??= new VisitorRepository(_context);
 
         public IRoomTypeRepository RoomTypeRepository => _roomTypeRepository ??= new RoomTypeRepository(_context);
+        public IReservationRepository ReservationRepository => _reservationRepository ??= new ReservationRepository(_context);
+        public ITravelPartnerRepository TravelPartnerRepository => _travelPartnerRepository ??= new TravelPartnerRepository(_context);
 
 
         public void Commit()

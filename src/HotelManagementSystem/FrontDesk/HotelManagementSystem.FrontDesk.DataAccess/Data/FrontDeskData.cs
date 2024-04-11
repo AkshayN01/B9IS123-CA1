@@ -8,9 +8,9 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Data
         {
             return new List<RoomStatus>()
             {
-                new RoomStatus() { Id = 1, Name = "Booked" },
-                new RoomStatus() { Id = 2, Name = "Vacant" },
-                new RoomStatus() { Id = 3, Name = "CleaningInProgress" },
+                new RoomStatus() { Guid = Guid.NewGuid(), Id = 1, Name = "Booked" },
+                new RoomStatus() { Guid = Guid.NewGuid(), Id = 2, Name = "Vacant" },
+                new RoomStatus() { Guid = Guid.NewGuid(), Id = 3, Name = "CleaningInProgress" },
             };
         }
 
@@ -29,9 +29,9 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Data
         {
             return new List<Contracts.Entities.FrontDesk.BookingStatus>()
             {
-                new BookingStatus() { Id = 1, Name = "Pending" },
-                new BookingStatus() { Id = 2, Name = "Approved" },
-                new BookingStatus() { Id = 3, Name = "Declined" },
+                new BookingStatus() { Guid = Guid.NewGuid(), Id = 1, Name = "Pending" },
+                new BookingStatus() { Guid = Guid.NewGuid(), Id = 2, Name = "Approved" },
+                new BookingStatus() { Guid = Guid.NewGuid(), Id = 3, Name = "Declined" },
             };
         }
 

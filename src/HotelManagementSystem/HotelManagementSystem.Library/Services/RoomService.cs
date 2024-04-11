@@ -1,4 +1,6 @@
-﻿using HotelManagementSystem.Library.Services.Data.FrontDesk;
+﻿using HotelManagementSystem.Contracts.APIModels.FontDesk;
+using HotelManagementSystem.Contracts.Entities.FrontDesk;
+using HotelManagementSystem.Library.Services.Data.FrontDesk;
 
 namespace HotelManagementSystem.Library.Services
 {

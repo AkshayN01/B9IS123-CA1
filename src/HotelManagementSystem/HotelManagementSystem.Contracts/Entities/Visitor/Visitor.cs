@@ -39,7 +39,6 @@ namespace HotelManagementSystem.Contracts.Entities.Visitor
         public bool IsEmailVerified { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public bool IsExpired { get; set; }
         public string? CreatedBy { get; set; }
         public string UpdatedBy { get; set; } = string.Empty;
         public string DeletedBy { get; set; } = string.Empty;
