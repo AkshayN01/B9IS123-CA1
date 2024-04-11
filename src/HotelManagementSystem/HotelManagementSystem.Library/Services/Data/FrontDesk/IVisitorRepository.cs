@@ -8,5 +8,6 @@ namespace HotelManagementSystem.Library.Services.Data.FrontDesk
         Task<List<int>> AddMultipleVisitors(List<Visitor> visitors);
         Task<Visitor> GetByBookingId(int branchId, int bookingId);
         Task<List<Visitor>> GetTravelPartner(int visitorId, int bookingId);
+        IEnumerable<Visitor> GetAllVisitors(List<int> visitorIds);
      }
 }

@@ -28,5 +28,10 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
             }
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<RoomReservation> GetRoomReservationsByBookingId(int bookingId)
+        {
+            return _dbSet.Where(x => x.BookingId == bookingId).AsEnumerable<RoomReservation>();
+        }
     }
 }

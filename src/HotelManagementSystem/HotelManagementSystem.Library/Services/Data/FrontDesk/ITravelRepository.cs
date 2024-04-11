@@ -10,5 +10,6 @@ namespace HotelManagementSystem.Library.Services.Data.FrontDesk
     public interface ITravelPartnerRepository : IRepository<TravelPartner>
     {
         Task AddTravelPartners(List<TravelPartner> travelPartners);
+        IEnumerable<TravelPartner> GetByBookingId(int bookingId);
     }
 }

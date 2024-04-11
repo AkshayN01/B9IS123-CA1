@@ -122,5 +122,101 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
             return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
         }
+
+        public async Task<HTTPResponse> GetBookingDetails(int bookingId)
+        {
+            Object data = default(Object);
+            int retVal = -40;
+            string message = string.Empty;
+
+            try
+            {
+                BookingModel bookingModel = new BookingModel();
+
+                Contracts.Entities.FrontDesk.Booking booking = await _frontDeskUnitOfWork.BookingRepository.GetAsync(bookingId);
+
+                if (booking == null)
+                {
+                    return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, "No such BookingId exists");
+                }
+
+                //If Booking is approved, get visitor and Room details
+                if (booking.BookinStatusId == 2)
+                {
+                    //Get Visitor Data
+                    if (booking.VisitorId != 0)
+                    {
+                        Visitor visitor = await _frontDeskUnitOfWork.VisitorRepository.GetAsync(booking.VisitorId);
+                        if (visitor == null)
+                            return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, "Inconsistency in data. Visitor mentioned in the booking doesn't exist");
+
+                        var visitorModel = new VisitorModel()
+                        {
+                            Id = visitor.VisitorId,
+                            FirstName = visitor.FirstName,
+                            MiddleName = visitor.MiddleName,
+                            LastName = visitor.LastName,
+                            Email = visitor.Email,
+                            Phone = visitor.Phone,
+                            IsPrimary = 0
+                        };
+
+                        bookingModel.Visitors.Add(visitorModel);
+                        //Get Travel Partner Details
+                        var travelPartnerIds = _frontDeskUnitOfWork.TravelPartnerRepository.GetByBookingId(booking.BookingId)
+                            .Select(x => x.VisitorPartnerId)
+                            .ToList();
+                        if (travelPartnerIds.Any())
+                        {
+                            var partners = _frontDeskUnitOfWork.VisitorRepository
+                               .GetAllVisitors(travelPartnerIds)
+                               .Select(x => new VisitorModel()
+                               {
+                                   Id = x.VisitorId,
+                                   FirstName = x.FirstName,
+                                   MiddleName = x.MiddleName,
+                                   LastName = x.LastName,
+                                   IsPrimary = 0
+                               });
+
+                            bookingModel.Visitors.AddRange(partners);
+                        }
+                    }
+                    
+                    var roomIds = _frontDeskUnitOfWork.ReservationRepository
+                        .GetRoomReservationsByBookingId(booking.BookingId)
+                        .Select(x => x.RoomId).ToList();
+
+                    if (roomIds.Any())
+                    {
+                        bookingModel.Room = _frontDeskUnitOfWork.RoomRepository.GetRoomsByRoomIds(roomIds)
+                            .Select(x => new RoomModel()
+                            {
+                                Id = x.RoomId,
+                                Level = x.RoomLevel,
+                                RoomName = x.RoomName,
+                                RoomNumber = x.RoomNumber,
+                                RoomType = new RoomTypeModel()
+                                {
+                                    Id = x.RoomType.Id,
+                                    Name = x.RoomType.Name,
+                                    Price  = x.RoomType.Price,
+                                    MaxCapacity = x.RoomType.MaxCapacity
+                                }
+                            }).ToList();
+                    }
+
+                }
+                data = bookingModel;
+            }
+            catch (Exception ex)
+            {
+                retVal = -50;
+                message = ex.Message;
+                return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, message);
+            }
+
+            return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
+        }
     }
 }
