@@ -11,7 +11,7 @@ namespace HotelManagementSystem.DataAccess
 {
     public class AdminDbContext : DbContext
     {
-        public AdminDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
+        public AdminDbContext(DbContextOptions<AdminDbContext> dbContextOptions) : base(dbContextOptions) { }
 
         public DbSet<HotelBranch> Branches { get; set; }
         public DbSet<User> Users { get; set; }

@@ -31,7 +31,7 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
 
         public IEnumerable<Room> GetRoomsByRoomIds(List<int> roomIds)
         {
-            return _rooms.Where(x => roomIds.Contains(x.RoomId)).AsEnumerable<Room>();
+            return _rooms.Where(x => roomIds.Contains(x.RoomId)).Include(x => x.RoomType).AsEnumerable<Room>();
         }
     }
 }

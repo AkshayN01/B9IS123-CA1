@@ -17,6 +17,6 @@ namespace HotelManagementSystem.Contracts.APIModels.FontDesk
         public int RoomNumber { get; set; }
         public string RoomName { get; set; } = string.Empty;
         public int RoomTypeId { get; set; }
-        public RoomTypeModel RoomType { get; set; }
+        public RoomTypeModel RoomType { get; set; } = new RoomTypeModel();
     }
 }

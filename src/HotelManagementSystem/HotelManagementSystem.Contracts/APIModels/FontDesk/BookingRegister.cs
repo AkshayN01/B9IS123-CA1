@@ -13,9 +13,7 @@ namespace HotelManagementSystem.Contracts.APIModels.FontDesk
         public DateTime FromDate { get; set; }
         [Required]
         public DateTime ToDate { get; set; }
-        [Required]
         public List<int> RoomIds { get; set; }
-        [Required]
         public List<VisitorModel> Visitors { get; set; }
     }
 

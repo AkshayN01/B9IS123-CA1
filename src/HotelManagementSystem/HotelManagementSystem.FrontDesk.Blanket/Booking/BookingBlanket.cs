@@ -15,7 +15,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
             _frontDeskUnitOfWork = frontDeskUnitOfWork;
         }
 
-        public async Task<HTTPResponse> AddBooking(BookingModel bookingModel, string userGuid)
+        public async Task<HTTPResponse> AddBooking(BookingRegisterModel bookingModel, string userGuid)
         {
             Object data = default(Object);
             int retVal = -40;
@@ -45,6 +45,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                         FirstName = primaryVisitor.FirstName,
                         LastName = primaryVisitor.LastName,
                         MiddleName = primaryVisitor.MiddleName,
+                        UserName = Guid.NewGuid().ToString(),
                         Email = primaryVisitor.Email,
                         Phone = primaryVisitor.Phone,
                         CreatedAt = DateTime.UtcNow,
@@ -64,6 +65,9 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                                 FirstName = partner.FirstName,
                                 LastName = partner.LastName,
                                 MiddleName = partner.MiddleName,
+                                Email = partner.Email,
+                                Phone = partner.Phone,
+                                UserName = Guid.NewGuid().ToString(),
                                 CreatedAt = DateTime.UtcNow,
                                 CreatedBy = userGuid,
                                 IsActive = true,
@@ -92,10 +96,10 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                     await _frontDeskUnitOfWork.TravelPartnerRepository.AddTravelPartners(travelPartners);
                 }
 
-                if (bookingModel.Room.Any())
+                if (bookingModel.RoomIds.Any())
                 {
                     List<RoomReservation> reservations = new List<RoomReservation>();
-                    foreach (var room in bookingModel.Room) {
+                    foreach (var room in bookingModel.RoomIds) {
                         reservations.Add(new RoomReservation()
                         {
                             BookingId = bookingId,
@@ -103,7 +107,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                             CheckInDate = booking.BookingFromDate,
                             CheckOutDate = booking.BookingToDate,
                             IsActive = 1,
-                            RoomId = room.Id,
+                            RoomId = room,
                             UserGuid = userGuid,
                             RoomStatusId = (int)RoomStatusEnum.Booked
                         });
@@ -190,7 +194,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
                     if (roomIds.Any())
                     {
-                        bookingModel.Room = _frontDeskUnitOfWork.RoomRepository.GetRoomsByRoomIds(roomIds)
+                        var roomDetails = _frontDeskUnitOfWork.RoomRepository.GetRoomsByRoomIds(roomIds)
                             .Select(x => new RoomModel()
                             {
                                 Id = x.RoomId,
@@ -204,7 +208,9 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                                     Price  = x.RoomType.Price,
                                     MaxCapacity = x.RoomType.MaxCapacity
                                 }
-                            }).ToList();
+                            });
+
+                        bookingModel.Room.AddRange(roomDetails);
                     }
 
                 }

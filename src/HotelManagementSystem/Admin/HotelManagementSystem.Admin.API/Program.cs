@@ -18,6 +18,12 @@ builder.Services.AddTransient<HotelBranchService>();
 builder.Services.AddTransient<ManagementService>();
 builder.Services.AddTransient<UserService>();
 
+var authorizer = builder.Configuration.GetSection("Identity").GetSection("Authorizer").Value;
+var clientId = builder.Configuration.GetSection("Identity").GetSection("clientId").Value;
+var clientName = builder.Configuration.GetSection("Identity").GetSection("clientName").Value;
+var scope = builder.Configuration.GetSection("Identity").GetSection("scope").Value;
+var secret = builder.Configuration.GetSection("Identity").GetSection("secret").Value;
+
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(options =>
 {
@@ -39,7 +45,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("ApiScope", policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", "adminscope");
+        policy.RequireClaim("scope", scope);
     });
 });
 
@@ -57,9 +63,9 @@ builder.Services.AddSwaggerGen(c =>
         {
             ClientCredentials = new OpenApiOAuthFlow
             {
-                AuthorizationUrl = new Uri("https://localhost:7016/connect/authorize"),
-                TokenUrl = new Uri("https://localhost:7016/connect/token"),
-                Scopes = new Dictionary<string, string> { { "adminscope", "HotelManagementSystem Administrator API" } }
+                AuthorizationUrl = new Uri($"{authorizer}/connect/authorize"),
+                TokenUrl = new Uri($"{authorizer}/connect/token"),
+                Scopes = new Dictionary<string, string> { { scope, clientName } }
             }
         }
     });
@@ -72,7 +78,7 @@ builder.Services.AddSwaggerGen(c =>
                 {
                     Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
                 },
-                new[] { "adminscope" }
+                new[] { scope }
             }
         });
 });
@@ -87,9 +93,9 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel Management Admin API V1");
 
         // Configure OAuth2
-        c.OAuthClientId("adminclient");
-        c.OAuthClientSecret("secret");
-        c.OAuthAppName("HotelManagementSystem Administrator API");
+        c.OAuthClientId(clientId);
+        c.OAuthClientSecret(secret);
+        c.OAuthAppName(clientName);
         c.OAuthUsePkce();
     });
 }

@@ -29,7 +29,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            List<string> requiredPermission = new List<string>() { AdministratorPermissions.ViewRole };
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewRoom };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
             if (!hasPermission)
@@ -53,7 +53,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            List<string> requiredPermission = new List<string>() { AdministratorPermissions.ViewRole };
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewRoom };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
             if (!hasPermission)

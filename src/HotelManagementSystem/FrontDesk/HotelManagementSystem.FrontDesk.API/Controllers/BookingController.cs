@@ -26,11 +26,11 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
 
         [HttpPost]
         [Route("/userId/{userGuid}/booking")]
-        public async Task<IActionResult> AddBookingDetails(string userGuid, [FromBody]BookingModel bookingModel)
+        public async Task<IActionResult> AddBookingDetails(string userGuid, [FromBody]BookingRegisterModel bookingModel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            List<string> requiredPermission = new List<string>() { AdministratorPermissions.ViewRole };
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.AddBooking };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
             if (!hasPermission)
@@ -53,7 +53,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            List<string> requiredPermission = new List<string>() { AdministratorPermissions.ViewRole };
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewBooking };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
             if (!hasPermission)
