@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Visitor\**" />
+    <EmbeddedResource Remove="Visitor\**" />
+    <None Remove="Visitor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Room\" />
-    <Folder Include="Visitor\" />
   </ItemGroup>
 
   <ItemGroup>

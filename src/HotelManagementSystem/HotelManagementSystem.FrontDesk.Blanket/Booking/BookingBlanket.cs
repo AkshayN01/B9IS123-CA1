@@ -1,6 +1,7 @@
 using HotelManagementSystem.Contracts.APIModels.FontDesk;
 using HotelManagementSystem.Contracts.Entities.FrontDesk;
 using HotelManagementSystem.Contracts.Entities.Visitor;
+using HotelManagementSystem.Contracts.Enums;
 using HotelManagementSystem.Contracts.Generic.Response;
 using HotelManagementSystem.Library.Services.Data.FrontDesk;
 
@@ -26,7 +27,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                 {
                     BookingFromDate = bookingModel.FromDate,
                     BookingToDate = bookingModel.ToDate,
-                    BookinStatusId = 1,
+                    BookinStatusId = (int)BookinStatusEnum.Approved,
                     Branchd = 1,
                     CreatedAt = DateTime.UtcNow,
                     CreatedBy = userGuid
@@ -104,7 +105,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                             IsActive = 1,
                             RoomId = room.Id,
                             UserGuid = userGuid,
-                            RoomStatusId = 1
+                            RoomStatusId = (int)RoomStatusEnum.Booked
                         });
                     }
                     await _frontDeskUnitOfWork.ReservationRepository.AddReservationDetails(reservations);
@@ -141,7 +142,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                 }
 
                 //If Booking is approved, get visitor and Room details
-                if (booking.BookinStatusId == 2)
+                if (booking.BookinStatusId == (int)BookinStatusEnum.Approved)
                 {
                     //Get Visitor Data
                     if (booking.VisitorId != 0)
@@ -205,6 +206,10 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                                 }
                             }).ToList();
                     }
+
+                }
+                else if(booking.BookinStatusId == (int)BookinStatusEnum.Declined)
+                {
 
                 }
                 data = bookingModel;
