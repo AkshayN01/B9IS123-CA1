@@ -24,7 +24,7 @@ export class BookingDetailsComponent implements OnInit {
 
   acceptBooking() {
     this.room.getAvailableRooms(this.bookingDetails.roomType.id)
-      .subscribe(response => {
+      .subscribe((response: any) => {
         this.availableRooms = response;
       });
   }
@@ -39,7 +39,7 @@ export class BookingDetailsComponent implements OnInit {
 
     
     this.room.assignRoom(this.bookingDetails.roomDetails)
-      .subscribe(response => {
+      .subscribe((response: any) => {
       });
 
     this.roomSelected = true;
@@ -55,7 +55,7 @@ export class BookingDetailsComponent implements OnInit {
       if (result) {
 
         this.room.declineBooking(this.bookingDetails.id, result)
-          .subscribe(response => {
+          .subscribe((response: any) => {
            
           });
       }
