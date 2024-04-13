@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using HotelManagementSystem.Contracts.Permissions;
 using HotelManagementSystem.Library.Services.Data.FrontDesk;
 using HotelManagementSystem.Contracts.APIModels.FontDesk;
+using System.Security.Claims;
 
 namespace HotelManagementSystem.FrontDesk.API.Controllers
 {
@@ -25,15 +26,17 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpPost]
-        [Route("/userId/{userGuid}/booking")]
-        public async Task<IActionResult> AddBookingDetails(string userGuid, [FromBody]BookingRegisterModel bookingModel)
+        [Route("/api/booking")]
+        public async Task<IActionResult> AddBookingDetails([FromBody]BookingRegisterModel bookingModel)
         {
+            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
+
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.AddBooking };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
-            if (!hasPermission)
+            if (!hasPermission || userGuid == "System")
                 return Unauthorized();
 
             try
@@ -48,15 +51,17 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpGet]
-        [Route("/userId/{userGuid}/booking/{bookingId}")]
-        public async Task<IActionResult> GetBookingDetails(string userGuid, int bookingId)
+        [Route("/api/booking/{bookingId}")]
+        public async Task<IActionResult> GetBookingDetails(int bookingId)
         {
+            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
+
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewBooking };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
-            if (!hasPermission)
+            if (!hasPermission || userGuid == "System")
                 return Unauthorized();
 
             try
