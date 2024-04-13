@@ -20,9 +20,13 @@ import { LogoutCompletedComponent } from './pages/logout-completed/logout-comple
 import { HomeComponent } from './pages/protected/home/home.component';
 import { PageComponent } from './pages/protected/page/page.component';
 import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
-import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './pages/protected/Layout/layout.component';
-import { ReasonModalComponent } from './pages/protected/reason-modal/reason-modal.component';
+import { ReasonModalComponent } from './pages/reason-modal/reason-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
 
 
 @NgModule({
@@ -36,14 +40,17 @@ import { ReasonModalComponent } from './pages/protected/reason-modal/reason-moda
     PageComponent,
     LayoutComponent,
     ReasonModalComponent,
+    BookingDetailsComponent
 ],
 
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
-    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],

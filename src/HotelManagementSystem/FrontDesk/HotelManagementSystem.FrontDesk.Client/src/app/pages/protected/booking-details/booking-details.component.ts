@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
-import { RoomService } from '../services/room.service';
+import { ReasonModalComponent } from '../../reason-modal/reason-modal.component';
+import { RoomService } from '../../../services/room.service';
 
 @Component({
   selector: 'app-booking-details',
