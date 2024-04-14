@@ -1,0 +1,31 @@
+        <div *ngIf="bookingDetails">
+        <h3>Booking Details</h3>
+        <p>From Date: {{ bookingDetails.fromDate }}</p>
+        <p>To Date: {{ bookingDetails.toDate }}</p>
+        <p>Room Type: {{ bookingDetails.room.name }}</p>
+        <p>Visitor Details: {{ bookingDetails.visitorDetails }}</p>
+  
+    <ng-container *ngIf="!bookingDetails.room">
+      <button mat-raised-button color="primary" (click)="acceptBooking()">Accept</button>
+      <button mat-raised-button color="warn" (click)="declineBooking()">Decline</button>
+    </ng-container>
+  
+    <div *ngIf="bookingDetails.room">
+      <div *ngFor="let r of bookingDetails.room">
+      <h4>Room Details</h4>d
+      <p>Room Number: {{ r.roomNumber }}</p>
+      <p>Room Level: {{ r.level }}</p>
+      <p>Room Type: {{ r.roomType.name }}</p>
+    </div>
+    </div>
+  
+    <div *ngIf="availableRooms && !roomSelected">
+      <h4>Available Rooms</h4>
+      <ul>
+        <li *ngFor="let room of availableRooms">
+          {{ room.name }} - Room Number: {{ room.roomNumber }} - Level: {{ room.roomLevel }}
+          <button mat-button color="primary" (click)="selectRoom(room.id)">Select</button>
+        </li>
+      </ul>
+    </div>
+  </div>
