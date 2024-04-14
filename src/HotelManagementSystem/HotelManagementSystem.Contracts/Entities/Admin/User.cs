@@ -10,6 +10,7 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         [Key]
         public int UserId { get; set; }
         public int HotelBranchId { get; set; }
+        [Required]
         public Guid Guid { get; set; }
         [Required]
         [MaxLength(50)]

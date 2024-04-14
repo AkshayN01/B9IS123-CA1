@@ -2,7 +2,7 @@
 
 namespace HotelManagementSystem.Contracts.Entities.FrontDesk
 {
-    internal class TravelPartner
+    public class TravelPartner
     {
         [Key]
         public int Id { get; set; }

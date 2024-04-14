@@ -2,6 +2,7 @@
 using HotelManagementSystem.Library.Services.Data.Admin;
 using IdentityModel;
 using Newtonsoft.Json;
+using System.Data;
 using System.Security.Claims;
 
 namespace HotelManagementSystem.Library.Services
@@ -90,18 +91,63 @@ namespace HotelManagementSystem.Library.Services
             return claims.ToArray();
         }
 
+        public async Task<List<string>> GetUserPermissions(int userId, int branchId)
+        {
+            List<string> permissions = new List<string>();
+
+            List<Role> userRoles = await GetUserRolesAsync(userId, branchId);
+
+            if (userRoles != null && userRoles.Count > 0)
+            {
+                foreach (Role role in userRoles)
+                {
+                    var permissionByRole = await GetRolePermissionsAsync(role.RoleId, role.HotelBranchId);
+                    if (permissionByRole.Any())
+                    {
+                        permissions.AddRange(permissionByRole?.Select(x => x.Name).ToList() ?? []);
+                    }
+                }
+            }
+
+            return permissions;
+        }
         public async Task<List<Role>> GetUserRolesAsync(int userId, int instanceId)
         {
             var roles = await _unitOfWork.RoleRepository.GetRoleByUserIdAsync(userId, instanceId);
 
             return roles;
         }
-
         public async Task<List<Permission>> GetRolePermissionsAsync(int roleId, int instanceId)
         {
             var permissions = await _unitOfWork.PermissionRepository.GetRolePermissionsAsync(roleId, instanceId);
 
             return permissions;
+        }
+        
+        public async Task<bool> HasPermissions(string userGuid, List<string> permissions)
+        {
+            bool hasPermission = false;
+
+            try
+            {
+                var currentBranch = await _branchService.GetCurrentInstance();
+                if (currentBranch == null)
+                    throw new Exception("No current branch details found");
+
+                var user = await GetUserByGuidAsync(userGuid);
+                List<string> userPermissions = await GetUserPermissions(user.UserId, currentBranch.Id);
+                if (userPermissions.Any())
+                {
+                    foreach (var p in permissions)
+                    {
+                        if (!userPermissions.Contains(p)) { return false; }
+                        else { hasPermission = true; }
+                    }
+                }
+            }
+            catch(Exception ex) { }
+
+            return hasPermission;
         }
     }
 }

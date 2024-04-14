@@ -8,6 +8,8 @@ import { AppConfig, initConfig } from './app.config';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -24,10 +26,8 @@ import { LayoutComponent } from './pages/protected/Layout/layout.component';
 import { ReasonModalComponent } from './pages/reason-modal/reason-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
-
+import { HeaderComponent } from './pages/protected/header/header.component';
+import { RoomComponent } from './pages/protected/room/room.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +40,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PageComponent,
     LayoutComponent,
     ReasonModalComponent,
-    BookingDetailsComponent
-],
-
+    BookingDetailsComponent,
+    HeaderComponent,
+    RoomComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -51,6 +52,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     MatDialogModule,
     ReactiveFormsModule,
+    FormsModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],

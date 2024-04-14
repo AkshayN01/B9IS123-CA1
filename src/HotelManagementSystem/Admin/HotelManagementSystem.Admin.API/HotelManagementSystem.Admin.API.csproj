@@ -8,12 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HotelManagementSystem.Library\HotelManagementSystem.Library.csproj" />
-    <ProjectReference Include="..\HotelManagementSystem.Admin.DataAccess\HotelManagementSystem.Admin.DataAccess.csproj" />
+    <ProjectReference Include="..\..\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj" />
   </ItemGroup>
 
 </Project>

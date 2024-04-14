@@ -17,11 +17,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Admin", "Admin", "{E69EABFE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontDesk", "FrontDesk", "{1E382F6A-8382-4D33-B55E-41AA144731BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.FrontDesk.API", "FrontDesk\HotelManagementSystem.FrontDesk.API\HotelManagementSystem.FrontDesk.API.csproj", "{4172289A-A787-4281-9944-D9F33BC0984B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.FrontDesk.API", "FrontDesk\HotelManagementSystem.FrontDesk.API\HotelManagementSystem.FrontDesk.API.csproj", "{4172289A-A787-4281-9944-D9F33BC0984B}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "HotelManagementSystem.FrontDesk.Client", "FrontDesk\HotelManagementSystem.FrontDesk.Client\HotelManagementSystem.FrontDesk.Client.esproj", "{921656FA-5D31-4661-AC3E-8B57C52C7F95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.FrontDesk.DataAccess", "FrontDesk\HotelManagementSystem.FrontDesk.DataAccess\HotelManagementSystem.FrontDesk.DataAccess.csproj", "{1541BFC8-1277-4AD2-A75B-89002F33F2F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.FrontDesk.DataAccess", "FrontDesk\HotelManagementSystem.FrontDesk.DataAccess\HotelManagementSystem.FrontDesk.DataAccess.csproj", "{1541BFC8-1277-4AD2-A75B-89002F33F2F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.FrontDesk.Blanket", "HotelManagementSystem.FrontDesk.Blanket\HotelManagementSystem.FrontDesk.Blanket.csproj", "{4B15D745-B6B0-45F6-A674-4730174E196A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Admin.Blanket", "HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj", "{B39A39D5-86AA-49BF-B262-91C1F8A0B33E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Test", "HotelManagementSystem.Test\HotelManagementSystem.Test.csproj", "{84D5145D-D7B7-4C56-86FB-19ACBC07D178}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,18 @@ Global
 		{1541BFC8-1277-4AD2-A75B-89002F33F2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1541BFC8-1277-4AD2-A75B-89002F33F2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1541BFC8-1277-4AD2-A75B-89002F33F2F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B15D745-B6B0-45F6-A674-4730174E196A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B15D745-B6B0-45F6-A674-4730174E196A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B15D745-B6B0-45F6-A674-4730174E196A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B15D745-B6B0-45F6-A674-4730174E196A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B39A39D5-86AA-49BF-B262-91C1F8A0B33E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B39A39D5-86AA-49BF-B262-91C1F8A0B33E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B39A39D5-86AA-49BF-B262-91C1F8A0B33E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B39A39D5-86AA-49BF-B262-91C1F8A0B33E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D5145D-D7B7-4C56-86FB-19ACBC07D178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D5145D-D7B7-4C56-86FB-19ACBC07D178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D5145D-D7B7-4C56-86FB-19ACBC07D178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D5145D-D7B7-4C56-86FB-19ACBC07D178}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +91,8 @@ Global
 		{4172289A-A787-4281-9944-D9F33BC0984B} = {1E382F6A-8382-4D33-B55E-41AA144731BD}
 		{921656FA-5D31-4661-AC3E-8B57C52C7F95} = {1E382F6A-8382-4D33-B55E-41AA144731BD}
 		{1541BFC8-1277-4AD2-A75B-89002F33F2F6} = {1E382F6A-8382-4D33-B55E-41AA144731BD}
+		{4B15D745-B6B0-45F6-A674-4730174E196A} = {1E382F6A-8382-4D33-B55E-41AA144731BD}
+		{B39A39D5-86AA-49BF-B262-91C1F8A0B33E} = {E69EABFE-2702-41A7-8BC3-2F4F14F191EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6463A193-B233-42FF-AB38-1F5E8AF77597}

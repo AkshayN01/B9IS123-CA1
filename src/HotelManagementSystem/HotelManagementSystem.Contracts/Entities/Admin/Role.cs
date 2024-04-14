@@ -7,10 +7,10 @@ namespace HotelManagementSystem.Contracts.Entities.Admin
         [Key]
         public int RoleId { get; set; }
         public int HotelBranchId { get; set; }
-        [MaxLength(10)]
+        [MaxLength(30)]
         public string ShortName { get; set; } = string.Empty;
         [Required]
-        [MaxLength(30)]
+        [MaxLength(60)]
         public string Name { get; set; } = string.Empty;
         [Required]
         [MaxLength(250)]

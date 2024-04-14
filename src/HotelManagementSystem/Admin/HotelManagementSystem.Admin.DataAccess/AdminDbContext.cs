@@ -1,4 +1,5 @@
-﻿using HotelManagementSystem.Contracts.Entities.Admin;
+﻿using HotelManagementSystem.Admin.DataAccess.Data;
+using HotelManagementSystem.Contracts.Entities.Admin;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace HotelManagementSystem.DataAccess
 {
     public class AdminDbContext : DbContext
     {
-        public AdminDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
+        public AdminDbContext(DbContextOptions<AdminDbContext> dbContextOptions) : base(dbContextOptions) { }
 
         public DbSet<HotelBranch> Branches { get; set; }
         public DbSet<User> Users { get; set; }
@@ -18,5 +19,15 @@ namespace HotelManagementSystem.DataAccess
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<RoleAssignment> RoleAssignments { get; set; }
         public DbSet<PermissionAssignment> PermissionAssignments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HotelBranch>().HasData(AdminData.GetHotelBranches());
+            modelBuilder.Entity<Role>().HasData(AdminData.GetAllRoles());
+            modelBuilder.Entity<Permission>().HasData(AdminData.GetPermissions());
+            modelBuilder.Entity<PermissionAssignment>().HasData(AdminData.GetPermissionAssignments());
+            modelBuilder.Entity<User>().HasData(AdminData.GetAllUsers());
+            modelBuilder.Entity<RoleAssignment>().HasData(AdminData.GetAllRoleAssignments());
+        }
     }
 }
