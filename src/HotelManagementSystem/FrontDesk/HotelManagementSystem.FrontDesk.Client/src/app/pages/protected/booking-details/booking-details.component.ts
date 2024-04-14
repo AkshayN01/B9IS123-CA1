@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReasonModalComponent } from '../../reason-modal/reason-modal.component';
+import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
 import { RoomService } from '../../../services/room.service';
 
 @Component({
@@ -19,8 +19,68 @@ export class BookingDetailsComponent implements OnInit {
     this.fetchBookingDetails();
   }
 
-  fetchBookingDetails() {
-  }
+  fetchBookingDetails()
+  {
+    this.bookingDetails={
+  "id": 0,
+  "fromDate": "0001-01-01T00:00:00",
+  "toDate": "0001-01-01T00:00:00",
+  "branchId": 0,
+  "room": [
+    {
+      "id": 1,
+      "level": 1,
+      "roomNumber": 101,
+      "roomName": "101",
+      "roomTypeId": 0,
+      "roomType": {
+        "id": 4,
+        "name": "Dormitory",
+        "price": 60,
+        "maxCapacity": 8
+      }
+    }
+  ],
+  "visitors": [
+    {
+      "id": 15,
+      "firstName": "Akshay",
+      "middleName": "Mohanan",
+      "lastName": "Nambly",
+      "email": "test1@test.com",
+      "phone": "1234567",
+      "isPrimary": 0
+    },
+    {
+      "id": 16,
+      "firstName": "Abhiram",
+      "middleName": "Mohanan",
+      "lastName": "Nambly",
+      "email": null,
+      "phone": null,
+      "isPrimary": 0
+    },
+    {
+      "id": 17,
+      "firstName": "Mohanan",
+      "middleName": "Kumaran",
+      "lastName": "Nambly",
+      "email": null,
+      "phone": null,
+      "isPrimary": 0
+    },
+    {
+      "id": 18,
+      "firstName": "Sudha",
+      "middleName": "Mohanan",
+      "lastName": "Nambly",
+      "email": null,
+      "phone": null,
+      "isPrimary": 0
+    }
+  ]
+}
+    }
 
   acceptBooking() {
     this.room.getAvailableRooms(this.bookingDetails.roomType.id)
