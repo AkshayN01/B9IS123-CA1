@@ -1,0 +1,43 @@
+.booking-deatils-container { 
+    max-width: 600;
+    margin: 0 auto;
+    padding:  20px;
+    border: 1px solid #f8f4f4;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.booking-deatils-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.booking-deatils-section { 
+    margin-bottom: 20px;
+}
+
+.booking-details-item {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.booking-action-buttons {
+    margin-top: 20px;
+}
+
+.room-detail-item {
+    margin-bottom: 10px;
+    
+  }
+
+  .available-rooms-section {
+    margin-top: 20px;
+  }
+
+  .available-room-item {
+    margin-bottom: 10px;
+  }
+
+  .select-button {
+    margin-left: 10px;
+  }

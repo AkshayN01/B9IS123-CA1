@@ -12,8 +12,13 @@ export class BookingDetailsComponent implements OnInit {
   bookingDetails: any;
   availableRooms!: any[];
   roomSelected: boolean = false;
-
-  constructor(private dialog: MatDialog, private room: RoomService) { }
+  primaryVisitor: any;
+  travelPartner: any[] =[];
+  
+  
+  constructor(private dialog: MatDialog, private room: RoomService) 
+  {
+   }
 
   ngOnInit() {
     this.fetchBookingDetails();
@@ -49,7 +54,7 @@ export class BookingDetailsComponent implements OnInit {
       "lastName": "Nambly",
       "email": "test1@test.com",
       "phone": "1234567",
-      "isPrimary": 0
+      "isPrimary": 1
     },
     {
       "id": 16,
@@ -80,7 +85,10 @@ export class BookingDetailsComponent implements OnInit {
     }
   ]
 }
-    }
+this.primaryVisitor = this.bookingDetails.visitors.find((visitor: any) => visitor.isPrimary);
+this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visitor.isPrimary);
+}
+
 
   acceptBooking() {
     this.room.getAvailableRooms(this.bookingDetails.roomType.id)

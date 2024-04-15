@@ -1,31 +1,38 @@
-        <div *ngIf="bookingDetails">
-        <h3>Booking Details</h3>
-        <p>From Date: {{ bookingDetails.fromDate }}</p>
-        <p>To Date: {{ bookingDetails.toDate }}</p>
-        <p>Room Type: {{ bookingDetails.room.name }}</p>
-        <p>Visitor Details: {{ bookingDetails.visitorDetails }}</p>
-  
-    <ng-container *ngIf="!bookingDetails.room">
-      <button mat-raised-button color="primary" (click)="acceptBooking()">Accept</button>
-      <button mat-raised-button color="warn" (click)="declineBooking()">Decline</button>
-    </ng-container>
-  
-    <div *ngIf="bookingDetails.room">
-      <div *ngFor="let r of bookingDetails.room">
-      <h4>Room Details</h4>d
-      <p>Room Number: {{ r.roomNumber }}</p>
-      <p>Room Level: {{ r.level }}</p>
-      <p>Room Type: {{ r.roomType.name }}</p>
-    </div>
-    </div>
-  
-    <div *ngIf="availableRooms && !roomSelected">
-      <h4>Available Rooms</h4>
-      <ul>
-        <li *ngFor="let room of availableRooms">
-          {{ room.name }} - Room Number: {{ room.roomNumber }} - Level: {{ room.roomLevel }}
-          <button mat-button color="primary" (click)="selectRoom(room.id)">Select</button>
-        </li>
-      </ul>
-    </div>
+<div class="booking-details-container">
+  <h1>Booking Details</h1>
+  <div class="booking-details-section">
+      <p>From Date: {{ bookingDetails?.fromDate }}</p>
+      <p>To Date: {{ bookingDetails?.toDate }}</p>
+      <p>Room Type: {{ bookingDetails.room.name }}</p>
   </div>
+
+  <div class="booking-details-container"></div>
+  <h2>Primary Visitor</h2>
+  <div class="visitor-details">
+      <p>Name: {{ primaryVisitor?.firstName }} {{ primaryVisitor?.middleName }} {{ primaryVisitor?.lastName }}</p>
+      <p>Email: {{ primaryVisitor?.email }}</p>
+      <p>Phone: {{ primaryVisitor?.phone }}</p>
+  </div>
+
+    <h2>Travel Partners</h2>
+    <div class="travel-partners">
+        <div *ngFor="let partner of travelPartner">
+            <p>Name: {{ partner.firstName }} {{ partner.middleName }} {{ partner.lastName }}</p>
+        </div>
+    </div>
+  
+  <div class="room-details-section" *ngIf="bookingDetails?.room">
+      <h2>Room Details</h2>
+      <div class="room-detail-item" *ngFor="let room of bookingDetails.room">
+          <p>Room Number: {{ room.roomNumber }}</p>
+          <p>Room Level: {{ room.level }}</p>
+          <p>Room Type: {{ room.roomType?.name }}</p>
+      </div>
+  </div>
+
+  <ng-container >
+    <button mat-raised-button color="primary" (click)="acceptBooking()">Accept</button>
+    <button mat-raised-button color="warn" (click)="declineBooking()">Decline</button>
+  </ng-container>
+
+</div>
