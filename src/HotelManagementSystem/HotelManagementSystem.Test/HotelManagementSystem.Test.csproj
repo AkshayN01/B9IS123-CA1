@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Admin\HotelManagementSystem.Admin.API\HotelManagementSystem.Admin.API.csproj" />
     <ProjectReference Include="..\FrontDesk\HotelManagementSystem.FrontDesk.API\HotelManagementSystem.FrontDesk.API.csproj" />
   </ItemGroup>
 
