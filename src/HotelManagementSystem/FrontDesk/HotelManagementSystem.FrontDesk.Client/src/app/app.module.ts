@@ -25,6 +25,7 @@ import { ReasonModalComponent } from './pages/reason-modal/reason-modal.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { RoomComponent } from './pages/protected/room/room.component';
     AppRoutingModule,
     MatDialogModule,
     FormsModule,
+    CommonModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],
@@ -67,4 +69,7 @@ import { RoomComponent } from './pages/protected/room/room.component';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
+

@@ -115,7 +115,7 @@ this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visi
 
   declineBooking() {
     const dialogRef = this.dialog.open(ReasonModalComponent, {
-      width: '400px',
+      width: '300px',
       data: { reason: '' }
     });
 
@@ -130,3 +130,4 @@ this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visi
     });
   }
 }
+
