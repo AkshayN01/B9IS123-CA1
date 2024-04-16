@@ -16,11 +16,11 @@ services:
   hotelmanagementsystem.frontdesk.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=5021
-      - ASPNETCORE_HTTPS_PORTS=5022
+      - ASPNETCORE_HTTP_PORTS=5005
+      - ASPNETCORE_HTTPS_PORTS=5006
     ports:
-      - "5021:5021"
-      - "5022:5022"
+      - "5005:5005"
+      - "5006:5006"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -28,11 +28,11 @@ services:
   hotelmanagementsystem.admin.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=5004
-      - ASPNETCORE_HTTPS_PORTS=5005
+      - ASPNETCORE_HTTP_PORTS=5003
+      - ASPNETCORE_HTTPS_PORTS=5004
     ports:
+      - "5003:5003"
       - "5004:5004"
-      - "5005:5005"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

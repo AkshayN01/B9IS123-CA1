@@ -50,7 +50,7 @@ if (!app.Environment.IsDevelopment())
 //    ctx.SetIdentityServerOrigin("https://localhost:7016");
 //    await next();
 //});
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

@@ -18,8 +18,8 @@ services:
       context: .
       dockerfile: Admin/HotelManagementSystem.Admin.API/Dockerfile
     ports:
+        - "5003:5003"
         - "5004:5004"
-        - "5005:5005"
     depends_on: 
         - hotelmanagementsystem.database
   
@@ -29,8 +29,8 @@ services:
       context: .
       dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.API/Dockerfile
     ports:
+        - "5005:5005"
         - "5006:5006"
-        - "5007:5007"
     depends_on: 
         - hotelmanagementsystem.database
 
