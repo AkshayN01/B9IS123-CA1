@@ -18,6 +18,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj" />
+	<Content Remove="appsettings.Development.json"/>
+	  <None Include="appsettings.Development.json">
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  </None>
   </ItemGroup>
 
 </Project>
