@@ -10,6 +10,7 @@ using IdentityServer4.Validation;
 using IdentityServerHost.Quickstart.UI;
 using HotelManagementSystem.Contracts.Generic;
 using IdentityServer4.Extensions;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,10 @@ app.Use(async (ctx, next) =>
 {
     ctx.SetIdentityServerOrigin("https://localhost:7016");
     await next();
+});
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
