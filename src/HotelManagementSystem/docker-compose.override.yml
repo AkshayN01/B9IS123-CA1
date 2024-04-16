@@ -9,9 +9,6 @@ services:
     ports:
       - "5001:5001"
       - "5002:5002"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
   hotelmanagementsystem.frontdesk.api:
     environment:
@@ -21,9 +18,6 @@ services:
     ports:
       - "5005:5005"
       - "5006:5006"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
   hotelmanagementsystem.admin.api:
     environment:
@@ -33,6 +27,3 @@ services:
     ports:
       - "5003:5003"
       - "5004:5004"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
