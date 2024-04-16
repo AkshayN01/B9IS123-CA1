@@ -26,6 +26,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
 import { CommonModule } from '@angular/common';
+import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import { CommonModule } from '@angular/common';
     ReasonModalComponent,
     BookingDetailsComponent,
     HeaderComponent,
-    RoomComponent
+    RoomComponent,
+    RoomAssignmentDialogComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,9 @@ import { CommonModule } from '@angular/common';
     MatDialogModule,
     FormsModule,
     CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],

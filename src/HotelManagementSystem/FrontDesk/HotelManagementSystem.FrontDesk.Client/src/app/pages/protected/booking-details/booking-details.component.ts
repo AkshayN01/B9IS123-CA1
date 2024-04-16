@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
 import { RoomService } from '../../../services/room.service';
+import { RoomAssignmentDialogComponent } from '../room-assignment-dialog/room-assignment-dialog.component';
 
 @Component({
   selector: 'app-booking-details',
@@ -14,6 +15,7 @@ export class BookingDetailsComponent implements OnInit {
   roomSelected: boolean = false;
   primaryVisitor: any;
   travelPartner: any[] =[];
+  showAcceptDeclineButtons: boolean = true;
   
   
   constructor(private dialog: MatDialog, private room: RoomService) 
@@ -94,7 +96,21 @@ this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visi
     this.room.getAvailableRooms(this.bookingDetails.roomType.id)
       .subscribe((response: any) => {
         this.availableRooms = response;
+        this.openRoomAssignmentDialog();
       });
+  }
+
+  openRoomAssignmentDialog() {
+    const dialogRef = this.dialog.open(RoomAssignmentDialogComponent, {
+      width: '300px',
+      data: { availableRooms: this.availableRooms }
+    });
+
+    dialogRef.afterClosed().subscribe((selectedRoomId: number) => {
+      if (selectedRoomId) {
+        this.selectRoom(selectedRoomId);
+      }
+    });
   }
 
   selectRoom(roomId: number) {
