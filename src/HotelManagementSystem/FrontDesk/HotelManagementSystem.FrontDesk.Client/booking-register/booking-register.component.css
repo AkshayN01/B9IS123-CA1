@@ -1,0 +1,19 @@
+.container {
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.margaritaville.com%2Fstay&psig=AOvVaw2KS-CYEBo3lrb6-2XZ1sYp&ust=1713473437961000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOiXqISQyoUDFQAAAAAdAAAAABAE');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .booking-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .booking-form h2 {
+    text-align: center;
+  }
