@@ -44,6 +44,7 @@ services:
   hotelmanagementsystem.database:
     image: mysql:5.7
     container_name: hms.mysql
+    command: [--ignore-db-dir=lost+found]
     environment:
         MYSQL_ROOT_PASSWORD: P@ssw0rd
     ports:
