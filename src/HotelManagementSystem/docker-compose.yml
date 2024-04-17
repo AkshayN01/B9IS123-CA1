@@ -44,11 +44,13 @@ services:
   hotelmanagementsystem.database:
     image: mysql:5.7
     container_name: hms.mysql
-    command: [--ignore-db-dir=lost+found]
     environment:
         MYSQL_ROOT_PASSWORD: P@ssw0rd
     ports:
         - "3306:3306"
     restart: always
     volumes:
-        - ./.containers/hms-db/:/var/lib/mysql/data
+      - hms-db:/var/lib/mysql
+# Names our volume
+volumes:
+  hms-db:
