@@ -1,11 +1,12 @@
-FROM node:alpine
+# Stage 1: Build Angular app
+FROM node:latest as build
 
-
-WORKDIR /usr/app
-COPY ./ /usr/app
-
-RUN npm install -g @angular/cli
-
+WORKDIR /app
+COPY ./FrontDesk/HotelManagementSystem.FrontDesk.Client/ /app/
 RUN npm install
+RUN npm run build
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+# # Stage 2: Setup Nginx to serve Angular app
+FROM nginx:latest
+COPY --from=build /app/dist/hotel-management-system.front-desk.client/browser /usr/share/nginx/html
+EXPOSE 80

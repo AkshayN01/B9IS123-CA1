@@ -31,15 +31,15 @@ services:
     depends_on: 
         - hotelmanagementsystem.database
 
-  # hotelmanagementsystem.frontdesk.client:
-  #   image: ${DOCKER_REGISTRY-}frontdeskclient
-  #   build:
-  #     context: .
-  #     dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.Client/Dockerfile
-  #   ports:
-  #       - "4200:4200"
-  #   depends_on: 
-  #       - hotelmanagementsystem.database
+  hotelmanagementsystem.frontdesk.client:
+    image: ${DOCKER_REGISTRY-}frontdeskclient
+    build:
+      context: .
+      dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.Client/Dockerfile
+    ports:
+        - "5007:80"
+    depends_on: 
+        - hotelmanagementsystem.database
 
   hotelmanagementsystem.database:
     image: mysql:5.7
@@ -54,3 +54,4 @@ services:
 # Names our volume
 volumes:
   hms-db:
+  angular-app:
