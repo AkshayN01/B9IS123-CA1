@@ -5,25 +5,19 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5001
-      - ASPNETCORE_HTTPS_PORTS=5002
     ports:
       - "5001:5001"
-      - "5002:5002"
 
   hotelmanagementsystem.frontdesk.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5005
-      - ASPNETCORE_HTTPS_PORTS=5006
     ports:
       - "5005:5005"
-      - "5006:5006"
 
   hotelmanagementsystem.admin.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5003
-      - ASPNETCORE_HTTPS_PORTS=5004
     ports:
       - "5003:5003"
-      - "5004:5004"
