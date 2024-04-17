@@ -2,9 +2,9 @@
     "production": true,
     "apiUrl": "",
     "oAuth": {
-      "issuer": "http://localhost:5001",
-      "redirectUri": "http://localhost:5007/login-completed",
-      "postLogoutRedirectUri": "http://localhost:5007/logout-completed"
+      "issuer": "https://localhost:7016",
+      "redirectUri": "https://localhost:4002/login-completed",
+      "postLogoutRedirectUri": "https://localhost:4002/logout-completed"
     }
   }
   
