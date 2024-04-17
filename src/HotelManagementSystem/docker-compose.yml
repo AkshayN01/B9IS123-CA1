@@ -1,0 +1,57 @@
+version: '3.4'
+
+services:
+  hotelmanagementsystem.identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: HotelManagementSystem.IdentityServer/Dockerfile
+    ports:
+        - "5001:5001"
+    depends_on: 
+        - hotelmanagementsystem.database
+
+  hotelmanagementsystem.admin.api:
+    image: ${DOCKER_REGISTRY-}adminapi
+    build:
+      context: .
+      dockerfile: Admin/HotelManagementSystem.Admin.API/Dockerfile
+    ports:
+        - "5003:5003"
+    depends_on: 
+        - hotelmanagementsystem.database
+  
+  hotelmanagementsystem.frontdesk.api:
+    image: ${DOCKER_REGISTRY-}frontdeskapi
+    build:
+      context: .
+      dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.API/Dockerfile
+    ports:
+        - "5005:5005"
+    depends_on: 
+        - hotelmanagementsystem.database
+
+  hotelmanagementsystem.frontdesk.client:
+    image: ${DOCKER_REGISTRY-}frontdeskclient
+    build:
+      context: .
+      dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.Client/Dockerfile
+    ports:
+        - "5007:80"
+    depends_on: 
+        - hotelmanagementsystem.database
+
+  hotelmanagementsystem.database:
+    image: mysql:5.7
+    container_name: hms.mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: P@ssw0rd
+    ports:
+        - "3306:3306"
+    restart: always
+    volumes:
+      - hms-db:/var/lib/mysql
+# Names our volume
+volumes:
+  hms-db:
+  angular-app:
