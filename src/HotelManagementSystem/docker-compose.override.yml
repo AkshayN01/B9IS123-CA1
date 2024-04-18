@@ -15,7 +15,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5005
     expose:
-      - 5005
+      - "5005"
     ports:
       - "5005:5005"
 
@@ -24,6 +24,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5003
     expose:
-      - 5003
+      - "5003"
     ports:
       - "5003:5003"
