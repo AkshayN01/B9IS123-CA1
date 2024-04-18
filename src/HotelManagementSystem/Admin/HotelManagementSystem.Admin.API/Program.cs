@@ -85,13 +85,13 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAngularApp",
-        builder => builder.WithOrigins("http://172.190.104.34")
-            .AllowAnyHeader()
-            .AllowAnyMethod());
-});
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAngularApp",
+//         builder => builder.WithOrigins("http://172.190.104.34")
+//             .AllowAnyHeader()
+//             .AllowAnyMethod());
+// });
 
 
 var app = builder.Build();
@@ -116,7 +116,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
-app.UseCors("AllowAngularApp");
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseAuthentication();
 
 app.UseAuthorization();
