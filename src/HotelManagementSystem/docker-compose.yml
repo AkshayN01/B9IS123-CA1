@@ -20,7 +20,7 @@ services:
     expose:
       - "5003"
     ports:
-        - "5003:80"
+        - "5003:5003"
     depends_on:
       hotelmanagementsystem.database:
         condition: service_healthy

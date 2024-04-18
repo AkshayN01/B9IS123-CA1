@@ -4,6 +4,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 EXPOSE 5003
+ENTRYPOINT ["dotnet", "run", "--server.urls", "http://*:5003"]
+
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -26,8 +28,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "HotelManagementSystem.Admin.API.dll"]
-
-# # Stage 2: Setup Nginx to serve Angular app
-FROM nginx:latest
-COPY --from=build /app/publish /usr/share/nginx/html
-EXPOSE 80
