@@ -6,6 +6,9 @@ WORKDIR /app
 EXPOSE 5003
 ENTRYPOINT ["dotnet", "run", "--server.urls", "http://*:5003"]
 
+# Ensure we listen on any IP Address 
+ENV DOTNET_URLS=http://+:5003
+
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
