@@ -1,15 +1,34 @@
-<form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="roomNumber">Room Number:</label>
-    <input type="text" id="roomNumber" formControlName="roomNumber">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="room-create.component.css">
+  <title>Room Creation</title>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2>Room Creation</h2>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="roomNumber">Room Number:</label>
+            <input type="text" id="roomNumber" class="form-control" placeholder="Enter room number">
+          </div>
+          <div class="form-group">
+            <label for="type">Type:</label>
+            <input type="text" id="type" class="form-control" placeholder="Enter room type">
+          </div>
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" class="form-control" placeholder="Enter room price">
+          </div>
+          <button type="submit" class="btn btn-primary">Create Room</button>
+        </form>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="type">Type:</label>
-    <input type="text" id="type" formControlName="type">
-  </div>
-  <div>
-    <label for="price">Price:</label>
-    <input type="number" id="price" formControlName="price">
-  </div>
-  <button type="submit" [disabled]="!roomForm.valid">Create Room</button>
-</form>
+</body>
+</html>
