@@ -26,3 +26,8 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "HotelManagementSystem.Admin.API.dll"]
+
+# # Stage 2: Setup Nginx to serve Angular app
+FROM nginx:latest
+COPY --from=build /app/publish /usr/share/nginx/html
+EXPOSE 80
