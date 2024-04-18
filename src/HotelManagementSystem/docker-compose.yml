@@ -17,6 +17,8 @@ services:
     build:
       context: .
       dockerfile: Admin/HotelManagementSystem.Admin.API/Dockerfile
+    expose:
+      - 5003
     ports:
         - "5003:5003"
     depends_on:
@@ -28,6 +30,8 @@ services:
     build:
       context: .
       dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.API/Dockerfile
+    expose:
+      - 5005
     ports:
         - "5005:5005"
     depends_on:
