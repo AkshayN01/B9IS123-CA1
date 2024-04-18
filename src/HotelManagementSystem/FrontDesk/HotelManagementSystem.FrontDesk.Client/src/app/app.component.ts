@@ -19,7 +19,8 @@ export class AppComponent {
     console.log(this.appConfig.config.oAuth.issuer)
     authCodeFlowConfig.issuer = this.appConfig.config.oAuth.issuer;
     authCodeFlowConfig.postLogoutRedirectUri = this.appConfig.config.oAuth.postLogoutRedirectUri;
-
+    const sameSiteCookie = window.location.protocol === 'https:' ? 'None' : 'None';
+    document.cookie = `idsrv.session=...; SameSite=${sameSiteCookie}`;
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();

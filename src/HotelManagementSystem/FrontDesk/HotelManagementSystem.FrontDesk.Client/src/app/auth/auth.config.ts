@@ -12,5 +12,6 @@ export const authCodeFlowConfig: AuthConfig = {
   clientId: auth.clientId,
   responseType: 'code',
   scope: auth.scope,
+  requireHttps: false,
   showDebugInformation: !environment.production
 };

@@ -119,6 +119,8 @@ namespace IdentityServerHost.Quickstart.UI
                 //var isValid = _users.ValidateCredentials(model.Username, model.Password);
                 if (isValidResult)
                 {
+                    Console.WriteLine("Is a Valid User");
+                   
                     var user = await _userService.GetUserByUsernameAsync(instance.Id, model.Username);
                     //var user = _users.FindByUsername(model.Username);
                     await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Guid.ToString(), user.UserName, clientId: context?.Client.ClientId));

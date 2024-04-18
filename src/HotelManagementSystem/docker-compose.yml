@@ -8,8 +8,8 @@ services:
       dockerfile: HotelManagementSystem.IdentityServer/Dockerfile
     ports:
         - "5001:5001"
-    depends_on: 
-        - hotelmanagementsystem.database
+    depends_on:
+      - hotelmanagementsystem.admin.api
 
   hotelmanagementsystem.admin.api:
     image: ${DOCKER_REGISTRY-}adminapi
@@ -18,8 +18,9 @@ services:
       dockerfile: Admin/HotelManagementSystem.Admin.API/Dockerfile
     ports:
         - "5003:5003"
-    depends_on: 
-        - hotelmanagementsystem.database
+    depends_on:
+      hotelmanagementsystem.database:
+        condition: service_healthy
   
   hotelmanagementsystem.frontdesk.api:
     image: ${DOCKER_REGISTRY-}frontdeskapi
@@ -28,8 +29,8 @@ services:
       dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.API/Dockerfile
     ports:
         - "5005:5005"
-    depends_on: 
-        - hotelmanagementsystem.database
+    depends_on:
+      - hotelmanagementsystem.admin.api
 
   hotelmanagementsystem.frontdesk.client:
     image: ${DOCKER_REGISTRY-}frontdeskclient
@@ -38,8 +39,6 @@ services:
       dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.Client/Dockerfile
     ports:
         - "5007:80"
-    depends_on: 
-        - hotelmanagementsystem.database
 
   hotelmanagementsystem.database:
     image: mysql:5.7
@@ -51,7 +50,12 @@ services:
     restart: always
     volumes:
       - hms-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 # Names our volume
 volumes:
   hms-db:
-  angular-app:

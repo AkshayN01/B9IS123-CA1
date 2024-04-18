@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using HotelManagementSystem.Library;
+using HotelManagementSystem.Library.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ValidateIssuer = false
     };
+    options.RequireHttpsMetadata = false;
 });
 
 builder.Services.AddAuthorization(options =>
@@ -79,11 +81,15 @@ builder.Services.AddSwaggerGen(c =>
                     Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
                 },
                 new[] { scope }
-            }
-        });
+        }
+    });
 });
 
+
 var app = builder.Build();
+
+//app.EnsureDbCreated<AdminDbContext>();
+app.EnsureMigrationOfContext<AdminDbContext>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

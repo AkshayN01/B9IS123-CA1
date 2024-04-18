@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Graph" Version="5.49.0" />
     <PackageReference Include="MySql.Data" Version="8.3.0" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

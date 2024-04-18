@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Configuration;
 using HotelManagementSystem.Library;
+using HotelManagementSystem.Library.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ValidateIssuer = false
     };
+    options.RequireHttpsMetadata = false;
 });
 
 builder.Services.AddAuthorization(options =>
@@ -93,6 +95,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+//app.EnsureDbCreated<FrontDeskDbContext>();
+app.EnsureMigrationOfContext<FrontDeskDbContext>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
