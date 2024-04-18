@@ -11,7 +11,7 @@ export class LoginService {
   // Method to perform login
   login(loginInfo: any): Observable<any> {
     // Replace 'login-endpoint' with your actual login endpoint
-    return this.apiService.post<any>('http://localhost:5003/login', loginInfo);
+    return this.apiService.post<any>('http://172.190.104.34:5003/login', loginInfo);
   }
 
   // Method to perform logout
