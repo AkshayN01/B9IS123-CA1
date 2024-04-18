@@ -42,12 +42,12 @@ builder.Services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPass
 //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 //});
 
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.HttpOnly = true;
-});
+//builder.Services.ConfigureApplicationCookie(options =>
+//{
+//    options.Cookie.SameSite = SameSiteMode.None;
+//    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+//    options.Cookie.HttpOnly = true;
+//});
 // Register the custom cookie authentication handler
 //builder.Services.AddScoped<CustomCookieAuthenticationHandler>();
 
@@ -73,7 +73,7 @@ if (!app.Environment.IsDevelopment())
 //    ctx.SetIdentityServerOrigin("http://localhost:57202");
 //    await next();
 //});
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
