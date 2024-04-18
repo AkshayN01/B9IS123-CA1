@@ -14,8 +14,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5005
-    expose:
-      - "5005"
+      - DOTNET_URLS=http://+:5005
     ports:
       - "5005:5005"
 
@@ -23,6 +22,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5003
-      - ASPNETCORE_URLS=http://+:5003
+      - DOTNET_URLS=http://+:5003
     ports:
       - "5003:5003"
