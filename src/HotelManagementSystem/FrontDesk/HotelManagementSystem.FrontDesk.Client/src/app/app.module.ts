@@ -22,6 +22,7 @@ import { LogoutCompletedComponent } from './pages/logout-completed/logout-comple
 import { HomeComponent } from './pages/protected/home/home.component';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
+import { RoomCreateComponent } from './pages/protected/room-create/room-create.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RoomComponent } from './pages/protected/room/room.component';
     LogoutCompletedComponent,
     HomeComponent,
     HeaderComponent,
-    RoomComponent
+    RoomComponent,
+    RoomCreateComponent
   ],
   imports: [
     BrowserModule,
