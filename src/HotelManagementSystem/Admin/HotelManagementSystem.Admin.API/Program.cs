@@ -87,9 +87,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAnyOrigin",
-        builder => builder
-            .AllowAnyOrigin() // Allow requests from any origin
+    options.AddPolicy("AllowAngularApp",
+        builder => builder.WithOrigins("http://172.190.104.34")
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
@@ -117,7 +116,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
-app.UseCors("AllowAnyOrigin");
+app.UseCors("AllowAngularApp");
 app.UseAuthentication();
 
 app.UseAuthorization();
