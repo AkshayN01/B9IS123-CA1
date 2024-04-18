@@ -42,11 +42,18 @@ builder.Services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPass
 //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 //});
 
+builder.Services.AddAuthentication("MyCookie")
+    .AddCookie("MyCookie", options =>
+    {
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+    });
+
 //builder.Services.ConfigureApplicationCookie(options =>
 //{
 //    options.Cookie.SameSite = SameSiteMode.None;
-//    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-//    options.Cookie.HttpOnly = true;
+//    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+//    options.Cookie.HttpOnly = false;
 //});
 // Register the custom cookie authentication handler
 //builder.Services.AddScoped<CustomCookieAuthenticationHandler>();
@@ -66,14 +73,14 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    //app.UseHsts();
 }
 //app.Use(async (ctx, next) =>
 //{
 //    ctx.SetIdentityServerOrigin("http://localhost:57202");
 //    await next();
 //});
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

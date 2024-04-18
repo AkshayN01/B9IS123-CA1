@@ -1,16 +1,16 @@
 version: '3.4'
 
 services:
-  hotelmanagementsystem.identityserver:
-    image: ${DOCKER_REGISTRY-}identityserver
-    build:
-      context: .
-      dockerfile: HotelManagementSystem.IdentityServer/Dockerfile
-    ports:
-        - "5001:5001"
-        - "5002:5002"
-    depends_on:
-      - hotelmanagementsystem.admin.api
+  # hotelmanagementsystem.identityserver:
+  #   image: ${DOCKER_REGISTRY-}identityserver
+  #   build:
+  #     context: .
+  #     dockerfile: HotelManagementSystem.IdentityServer/Dockerfile
+  #   ports:
+  #       - "5001:5001"
+  #       - "5002:5002"
+  #   depends_on:
+  #     - hotelmanagementsystem.admin.api
 
   hotelmanagementsystem.admin.api:
     image: ${DOCKER_REGISTRY-}adminapi

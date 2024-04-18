@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { authCodeFlowConfig } from './oauth/oauth-config';
 import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { filter } from 'rxjs/internal/operators/filter';
+import { SessionStorageService } from './services/session-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,13 @@ import { filter } from 'rxjs/internal/operators/filter';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private router: Router, private oauthService: OAuthService, private appConfig: AppConfig) {
-    this.configureCodeFlow();
+  constructor(private router: Router, private oauthService: OAuthService, private appConfig: AppConfig, private sesseionStorageService: SessionStorageService) {
+    // this.configureCodeFlow();
+  }
+
+  private checkUserLogin(){
+    const isLoggedIn = this.sesseionStorageService.isLoggedIn();
+    
   }
 
   private configureCodeFlow() {
