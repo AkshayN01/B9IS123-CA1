@@ -23,6 +23,8 @@ import { HomeComponent } from './pages/protected/home/home.component';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
 import { RoomCreateComponent } from './pages/protected/room-create/room-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { RoomCreateComponent } from './pages/protected/room-create/room-create.c
     MaterialModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],
