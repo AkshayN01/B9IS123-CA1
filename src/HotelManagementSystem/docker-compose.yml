@@ -42,8 +42,10 @@ services:
     build:
       context: .
       dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.Client/Dockerfile
+    expose:
+      - "5007"
     ports:
-        - "80:80"
+        - "5007:80"
 
   hotelmanagementsystem.database:
     image: mysql:5.7
