@@ -39,7 +39,7 @@ services:
       context: .
       dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.Client/Dockerfile
     ports:
-        - "5007:80"
+        - "80:80"
 
   hotelmanagementsystem.database:
     image: mysql:5.7
