@@ -17,8 +17,6 @@ services:
     build:
       context: .
       dockerfile: Admin/HotelManagementSystem.Admin.API/Dockerfile
-    expose:
-      - "5003"
     ports:
         - "5003:5003"
     depends_on:
