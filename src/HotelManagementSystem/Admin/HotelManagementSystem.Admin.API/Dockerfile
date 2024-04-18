@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 5003
+EXPOSE 80
 ENTRYPOINT ["dotnet", "run", "--server.urls", "http://*:5003"]
 
 # Ensure we listen on any IP Address 
