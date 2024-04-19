@@ -1,7 +1,15 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Page</title>
+  <link rel="stylesheet" href="bookings.component.css">
+</head>
+<body>
+  <div class="bookings-container">
 <h2>All Bookings</h2>
-
-<div class="bookings-container">
-  <table>
+<div div class="bookings-container">
+ <table class="bookings-table">
     <thead>
       <tr>
         <th>Visitor Name</th>
@@ -11,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let booking of bookings">
+      <tr *ngFor="let booking of bookings" class="bookings-table">
         <td>{{ booking.visitorDetails.firstName }} {{ booking.visitorDetails.lastName }}</td>
         <td>{{ booking.fromDate }}</td>
         <td>{{ booking.toDate }}</td>
@@ -19,4 +27,7 @@
       </tr>
     </tbody>
   </table>
-</div>
+  </div>
+  </div>
+  </body>
+</html>
