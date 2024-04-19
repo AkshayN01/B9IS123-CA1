@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Description</title>
+</head>
+<body>
+
+<h2>Booking Description</h2>
+
+<div id="bookingDetails"></div>
+
+<script>
+    // Load JSON data from file
+    fetch('bookings.json')
+        .then(response => response.json())
+        .then(data => {
+            // Handle the JSON data
+            const bookingDetailsDiv = document.getElementById('bookingDetails');
+            // Example: Displaying the first booking's details
+            bookingDetailsDiv.innerHTML = `
+                <p>Visitor Name: ${data[0].visitorDetails.firstName} ${data[0].visitorDetails.lastName}</p>
+                <p>From Date: ${data[0].fromDate}</p>
+                <p>To Date: ${data[0].toDate}</p>
+                <!-- Add more details as needed -->
+            `;
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+</script>
+
+</body>
+</html>

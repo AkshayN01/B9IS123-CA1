@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "fromDate": "2024-04-20",
+      "toDate": "2024-04-25",
+      "branchId": 1,
+      "visitorDetails": {
+        "visitorId": 1,
+        "firstName": "John",
+        "middleName": "",
+        "lastName": "Doe",
+        "emailId": "john.doe@example.com",
+        "phoneNo": "1234567890",
+        "isPrimary": 1
+      }
+    },
+    {
+      "id": 2,
+      "fromDate": "2024-05-10",
+      "toDate": "2024-05-15",
+      "branchId": 2,
+      "visitorDetails": {
+        "visitorId": 2,
+        "firstName": "Jane",
+        "middleName": "Anne",
+        "lastName": "Smith",
+        "emailId": "jane.smith@example.com",
+        "phoneNo": "9876543210",
+        "isPrimary": 1
+      }
+    }
+  ]
+  
