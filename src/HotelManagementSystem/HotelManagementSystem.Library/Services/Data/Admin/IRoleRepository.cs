@@ -9,6 +9,7 @@ namespace HotelManagementSystem.Library.Services.Data.Admin
 {
     public interface IRoleRepository : IRepository<Role>
     {
+        Task<int> AddRoleAsync(Role role);
         Task<List<Role>> GetRoleByUserIdAsync(int userId, int branchId);
         Task<List<Role>> GetRoleByBranchIdAsync(int branchId);
     }

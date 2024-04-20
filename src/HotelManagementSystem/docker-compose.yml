@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+  hotelmanagementsystem.admin.api:
+    image: ${DOCKER_REGISTRY-}adminapi
+    build:
+      context: .
+      dockerfile: Admin/HotelManagementSystem.Admin.API/Dockerfile
+    ports:
+        - "5003:5003"
+    depends_on:
+      hotelmanagementsystem.database:
+        condition: service_healthy
+  
+  hotelmanagementsystem.frontdesk.api:
+    image: ${DOCKER_REGISTRY-}frontdeskapi
+    build:
+      context: .
+      dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.API/Dockerfile
+    expose:
+      - "5005"
+    ports:
+        - "5005:5005"
+    depends_on:
+      - hotelmanagementsystem.admin.api
+
+  hotelmanagementsystem.frontdesk.client:
+    image: ${DOCKER_REGISTRY-}frontdeskclient
+    build:
+      context: .
+      dockerfile: FrontDesk/HotelManagementSystem.FrontDesk.Client/Dockerfile
+    expose:
+      - "5007"
+    ports:
+        - "5007:80"
+
+  hotelmanagementsystem.database:
+    image: mysql:5.7
+    container_name: hms.mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: P@ssw0rd
+    ports:
+        - "3306:3306"
+    restart: always
+    volumes:
+      - hms-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+# Names our volume
+volumes:
+  hms-db:

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="booking-card">
+    <div class="card-header">
+      <h1 class="page-title">
+        Booking No. {{ bookingDetails?.id }}
+        <a class="badge badge-warning float-right" [routerLink]="['/bookings/edit', bookingDetails?.id]">Edit</a>
+      </h1>
+    </div>
+    <div class="card-body">
+      <div class="booking-details-section">
+        <p><strong>From Date:</strong> {{ bookingDetails?.fromDate }}</p>
+        <p><strong>To Date:</strong> {{ bookingDetails?.toDate }}</p>
+        <p><strong>Room Type:</strong> {{ bookingDetails.room.name }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="visitor-card">
+    <div class="card-body">
+      <h2>Primary Visitor</h2>
+      <div class="visitor-details">
+        <p><strong>Name:</strong> {{ primaryVisitor?.firstName }} {{ primaryVisitor?.middleName }} {{ primaryVisitor?.lastName }}</p>
+        <p><strong>Email:</strong> {{ primaryVisitor?.email }}</p>
+        <p><strong>Phone:</strong> {{ primaryVisitor?.phone }}</p>
+      </div>
+      </div>
+      </div>
+      <div class="visitor-card">
+        <div class="card-body">
+      <h2>Travel Partners</h2>
+      <div class="travel-partners">
+          <div *ngFor="let partner of travelPartner">
+              <p><strong>Name:</strong> {{ partner.firstName }} {{ partner.middleName }} {{ partner.lastName }}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="room-card">
+    <div class="card-body">
+      <h2>Room Details</h2>
+      <div class="room-details-section" *ngIf="bookingDetails?.room">
+        <div class="room-detail-item" *ngFor="let room of bookingDetails.room">
+            <p><strong>Room Number:</strong> {{ room.roomNumber }}</p>
+            <p><strong>Room Level:</strong> {{ room.level }}</p>
+            <p><strong>Room Type:</strong> {{ room.roomType?.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="btn primary-btn" (click)="acceptBooking()">Accept</button>
+    <button class="btn danger-btn" (click)="declineBooking()">Decline</button>
+  </div>
+</div>

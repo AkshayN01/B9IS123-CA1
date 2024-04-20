@@ -1,0 +1,97 @@
+.filter-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-card-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.filter-card-content {
+  display: flex;
+  justify-content: column;
+  margin-bottom: 15px;
+}
+
+.filter-input {
+  margin-bottom: 10px;
+}
+
+.filter-input label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+}
+
+.date-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.apply-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.apply-btn:hover {
+  background-color: #0056b3;
+}
+
+.bookings-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .bookings-table th,
+  .bookings-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .bookings-table th {
+    background-color: #0078ff;
+    color: #fff;
+  }
+  
+  .bookings-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .bookings-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .view-button {
+    background-color: #0078ff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .view-button:hover {
+    background-color: #005cb2;
+  }

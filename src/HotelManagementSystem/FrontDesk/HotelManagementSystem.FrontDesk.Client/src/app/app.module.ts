@@ -8,8 +8,6 @@ import { AppConfig, initConfig } from './app.config';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 
-import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -20,11 +18,20 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { LoginCompletedComponent } from './pages/login-completed/login-completed.component';
 import { LogoutCompletedComponent } from './pages/logout-completed/logout-completed.component';
 import { HomeComponent } from './pages/protected/home/home.component';
+import { BookingsComponent } from './pages/protected/bookings/bookings.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
+import { ReasonModalComponent } from './pages/reason-modal/reason-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
 import { RoomCreateComponent } from './pages/protected/room-create/room-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
+import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -34,17 +41,28 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginCompletedComponent,
     LogoutCompletedComponent,
     HomeComponent,
+    BookingsComponent,
+    ReasonModalComponent,
+    BookingDetailsComponent,
     HeaderComponent,
     RoomComponent,
-    RoomCreateComponent
+    RoomCreateComponent,
+    RoomAssignmentDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
+    MatPaginatorModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],
@@ -65,4 +83,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
+

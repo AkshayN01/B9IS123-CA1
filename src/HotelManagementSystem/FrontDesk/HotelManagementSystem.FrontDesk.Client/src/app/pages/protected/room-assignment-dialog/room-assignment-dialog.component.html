@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="room-assignment-dialog.component.css">
+  <title>Room Selection</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h3>Select a Room</h3>  
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+          Room Types
+        </div>
+        <div class="card-body">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="typeDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Types
+          </button>
+          <div class="dropdown-menu" aria-labelledby="typeDropdownMenuButton">
+            <a class="dropdown-item" href="#">Type 1</a>
+            <a class="dropdown-item" href="#">Type 2</a>
+            <a class="dropdown-item" href="#">Type 3</a>
+          </div>
+        </div>
+      </div>
+
+    <div class="card">
+      <div class="card-header">
+        Available Rooms
+      </div>
+      <div class="card-body">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="roomDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Rooms
+        </button>
+        <div class="dropdown-menu" aria-labelledby="roomDropdownMenuButton">
+          <a class="dropdown-item" href="#">Room 1</a>
+          <a class="dropdown-item" href="#">Room 2</a>
+          <a class="dropdown-item" href="#">Room 3</a>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="buttons">
+      <button class="primary-btn" onclick="saveRoomAssignment()">Save</button>
+      <button class="danger-btn" onclick="cancel()">Cancel</button>
+    </div>
+  </div>
+</body>
+</html>

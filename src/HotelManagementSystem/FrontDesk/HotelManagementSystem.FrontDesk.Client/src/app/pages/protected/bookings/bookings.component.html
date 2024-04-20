@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Page</title>
+  <link rel="stylesheet" href="bookings.component.css">
+</head>
+<body>
+    
+<h2>All Bookings</h2>
+
+<div class="filter-card">
+  <div class="filter-section">
+    <div class="filter-card-content">
+      <label for="fromDate">From Date:</label>
+      <input type="date" id="fromDate" (change)="applyFilter()">
+    </div>
+    <div class="filter-card-content">
+      <label for="toDate">To Date:</label>
+      <input type="date" id="toDate" (change)="applyFilter()">
+    </div>
+  </div>
+  <button class="apply-btn">Apply Filters</button>
+</div>
+
+<div div class="bookings-container">
+ <table class="bookings-table">
+    <thead>
+      <tr>
+        <th>Visitor Name</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let booking of pagedBookings">
+          <td>{{ booking.visitorDetails.firstName }} {{ booking.visitorDetails.lastName }}</td>
+          <td>{{ booking.fromDate | date }}</td>
+          <td>{{ booking.toDate | date }}</td>
+          <td><button (click)="viewBooking(booking.id)">View</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+ 
+  <div class="pagination-container">
+  <mat-paginator [length]="bookings.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+</div>
+  </body>
+</html>

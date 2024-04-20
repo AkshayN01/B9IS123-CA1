@@ -1,4 +1,5 @@
 ﻿using HotelManagementSystem.Contracts.Entities.Admin;
+using HotelManagementSystem.Contracts.Entities.Visitor;
 using HotelManagementSystem.DataAccess.Repositories;
 using HotelManagementSystem.Library.Services.Data.Admin;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,23 @@ namespace HotelManagementSystem.Admin.DataAccess.Repositories.Admin
             _context = context;
             _dbSet = _context.Set<Permission>();
             _dbSetPermissionAssignment = _context.Set<PermissionAssignment>();
+        }
+
+        public async Task<int> AddPermissions(List<Permission> permissions)
+        {
+            try
+            {
+                foreach (var permission in permissions)
+                {
+                    _context.Add<Permission>(permission);
+                }
+                await _context.SaveChangesAsync();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public async Task<List<Permission>> GetRolePermissionsAsync(int roleId, int branchId)
