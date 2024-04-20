@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj" />
+    <ProjectReference Include="..\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj" />
   </ItemGroup>
 
 </Project>
