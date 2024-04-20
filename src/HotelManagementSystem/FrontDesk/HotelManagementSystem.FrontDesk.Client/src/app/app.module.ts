@@ -18,6 +18,8 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { LoginCompletedComponent } from './pages/login-completed/login-completed.component';
 import { LogoutCompletedComponent } from './pages/logout-completed/logout-completed.component';
 import { HomeComponent } from './pages/protected/home/home.component';
+import { BookingsComponent } from './pages/protected/bookings/bookings.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
 import { ReasonModalComponent } from './pages/reason-modal/reason-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -37,12 +39,12 @@ import { MatCardModule } from '@angular/material/card';
     LoginCompletedComponent,
     LogoutCompletedComponent,
     HomeComponent,
+    BookingsComponent,
     ReasonModalComponent,
     BookingDetailsComponent,
     HeaderComponent,
     RoomComponent,
     RoomAssignmentDialogComponent
-    
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
+    MatPaginatorModule,
     MatDialogModule,
     FormsModule,
     CommonModule,
