@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "hotelmanagementsystem.admin.api": "StartDebugging",
+        "hotelmanagementsystem.frontdesk.api": "StartDebugging"
+      }
+    }
+  }
+}
