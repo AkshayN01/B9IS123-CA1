@@ -18,5 +18,11 @@ namespace HotelManagementSystem.Contracts.Permissions
         public const string ViewPermission = "admin:permission:view";
         public const string EditPermission = "admin:permission:edit";
         public const string DeletePermission = "admin:permission:delete";
+
+
+        public const string AddUser = "admin:user:add";
+        public const string ViewUser = "admin:user:view";
+        public const string EditUser = "admin:user:edit";
+        public const string DeleteUser = "admin:user:delete";
     }
 }
