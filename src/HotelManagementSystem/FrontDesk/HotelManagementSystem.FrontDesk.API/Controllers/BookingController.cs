@@ -51,11 +51,9 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/booking/{bookingId}")]
-        public async Task<IActionResult> GetBookingDetails(int bookingId)
+        [Route("/api/userGuid/{userGuid}/booking/{bookingId}")]
+        public async Task<IActionResult> GetBookingDetails(string userGuid, int bookingId)
         {
-            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
-
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewBooking };
@@ -76,17 +74,15 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/bookings")]
-        public async Task<IActionResult> GetAllBookings(string fromDate, string toDate, string status, int pageNumber, int pageSize)
+        [Route("/api/userguid/{userGuid}/bookings")]
+        public async Task<IActionResult> GetAllBookings(string userGuid, string fromDate, string toDate, string status, int pageNumber, int pageSize)
         {
-            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
-
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewBooking };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
-            if (!hasPermission || userGuid == "System")
+            if (!hasPermission)
                 return Unauthorized();
 
             try
