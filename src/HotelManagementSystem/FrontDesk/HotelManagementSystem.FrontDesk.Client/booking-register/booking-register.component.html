@@ -26,6 +26,8 @@
           <label for="checkOutDate">Check-out Date:</label>
           <input type="date" id="checkOutDate" formControlName="checkOutDate">
         </div>
+        <button type="button" (click)="showUserDetails()">Add User Details</button>
+        <button type="button" (click)="showTravelPartnerDetails()">Add Travel Partner Details</button>
         <button type="submit" [disabled]="!bookingForm.valid">Submit</button>
       </form>
     
