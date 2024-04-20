@@ -25,6 +25,8 @@ import { ReasonModalComponent } from './pages/reason-modal/reason-modal.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
+import { RoomCreateComponent } from './pages/protected/room-create/room-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -44,6 +46,7 @@ import { MatCardModule } from '@angular/material/card';
     BookingDetailsComponent,
     HeaderComponent,
     RoomComponent,
+    RoomCreateComponent,
     RoomAssignmentDialogComponent
   ],
   imports: [
@@ -55,6 +58,7 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatDialogModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     MatFormFieldModule,
     MatSelectModule,
