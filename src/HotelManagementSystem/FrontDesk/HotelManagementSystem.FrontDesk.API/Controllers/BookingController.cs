@@ -26,11 +26,9 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpPost]
-        [Route("/api/booking")]
-        public async Task<IActionResult> AddBookingDetails([FromBody]BookingRegisterModel bookingModel)
+        [Route("/api/userGuid/{userGuid}/booking")]
+        public async Task<IActionResult> AddBookingDetails(string userGuid, [FromBody]BookingRegisterModel bookingModel)
         {
-            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
-
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.AddBooking };
