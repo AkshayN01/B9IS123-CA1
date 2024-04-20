@@ -25,9 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Front
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.FrontDesk.Blanket", "FrontDesk\HotelManagementSystem.FrontDesk.Blanket\HotelManagementSystem.FrontDesk.Blanket.csproj", "{4B15D745-B6B0-45F6-A674-4730174E196A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Admin.Blanket", "Admin\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj", "{B39A39D5-86AA-49BF-B262-91C1F8A0B33E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Admin.Blanket", "Admin\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj", "{B39A39D5-86AA-49BF-B262-91C1F8A0B33E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Test", "HotelManagementSystem.Test\HotelManagementSystem.Test.csproj", "{84D5145D-D7B7-4C56-86FB-19ACBC07D178}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem.Test", "HotelManagementSystem.Test\HotelManagementSystem.Test.csproj", "{84D5145D-D7B7-4C56-86FB-19ACBC07D178}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2F57E33F-5B2D-442F-BC9F-6D1C02BC49D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{84D5145D-D7B7-4C56-86FB-19ACBC07D178}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84D5145D-D7B7-4C56-86FB-19ACBC07D178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84D5145D-D7B7-4C56-86FB-19ACBC07D178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F57E33F-5B2D-442F-BC9F-6D1C02BC49D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F57E33F-5B2D-442F-BC9F-6D1C02BC49D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F57E33F-5B2D-442F-BC9F-6D1C02BC49D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F57E33F-5B2D-442F-BC9F-6D1C02BC49D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
