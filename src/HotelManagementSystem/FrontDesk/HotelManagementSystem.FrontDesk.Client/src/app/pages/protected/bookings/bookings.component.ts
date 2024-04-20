@@ -20,8 +20,8 @@ export class BookingsComponent implements OnInit {
     this.bookings = [
       {
         id: 0,
-        fromDate: "0001-01-01T00:00:00",
-        toDate: "0001-01-01T00:00:00",
+        fromDate: "2024-04-21",
+        toDate: "2024-04-25",
         branchId: 0,
         visitorDetails: {
           visitorId: 1,
@@ -35,6 +35,8 @@ export class BookingsComponent implements OnInit {
       },
       {
         id: 2,
+        fromDate: "2024-04-21",
+        toDate: "2024-04-25",
         branchId: 1,
         visitorDetails: {
           visitorId: 2,
@@ -45,11 +47,11 @@ export class BookingsComponent implements OnInit {
           phoneNo: "9876543210",
           isPrimary: 1
         },
-        fromDate: "2024-04-21",
-        toDate: "2024-04-25"
       },
       {
         id: 3,
+        fromDate: "2024-04-26",
+        toDate: "2024-04-30",
         branchId: 2,
         visitorDetails: {
           visitorId: 3,
@@ -60,13 +62,11 @@ export class BookingsComponent implements OnInit {
           phoneNo: "5678901234",
           isPrimary: 1
         },
-        fromDate: "2024-04-26",
-        toDate: "2024-04-30"
       }
     ];
 
     console.log(this.bookings)
-    this.pagedBookings = this.bookings.slice(0, this.pageSize);
+   this.applyFilter();
   }
 
 

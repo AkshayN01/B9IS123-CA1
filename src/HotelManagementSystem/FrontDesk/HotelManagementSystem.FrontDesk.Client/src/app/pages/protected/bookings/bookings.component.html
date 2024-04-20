@@ -34,11 +34,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let booking of bookings" class="bookings-table">
-        <td>{{ booking.visitorDetails.firstName }} {{ booking.visitorDetails.lastName }}</td>
-        <td>{{ booking.fromDate }}</td>
-        <td>{{ booking.toDate }}</td>
-        <td><button (click)="viewBooking(booking.id)">View</button></td>
+       <tr *ngFor="let booking of pagedBookings">
+          <td>{{ booking.visitorDetails.firstName }} {{ booking.visitorDetails.lastName }}</td>
+          <td>{{ booking.fromDate | date }}</td>
+          <td>{{ booking.toDate | date }}</td>
+          <td><button (click)="viewBooking(booking.id)">View</button></td>
       </tr>
     </tbody>
   </table>
