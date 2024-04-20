@@ -60,7 +60,10 @@ export class BookingsComponent implements OnInit {
         toDate: "2024-04-30"
       }
     ];
+
+    console.log(this.bookings)
   }
+
 
   viewBooking(bookingId: number): void {
     this.router.navigate(['/booking', bookingId]);
