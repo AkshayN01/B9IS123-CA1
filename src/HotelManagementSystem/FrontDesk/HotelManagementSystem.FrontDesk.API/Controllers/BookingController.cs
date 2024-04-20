@@ -18,11 +18,11 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         private readonly ILogger<BookingController> _logger;
         private readonly Blanket.Booking.BookingBlanket _BookingBlanket;
 
-        public BookingController(ILogger<BookingController> logger, IFrontDeskUnitOfWork frontDeskUnitOfWork, ManagementService managementService, UserService userService)
+        public BookingController(ILogger<BookingController> logger, IFrontDeskUnitOfWork frontDeskUnitOfWork, ManagementService managementService, UserService userService, HotelBranchService hotelBranchService)
         {
             _logger = logger;
             _userService = userService;
-            _BookingBlanket = new Blanket.Booking.BookingBlanket(frontDeskUnitOfWork);
+            _BookingBlanket = new Blanket.Booking.BookingBlanket(frontDeskUnitOfWork, hotelBranchService);
         }
 
         [HttpPost]
@@ -67,6 +67,31 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
             try
             {
                 var httpResponse = await _BookingBlanket.GetBookingDetails(bookingId);
+                return Ok(httpResponse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/bookings")]
+        public async Task<IActionResult> GetAllBookings(string fromDate, string toDate, string status, int pageNumber, int pageSize)
+        {
+            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewBooking };
+
+            bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
+            if (!hasPermission || userGuid == "System")
+                return Unauthorized();
+
+            try
+            {
+                var httpResponse = await _BookingBlanket.GetAllBookings(fromDate, toDate, status, pageNumber, pageSize);
                 return Ok(httpResponse);
             }
             catch (Exception ex)
