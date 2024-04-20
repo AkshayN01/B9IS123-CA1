@@ -44,5 +44,19 @@ namespace HotelManagementSystem.Admin.DataAccess.Repositories.Admin
 
             return role;
         }
+
+        public async Task<int> AssignRoleToAUser(RoleAssignment roleAssignment)
+        {
+            int retVal = 0;
+
+            try
+            {
+                _context.Add<RoleAssignment>(roleAssignment);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex) { }
+
+            return retVal;
+        }
     }
 }
