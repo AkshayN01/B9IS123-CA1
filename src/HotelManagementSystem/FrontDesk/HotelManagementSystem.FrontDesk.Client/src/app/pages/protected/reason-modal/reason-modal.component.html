@@ -7,8 +7,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <textarea [(ngModel)]="reason" class="form-control" rows="4"></textarea>
-    </div>
+      <textarea formControlName="reason" class="form-control" rows="4"></textarea>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
     <button type="button" class="btn btn-primary" (click)="submitReason()">Submit</button>

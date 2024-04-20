@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
 import { RoomService } from '../../../services/room.service';
+import { RoomAssignmentDialogComponent } from '../room-assignment-dialog/room-assignment-dialog.component';
 
 @Component({
   selector: 'app-booking-details',
@@ -12,8 +13,14 @@ export class BookingDetailsComponent implements OnInit {
   bookingDetails: any;
   availableRooms!: any[];
   roomSelected: boolean = false;
-
-  constructor(private dialog: MatDialog, private room: RoomService) { }
+  primaryVisitor: any;
+  travelPartner: any[] =[];
+  showAcceptDeclineButtons: boolean = true;
+  
+  
+  constructor(private dialog: MatDialog, private room: RoomService) 
+  {
+   }
 
   ngOnInit() {
     this.fetchBookingDetails();
@@ -49,7 +56,7 @@ export class BookingDetailsComponent implements OnInit {
       "lastName": "Nambly",
       "email": "test1@test.com",
       "phone": "1234567",
-      "isPrimary": 0
+      "isPrimary": 1
     },
     {
       "id": 16,
@@ -80,13 +87,30 @@ export class BookingDetailsComponent implements OnInit {
     }
   ]
 }
-    }
+this.primaryVisitor = this.bookingDetails.visitors.find((visitor: any) => visitor.isPrimary);
+this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visitor.isPrimary);
+}
+
 
   acceptBooking() {
     this.room.getAvailableRooms(this.bookingDetails.roomType.id)
       .subscribe((response: any) => {
         this.availableRooms = response;
+        this.openRoomAssignmentDialog();
       });
+  }
+
+  openRoomAssignmentDialog() {
+    const dialogRef = this.dialog.open(RoomAssignmentDialogComponent, {
+      width: '300px',
+      data: { availableRooms: this.availableRooms }
+    });
+
+    dialogRef.afterClosed().subscribe((selectedRoomId: number) => {
+      if (selectedRoomId) {
+        this.selectRoom(selectedRoomId);
+      }
+    });
   }
 
   selectRoom(roomId: number) {
@@ -107,7 +131,7 @@ export class BookingDetailsComponent implements OnInit {
 
   declineBooking() {
     const dialogRef = this.dialog.open(ReasonModalComponent, {
-      width: '400px',
+      width: '300px',
       data: { reason: '' }
     });
 
@@ -122,3 +146,4 @@ export class BookingDetailsComponent implements OnInit {
     });
   }
 }
+
