@@ -12,6 +12,11 @@ export class BookingsComponent implements OnInit {
   pagedBookings: Booking[] = [];
   pageSize = 10;
 
+
+  statusFilter: string = '';
+  fromDateFilter: Date | null = null;
+  toDateFilter: Date | null = null;
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -64,6 +69,7 @@ export class BookingsComponent implements OnInit {
     ];
 
     console.log(this.bookings)
+    this.pagedBookings = this.bookings.slice(0, this.pageSize);
   }
 
 
@@ -75,5 +81,28 @@ export class BookingsComponent implements OnInit {
     const startIndex = event.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedBookings = this.bookings.slice(startIndex, endIndex);
+  }
+
+  applyFilter(): void {
+    this.pagedBookings = this.bookings.filter(booking => {
+      let statusMatch = true;
+      let fromDateMatch = true;
+      let toDateMatch = true;
+
+      if (this.statusFilter && booking.status !== this.statusFilter) {
+        statusMatch = false;
+
+      }
+
+      if (this.fromDateFilter && new Date(booking.fromDate) < this.fromDateFilter) {
+        fromDateMatch = false;
+      }
+
+      if (this.toDateFilter && new Date(booking.toDate) > this.toDateFilter) {
+        toDateMatch = false;
+      }
+
+      return statusMatch && fromDateMatch && toDateMatch;
+    });
   }
 }
