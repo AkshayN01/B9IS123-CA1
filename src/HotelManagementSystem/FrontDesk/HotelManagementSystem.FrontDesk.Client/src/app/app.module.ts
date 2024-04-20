@@ -20,6 +20,8 @@ import { LogoutCompletedComponent } from './pages/logout-completed/logout-comple
 import { HomeComponent } from './pages/protected/home/home.component';
 import { PageComponent } from './pages/protected/page/page.component';
 import { BookingsComponent } from './pages/protected/bookings/bookings.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { BookingsComponent } from './pages/protected/bookings/bookings.component
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
+    MatPaginatorModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],

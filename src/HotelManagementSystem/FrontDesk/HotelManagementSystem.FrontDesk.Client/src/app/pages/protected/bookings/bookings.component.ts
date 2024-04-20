@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class BookingsComponent implements OnInit {
   bookings: Booking[] = [];
+  pagedBookings: Booking[] = [];
+  pageSize = 10;
 
   constructor(private router: Router) {}
 
@@ -67,5 +69,11 @@ export class BookingsComponent implements OnInit {
 
   viewBooking(bookingId: number): void {
     this.router.navigate(['/booking', bookingId]);
+  }
+
+  onPageChange(event: any): void {
+    const startIndex = event.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.pagedBookings = this.bookings.slice(startIndex, endIndex);
   }
 }

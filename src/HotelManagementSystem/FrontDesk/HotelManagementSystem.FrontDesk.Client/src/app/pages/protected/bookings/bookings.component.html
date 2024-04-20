@@ -29,5 +29,6 @@
   </table>
   </div>
   </div>
+  <mat-paginator [length]="bookings.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
   </body>
 </html>
