@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  hotelmanagementsystem.frontdesk.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5005
+      - DOTNET_URLS=http://+:5005
+    ports:
+      - "5005:5005"
+
+  hotelmanagementsystem.admin.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5003
+      - DOTNET_URLS=http://+:5003
+    ports:
+      - "5003:5003"

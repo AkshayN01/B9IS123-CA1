@@ -8,8 +8,6 @@ import { AppConfig, initConfig } from './app.config';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 
-import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -20,6 +18,10 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { LoginCompletedComponent } from './pages/login-completed/login-completed.component';
 import { LogoutCompletedComponent } from './pages/logout-completed/logout-completed.component';
 import { HomeComponent } from './pages/protected/home/home.component';
+import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
+import { ReasonModalComponent } from './pages/reason-modal/reason-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
 
@@ -31,14 +33,19 @@ import { RoomComponent } from './pages/protected/room/room.component';
     LoginCompletedComponent,
     LogoutCompletedComponent,
     HomeComponent,
+    ReasonModalComponent,
+    BookingDetailsComponent,
     HeaderComponent,
     RoomComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
+    MatDialogModule,
+    ReactiveFormsModule,
     FormsModule,
     OAuthModule.forRoot({
       resourceServer: {

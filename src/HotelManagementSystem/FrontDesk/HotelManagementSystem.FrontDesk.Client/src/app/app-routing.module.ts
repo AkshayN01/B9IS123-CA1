@@ -8,6 +8,7 @@ import { LogoutCompletedComponent } from './pages/logout-completed/logout-comple
 import { isAuthGuard } from './oauth/oauth.guard';
 
 import { HomeComponent } from './pages/protected/home/home.component';
+import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
 
@@ -24,8 +25,14 @@ const routes: Routes = [
     component: HeaderComponent,
     canActivate: [isAuthGuard],
     children: [
+      {path: 'home', 
+      component: HomeComponent
+      },
+      {path: 'bookin-details', 
+      component: BookingDetailsComponent
+      },
       {path: 'home', component: HomeComponent},
-      {path: 'room', component: RoomComponent},
+      {path: 'room', component: RoomComponent}
     ]
   },
 ];
