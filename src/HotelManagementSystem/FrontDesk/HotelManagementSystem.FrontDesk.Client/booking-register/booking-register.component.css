@@ -20,7 +20,7 @@ input[type="email"],
 input[type="date"],
 input[type="number"],
 button {
-  width: 100%;
+  width: 40%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
