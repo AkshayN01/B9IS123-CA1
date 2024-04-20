@@ -6,5 +6,6 @@ namespace HotelManagementSystem.Library.Services.Data.Admin
     {
         Task<User> GetUserByGuid(Guid guid);
         Task<User> GetUserByUsernameAsync(string username, int branchId);
+        Task<int> AddUser(Contracts.Entities.Admin.User user);
     }
 }

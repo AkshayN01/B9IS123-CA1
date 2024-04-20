@@ -12,5 +12,6 @@ namespace HotelManagementSystem.Library.Services.Data.Admin
         Task<int> AddRoleAsync(Role role);
         Task<List<Role>> GetRoleByUserIdAsync(int userId, int branchId);
         Task<List<Role>> GetRoleByBranchIdAsync(int branchId);
+        Task<int> AssignRoleToAUser(RoleAssignment roleAssignment);
     }
 }
