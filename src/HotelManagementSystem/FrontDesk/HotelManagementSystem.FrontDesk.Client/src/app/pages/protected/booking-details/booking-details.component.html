@@ -20,7 +20,7 @@
       <div class="booking-details-section">
         <p><strong>From Date:</strong> {{ bookingDetails?.fromDate }}</p>
         <p><strong>To Date:</strong> {{ bookingDetails?.toDate }}</p>
-        <p><strong>Room Type:</strong> {{ bookingDetails.room.name }}</p>
+        <p><strong>Room Type:</strong> {{ bookingDetails?.room[0]?.roomType?.name }}</p>
       </div>
     </div>
   </div>
