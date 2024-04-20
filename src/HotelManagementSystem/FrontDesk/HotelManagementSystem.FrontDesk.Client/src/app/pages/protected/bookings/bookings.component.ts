@@ -11,11 +11,8 @@ export class BookingsComponent implements OnInit {
   bookings: Booking[] = [];
   pagedBookings: Booking[] = [];
   pageSize = 10;
-
-
-  statusFilter: string = '';
-  fromDateFilter: Date | null = null;
-  toDateFilter: Date | null = null;
+  fromDate: string | null = null;
+  toDate: string | null = null;
 
   constructor(private router: Router) {}
 
@@ -85,24 +82,18 @@ export class BookingsComponent implements OnInit {
 
   applyFilter(): void {
     this.pagedBookings = this.bookings.filter(booking => {
-      let statusMatch = true;
       let fromDateMatch = true;
       let toDateMatch = true;
 
-      if (this.statusFilter && booking.status !== this.statusFilter) {
-        statusMatch = false;
-
-      }
-
-      if (this.fromDateFilter && new Date(booking.fromDate) < this.fromDateFilter) {
+      if (this.fromDate && new Date(booking.fromDate) < new Date(this.fromDate)) {
         fromDateMatch = false;
       }
 
-      if (this.toDateFilter && new Date(booking.toDate) > this.toDateFilter) {
+      if (this.toDate && new Date(booking.toDate) > new Date(this.toDate)) {
         toDateMatch = false;
       }
 
-      return statusMatch && fromDateMatch && toDateMatch;
+      return fromDateMatch && toDateMatch;
     });
   }
 }
