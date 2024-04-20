@@ -3,16 +3,22 @@ using HotelManagementSystem.Contracts.Entities.FrontDesk;
 using HotelManagementSystem.Contracts.Entities.Visitor;
 using HotelManagementSystem.Contracts.Enums;
 using HotelManagementSystem.Contracts.Generic.Response;
+using HotelManagementSystem.Library.Services;
 using HotelManagementSystem.Library.Services.Data.FrontDesk;
+using System.Globalization;
+using System.Linq.Expressions;
+using static Mysqlx.Expect.Open.Types;
 
 namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 {
     public class BookingBlanket
     {
         private readonly IFrontDeskUnitOfWork _frontDeskUnitOfWork;
-        public BookingBlanket(IFrontDeskUnitOfWork frontDeskUnitOfWork)
+        private readonly HotelBranchService _hotelBranchService;
+        public BookingBlanket(IFrontDeskUnitOfWork frontDeskUnitOfWork, HotelBranchService hotelBranchService)
         {
             _frontDeskUnitOfWork = frontDeskUnitOfWork;
+            _hotelBranchService = hotelBranchService;
         }
 
         public async Task<HTTPResponse> AddBooking(BookingRegisterModel bookingModel, string userGuid)
@@ -228,6 +234,125 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
             }
 
             return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
+        }
+
+        public async Task<HTTPResponse> GetAllBookings(string fromDate, string toDate, string bookingStatus, int pageNumber, int pageSize)
+        {
+            Object data = default(Object);
+            int retVal = -40;
+            string message = string.Empty;
+
+            try
+            {
+
+                List<Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>>> expressions =
+                    new List<Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>>>();
+
+                //Get current brnachId
+                var branch = await _hotelBranchService.GetCurrentInstance();
+                List<BookingSummary> bookingSummary = new List<BookingSummary>();
+
+                Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> branchExpression = x => x.Branchd == branch.Id;
+                expressions.Add(branchExpression);
+
+                //Add From date condition to search the repository
+                if (!string.IsNullOrEmpty(fromDate)) {
+                    Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> expression = x => x.BookingFromDate >= DateTime.Parse(fromDate);
+                    expressions.Add(expression);
+                }
+
+                //Add to date condition to search the repository
+                if (!string.IsNullOrEmpty(toDate))
+                {
+                    Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> expression = x => x.BookingToDate <= DateTime.Parse(toDate);
+                    expressions.Add(expression);
+                }
+
+                //Add status condition to search the repository
+                if (!string.IsNullOrEmpty(bookingStatus))
+                {
+                    int statusID = GetBookingStatusByName(bookingStatus);
+                    Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> expression = x => x.BookinStatusId == statusID;
+                    expressions.Add(expression);
+                }
+
+                // Combine the conditions
+                var combinedCondition = Library.Generic.Generic.CombineConditions<Contracts.Entities.FrontDesk.Booking>(expressions);
+
+                List<Contracts.Entities.FrontDesk.Booking> bookings =  await _frontDeskUnitOfWork.BookingRepository.GetAllBookingDetails(combinedCondition);
+
+                if (bookings.Any())
+                {
+                    foreach(var booking in bookings)
+                    {
+                        BookingSummary summary = new BookingSummary()
+                        {
+                            Id = booking.BookingId,
+                            FromDate = booking.BookingFromDate,
+                            ToDate = booking.BookingToDate,
+                            status = GetBookingStatusById(booking.BookinStatusId)
+                        };
+                        Visitor visitor = await _frontDeskUnitOfWork.VisitorRepository.GetAsync(booking.VisitorId);
+
+                        summary.VisitorFirstName = visitor.FirstName;
+                        summary.VisitorLastName = visitor.LastName;
+
+                        bookingSummary.Add(summary);
+                    }
+
+                    data = bookingSummary;
+                }
+            }
+            catch (Exception ex)
+            {
+                retVal = -50;
+                message = ex.Message;
+                return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, message);
+            }
+
+            return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
+        }
+
+        private int GetBookingStatusByName(string name)
+        {
+            int id = 0;
+            switch (name)
+            {
+                case "pending":
+                    id = 1;
+                    break;
+
+                case "approved":
+                    id = 2;
+                    break;
+
+                case "declined":
+                    id = 3;
+                    break;
+            }
+
+            return id;
+        }
+
+        private string GetBookingStatusById(int id)
+        {
+            string name = string.Empty;
+            switch (id)
+            {
+                case 1:
+                    name = "pending";
+                    break;
+
+                case 2:
+                    name = "approved";
+                    break;
+
+                case 3:
+                    name = "declined";
+                    break;
+            }
+
+            return name;
         }
     }
 }
