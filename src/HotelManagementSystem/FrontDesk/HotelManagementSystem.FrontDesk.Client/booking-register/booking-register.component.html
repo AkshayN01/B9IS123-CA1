@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="booking-form">
+      <h2>Booking Register</h2>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title</title>
+    <link rel="stylesheet" href="booking-register.component.css">
+      <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" formControlName="firstName">
+        </div>
+        <div>
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" formControlName="lastName">
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email">
+        </div>
+        <div>
+          <label for="checkInDate">Check-in Date:</label>
+          <input type="date" id="checkInDate" formControlName="checkInDate">
+        </div>
+        <div>
+          <label for="checkOutDate">Check-out Date:</label>
+          <input type="date" id="checkOutDate" formControlName="checkOutDate">
+        </div>
+        <button type="button" (click)="showUserDetails()">Add User Details</button><br>
+        <button type="button" (click)="showTravelPartnerDetails()">Add Travel Partner Details</button><BR>
+        <button type="submit" [disabled]="!bookingForm.valid">Submit</button>
+      </form>
+    
+      </div>
+  </div>

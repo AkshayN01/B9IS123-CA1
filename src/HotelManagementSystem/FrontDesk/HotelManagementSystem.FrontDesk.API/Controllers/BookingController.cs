@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using HotelManagementSystem.Contracts.Permissions;
 using HotelManagementSystem.Library.Services.Data.FrontDesk;
 using HotelManagementSystem.Contracts.APIModels.FontDesk;
+using System.Security.Claims;
 
 namespace HotelManagementSystem.FrontDesk.API.Controllers
 {
@@ -17,15 +18,15 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         private readonly ILogger<BookingController> _logger;
         private readonly Blanket.Booking.BookingBlanket _BookingBlanket;
 
-        public BookingController(ILogger<BookingController> logger, IFrontDeskUnitOfWork frontDeskUnitOfWork, ManagementService managementService, UserService userService)
+        public BookingController(ILogger<BookingController> logger, IFrontDeskUnitOfWork frontDeskUnitOfWork, ManagementService managementService, UserService userService, HotelBranchService hotelBranchService)
         {
             _logger = logger;
             _userService = userService;
-            _BookingBlanket = new Blanket.Booking.BookingBlanket(frontDeskUnitOfWork);
+            _BookingBlanket = new Blanket.Booking.BookingBlanket(frontDeskUnitOfWork, hotelBranchService);
         }
 
         [HttpPost]
-        [Route("/userId/{userGuid}/booking")]
+        [Route("/api/userGuid/{userGuid}/booking")]
         public async Task<IActionResult> AddBookingDetails(string userGuid, [FromBody]BookingRegisterModel bookingModel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -33,7 +34,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.AddBooking };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
-            if (!hasPermission)
+            if (!hasPermission || userGuid == "System")
                 return Unauthorized();
 
             try
@@ -48,8 +49,31 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpGet]
-        [Route("/userId/{userGuid}/booking/{bookingId}")]
+        [Route("/api/userGuid/{userGuid}/booking/{bookingId}")]
         public async Task<IActionResult> GetBookingDetails(string userGuid, int bookingId)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewBooking };
+
+            bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
+            if (!hasPermission || userGuid == "System")
+                return Unauthorized();
+
+            try
+            {
+                var httpResponse = await _BookingBlanket.GetBookingDetails(bookingId);
+                return Ok(httpResponse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/userguid/{userGuid}/bookings")]
+        public async Task<IActionResult> GetAllBookings(string userGuid, string fromDate, string toDate, string status, int pageNumber, int pageSize)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -61,7 +85,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
 
             try
             {
-                var httpResponse = await _BookingBlanket.GetBookingDetails(bookingId);
+                var httpResponse = await _BookingBlanket.GetAllBookings(fromDate, toDate, status, pageNumber, pageSize);
                 return Ok(httpResponse);
             }
             catch (Exception ex)

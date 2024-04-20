@@ -4,6 +4,7 @@ using HotelManagementSystem.Library.Services;
 using HotelManagementSystem.Library;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace HotelManagementSystem.FrontDesk.API.Controllers
 {
@@ -24,15 +25,17 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpGet]
-        [Route("/userId/{userGuid}/rooms")]
-        public async Task<IActionResult> GetAllRooms(string userGuid, int roomTypeId)
+        [Route("/api/rooms")]
+        public async Task<IActionResult> GetAllRooms(int roomTypeId)
         {
+            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
+
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewRoom };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
-            if (!hasPermission)
+            if (!hasPermission || userGuid == "System")
                 return Unauthorized();
 
             try
@@ -48,15 +51,17 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
 
 
         [HttpGet]
-        [Route("/userId/{userGuid}/roomTypes")]
-        public async Task<IActionResult> GetAllRoomTypes(string userGuid)
+        [Route("/api/roomTypes")]
+        public async Task<IActionResult> GetAllRoomTypes()
         {
+            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
+
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewRoom };
 
             bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
-            if (!hasPermission)
+            if (!hasPermission || userGuid == "System")
                 return Unauthorized();
 
             try

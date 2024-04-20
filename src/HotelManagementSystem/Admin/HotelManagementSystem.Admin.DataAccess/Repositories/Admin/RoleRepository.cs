@@ -22,6 +22,13 @@ namespace HotelManagementSystem.Admin.DataAccess.Repositories.Admin
             _dbSetRoleAssignment = _context.Set<RoleAssignment>();
         }
 
+        public async Task<int> AddRoleAsync(Role role)
+        {
+            _context.Add<Role>(role);
+            await _context.SaveChangesAsync();
+            return role.RoleId;
+        }
+
         public async Task<List<Role>> GetRoleByBranchIdAsync(int branchId)
         {
             return await _dbSet.Where(x => x.HotelBranchId == branchId).ToListAsync();

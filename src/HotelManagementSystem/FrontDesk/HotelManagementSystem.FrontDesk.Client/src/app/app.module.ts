@@ -18,10 +18,18 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { LoginCompletedComponent } from './pages/login-completed/login-completed.component';
 import { LogoutCompletedComponent } from './pages/logout-completed/logout-completed.component';
 import { HomeComponent } from './pages/protected/home/home.component';
-import { PageComponent } from './pages/protected/page/page.component';
 import { BookingsComponent } from './pages/protected/bookings/bookings.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
+import { ReasonModalComponent } from './pages/reason-modal/reason-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HeaderComponent } from './pages/protected/header/header.component';
+import { RoomComponent } from './pages/protected/room/room.component';
+import { CommonModule } from '@angular/common';
+import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -31,15 +39,26 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     LoginCompletedComponent,
     LogoutCompletedComponent,
     HomeComponent,
-    PageComponent,
-    BookingsComponent
+    BookingsComponent,
+    ReasonModalComponent,
+    BookingDetailsComponent,
+    HeaderComponent,
+    RoomComponent,
+    RoomAssignmentDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
     MatPaginatorModule,
+    MatDialogModule,
+    FormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],
@@ -60,4 +79,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
+
