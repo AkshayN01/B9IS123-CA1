@@ -12,8 +12,8 @@ export class RoomCreateComponent {
   constructor (private FormBuilder: FormBuilder) {
     this.roomForm = this.FormBuilder.group ({
       roomNumer: ['', Validators.required],
-      type: ['', Validateors.required],
-      price: ['', Validators.required]]
+      type: ['', Validators.required],
+      price: ['', Validators.required]
     });
   }
 
