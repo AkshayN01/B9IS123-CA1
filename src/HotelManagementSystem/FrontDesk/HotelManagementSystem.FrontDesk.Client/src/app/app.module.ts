@@ -41,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
 import { BookingRegisterComponent } from './pages/protected/booking-register/booking-register.component';
+import { UserComponent } from './pages/protected/user/user.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { BookingRegisterComponent } from './pages/protected/booking-register/boo
     RoomComponent,
     RoomCreateComponent,
     RoomAssignmentDialogComponent,
-    BookingRegisterComponent
+    BookingRegisterComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
