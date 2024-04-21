@@ -31,8 +31,8 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
             {
                 Contracts.Entities.FrontDesk.Booking booking = new Contracts.Entities.FrontDesk.Booking()
                 {
-                    BookingFromDate = bookingModel.FromDate,
-                    BookingToDate = bookingModel.ToDate,
+                    BookingFromDate = DateTime.Parse(bookingModel.FromDate),
+                    BookingToDate = DateTime.Parse(bookingModel.ToDate),
                     BookinStatusId = (int)BookinStatusEnum.Approved,
                     Branchd = 1,
                     CreatedAt = DateTime.UtcNow,
@@ -122,6 +122,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                 }
                 dynamic bookingIdDetail = new System.Dynamic.ExpandoObject();
                 bookingIdDetail.BookingId = bookingId;
+                retVal = 1;
                 data = bookingIdDetail;
             }
             catch (Exception ex)

@@ -4,6 +4,8 @@ import { RoomService } from '../../../services/room/room.service';
 import { ResponseHandlerService } from '../../../services/shared/resposne/resposne-handler.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { BookingRegisterModel } from '../../../models/booking/booking-register.model';
+import { BookingService } from '../../../services/booking/booking.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-booking-register',
@@ -11,6 +13,7 @@ import { BookingRegisterModel } from '../../../models/booking/booking-register.m
   styleUrls: ['./booking-register.component.css']
 })
 export class BookingRegisterComponent {
+
   bookingForm!: FormGroup;
   roomTypesData!: any;
   roomsData!: any;
@@ -18,7 +21,9 @@ export class BookingRegisterComponent {
   roomIds!: Number[];
   bookingModel!: BookingRegisterModel;
 
-  constructor(private fb: FormBuilder, private roomService: RoomService, private responseHandler: ResponseHandlerService) {}
+  constructor(private fb: FormBuilder, private roomService: RoomService, private responseHandler: ResponseHandlerService, private boojingService: BookingService, private matSnackBar: MatSnackBar) {
+    this.roomIds = [];
+  }
 
   ngOnInit(): void {
     this.getRoomData();
@@ -26,12 +31,15 @@ export class BookingRegisterComponent {
   }
 
   getRoomData(): void{
+    this.loadedRooms = false;
     this.roomService.getRoomTypes().subscribe(response => {
       this.roomTypesData = this.responseHandler.checkResponse(response);
     });
   }
 
   initializeForm(): void { 
+    this.roomIds = [];
+    this.loadedRooms = false;
     this.bookingForm = this.fb.group({
       fromDate: ['', [Validators.required]],
       toDate: ['', [Validators.required]],
@@ -75,10 +83,11 @@ export class BookingRegisterComponent {
       console.log(this.roomsData);
     });
   }
-  onCheckboxChange(event: MatCheckboxChange): void {
+  onCheckboxChange(event: MatCheckboxChange, room : any): void {
     // event.checked will give you the checked state
-    console.log(event.source.value)
-    var value = Number(event.source.value);
+    console.log(room)
+    var value = Number(room.id);
+
     if(event.checked){
       this.roomIds.push(value);
     }
@@ -92,9 +101,9 @@ export class BookingRegisterComponent {
   
 
   onSubmit() {
-    // if (this.bookingForm.invalid) {
-    //   return;
-    // }
+    if (this.bookingForm.invalid || this.roomIds.length == 0) {
+      return;
+    }
     
     this.bookingModel = {
       fromDate : this.bookingForm.get('fromDate')?.value,
@@ -104,8 +113,43 @@ export class BookingRegisterComponent {
     }
 
     this.bookingModel.visitors.push(this.bookingForm.get('primaryVisitor')?.value);
-    this.bookingModel.visitors.concat(this.bookingForm.get('partners')?.value)
-
+    console.log(this.bookingForm.get('partners')?.value)
+    this.bookingModel.visitors = this.bookingModel.visitors.concat(this.bookingForm.get('partners')?.value)
+    this.bookingModel.fromDate = this.convertDate(this.bookingModel.fromDate);
+    this.bookingModel.toDate = this.convertDate(this.bookingModel.toDate);
     console.log(this.bookingModel);
+
+    this.boojingService.addBooking(this.bookingModel).subscribe(res => {
+      var response = this.responseHandler.checkResponse(res);
+      if(response.bookingId != 0){
+        this.matSnackBar.open("Booking was successfully Added", 'Close', {
+          panelClass: ['bg-danger']
+        });
+      }
+
+    })
+  }
+
+  convertDate(dateString: string): string {
+
+    // Create a new Date object
+    const date = new Date(dateString);
+
+    // Get the day, month, and year components
+    const day = ("0" + date.getDate()).slice(-2); // Zero padding
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Months are zero-based
+    const year = date.getFullYear();
+
+    // Get the hours, minutes, and seconds components
+    const hours = ("0" + date.getHours()).slice(-2);
+    const minutes = ("0" + date.getMinutes()).slice(-2);
+    const seconds = ("0" + date.getSeconds()).slice(-2);
+
+    // Format the date in the desired format
+    const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
+    console.log(formattedDate); // Output: "01/04/2024 00:00:00"
+
+    return formattedDate;
   }
 }
