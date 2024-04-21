@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { RoomService } from '../../../services/room.service';
 
 @Component({
   selector: 'app-room-create',
@@ -8,8 +9,10 @@ import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 })
 export class RoomCreateComponent {
   roomForm: FormGroup;
+  rooms: Room[] = [];
+  selectedRoom: Room | numm = null;
 
-  constructor (private FormBuilder: FormBuilder) {
+  constructor (private roomservice: RoomService) {
     this.roomForm = this.FormBuilder.group ({
       roomNumer: ['', Validators.required],
       type: ['', Validateors.required],
