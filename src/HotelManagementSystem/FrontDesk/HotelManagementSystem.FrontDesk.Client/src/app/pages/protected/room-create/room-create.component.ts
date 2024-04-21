@@ -23,16 +23,8 @@ export class RoomCreateComponent {
       available: [false]
     });
     this.rooms = this.roomService.getAllRooms();
-    this.selectedRoom = {
-      roomid: 0,
-      roomNumber: '',
-      type: '',
-      capacity: 0,
-      price: 0,
-      available: false
-    };
+    this.selectedRoom = null;
   }
-  
 
   openAddRoomForm(): void {
     this.showAddRoomForm = true;
@@ -42,7 +34,7 @@ export class RoomCreateComponent {
     const newRoom: Room = this.roomForm.value;
     this.roomService.addRoom(newRoom);
     this.resetForm();
-    this.rooms = this.roomService.getAvailableRooms(); // Updated method name
+    this.rooms = this.roomService.getAvailableRooms();
     this.showAddRoomForm = false;
   }
 
@@ -51,24 +43,21 @@ export class RoomCreateComponent {
     this.showAddRoomForm = false;
   }
 
-  updateRoom(): void {
-    if (this.selectedRoom) {
-      this.roomService.updateRoom(this.selectedRoom);
-      this.selectedRoom = null;
+  updateRoom(room: Room | null): void {
+    if (room !== null) {
+      this.selectedRoom = { ...room };
     }
   }
-
   cancelUpdate(): void {
     this.selectedRoom = null;
   }
 
-  deleteRoom(roomId: number | undefined) {
+  deleteRoom(roomId: number | undefined): void {
     if (roomId !== undefined) {
       this.roomService.deleteRoom(roomId);
       this.rooms = this.roomService.getAllRooms();
     }
   }
-  
 
   getAllRooms(): Room[] {
     return this.rooms;
@@ -81,5 +70,4 @@ export class RoomCreateComponent {
   resetForm(): void {
     this.roomForm.reset();
   }
-  
 }

@@ -11,6 +11,33 @@
       <h2>Room Creation</h2>
     </div>
 
+    <div *ngIf="showAddRoomForm" class="add-room-form">
+      <h2>Add Room</h2>
+      <form (ngSubmit)="addRoom()">
+        <div>
+          <label for="newroomNumber">Room Number:</label>
+          <input type="text" id="newroomNumber" [value]="selectedRoom?.roomNumber" name="newroomNumber" required>
+        </div>
+        <div>
+          <label for="newroomtype">Type:</label>
+          <input type="text" id="newroomtype" [value]="selectedRoom?.type" name="newroomtype" required>
+        </div>
+        <div>
+          <label for="newroomcapacity">Capacity:</label>
+          <input type="number" id="newroomcapacity" [value]="selectedRoom?.capacity" name="newroomcapacity" required>
+        </div>
+        <div>
+          <label for="newroomprice">Price:</label>
+          <input type="number" id="newroomprice" [value]="selectedRoom?.price" name="newroomprice" required>
+        </div>
+        <div>
+          <label for="newroomavailable">Available:</label>
+          <input type="checkbox" id="newroomavailable" [checked]="selectedRoom?.available" name="newroomavailable">
+        </div>
+        <button type="submit">Add</button>
+        <button type="button" (click)="cancelAddRoom()">Cancel</button>
+      </form>
+
     <div class="table-container">
       <table>
         <thead>
@@ -37,39 +64,17 @@
             <td>{{ room?.capacity }}</td>
             <td>{{ room?.price }}</td>
             <td>{{ room?.available ? 'Available' : 'Not Available' }}</td>
+            <td>
+              <button (click)="updateRoom(room)">Update</button>
+            </td>
+            <td>
+              <button (click)="deleteRoom(room.roomid)">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-
-  <div *ngIf="showAddRoomForm" class="add-room-form">
-    <h2>Add Room</h2>
-    <form (ngSubmit)="addRoom()">
-      <div>
-        <label for="newroomNumber">Room Number:</label>
-        <input type="text" id="newroomNumber" [value]="selectedRoom?.roomNumber" name="newroomNumber" required>
-      </div>
-      <div>
-        <label for="newroomtype">Type:</label>
-        <input type="text" id="newroomtype" [value]="selectedRoom?.type" name="newroomtype" required>
-      </div>
-      <div>
-        <label for="newroomcapacity">Capacity:</label>
-        <input type="number" id="newroomcapacity" [value]="selectedRoom?.capacity" name="newroomcapacity" required>
-      </div>
-      <div>
-        <label for="newroomprice">Price:</label>
-        <input type="number" id="newroomprice" [value]="selectedRoom?.price" name="newroomprice" required>
-      </div>
-      <div>
-        <label for="newroomavailable">Available:</label>
-        <input type="checkbox" id="newroomavailable" [checked]="selectedRoom?.available" name="newroomavailable">
-      </div>
-      <button type="submit">Add</button>
-      <button type="button" (click)="updateRoom()">Update</button>
-      <button type="button" (click)="deleteRoom(selectedRoom?.roomid)">Delete</button>
-    </form>
-  </div>
+    </div>
+    </div>
 </body>
 </html>

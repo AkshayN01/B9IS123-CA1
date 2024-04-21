@@ -114,3 +114,21 @@
   .btn:hover {
     background-color: #002366;
   }
+
+  .add-room-form div {
+    margin-bottom: 10px;
+  }
+  
+  .add-room-form label {
+    display: inline-block;
+    width: 120px;
+  }
+  
+  .add-room-form input[type="text"],
+  .add-room-form input[type="number"],
+  .add-room-form input[type="checkbox"] {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
