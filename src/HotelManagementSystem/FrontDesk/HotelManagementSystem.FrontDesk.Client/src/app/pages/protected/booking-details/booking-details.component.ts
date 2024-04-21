@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
-import { RoomService } from '../../../services/room.service';
+import { RoomService } from '../../services/room.service';
 import { RoomAssignmentDialogComponent } from '../room-assignment-dialog/room-assignment-dialog.component';
 
 @Component({

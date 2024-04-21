@@ -27,7 +27,7 @@
        
        <div *ngIf="selectedRoom">
         <h2>Edit Room</h2>
-        <form (ngSubmit)="updateRoom()">
+        <form (ngSubmit)="updateRoom(selectedRoom)">
           <div>
             <label for="roomNumber">Room Number:</label>
             <input type="text" id="roomNumber" [(ngModel)]="selectedRoom.roomNumber" name="roomNumber" required>

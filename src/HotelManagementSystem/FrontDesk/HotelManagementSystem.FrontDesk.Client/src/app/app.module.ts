@@ -24,9 +24,8 @@ import { BookingDetailsComponent } from './pages/protected/booking-details/booki
 import { ReasonModalComponent } from './pages/reason-modal/reason-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './pages/protected/header/header.component';
-import { RoomComponent } from './pages/protected/room/room.component';
 import { RoomCreateComponent } from './pages/protected/room-create/room-create.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -45,24 +44,22 @@ import { MatCardModule } from '@angular/material/card';
     ReasonModalComponent,
     BookingDetailsComponent,
     HeaderComponent,
-    RoomComponent,
     RoomCreateComponent,
     RoomAssignmentDialogComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
     MatPaginatorModule,
     MatDialogModule,
-    FormsModule,
     ReactiveFormsModule,
     CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
+    FormsModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],

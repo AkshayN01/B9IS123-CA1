@@ -5,7 +5,7 @@ import { Room } from '../interface/room.interface';
   providedIn: 'root'
 })
 export class RoomService {
-  private room: Room[] = []; //Placeholder for rooms data
+  private rooms: Room[] = []; //Placeholder for rooms data
 
 
   constructor() { }
@@ -23,13 +23,13 @@ updateRoom(room: Room): void {
   }
 }
 
-deleteRoom(id: number): void {
-  this.rooms = this.rooms.filter(room.id !== id);
+deleteRoom(room: Room): void {
+  this.rooms = this.rooms.filter(room => room.id !== id);
 }
 
 
-  getAllRooms(): Room[] {
-    return this.room;
+  getAvailableRooms(): Room[] {
+    return this.rooms.filter(room => room.available);
   }
 
     getRoomById(id: number): Room | undefined { 
