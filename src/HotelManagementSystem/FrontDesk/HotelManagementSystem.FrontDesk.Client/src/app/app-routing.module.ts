@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: '',
     component: HeaderComponent,
-    // canActivate: [isAuthGuard],
+    canActivate: [isAuthGuard],
     children: [
       {path: 'home', 
       component: HomeComponent

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppConfig } from '../../../app.config';
+import { SessionStorageService } from '../session/session-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +12,33 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ApiService {
   private apiUrl = 'https://172.190.104.34:5005';
 
-  constructor(private http: HttpClient, private matSnackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private matSnackBar: MatSnackBar, private appConfig: AppConfig, private sessionService : SessionStorageService) {
+    this.apiUrl = this.appConfig.config.apiUrl;
+   }
 
   // Generic method to handle HTTP GET requests
   get<T>(path: string): Observable<T> {
-    return this.http.get<T>(`${this.apiUrl}/${path}`).pipe(
+    var apiRoute = `${this.apiUrl}/${path}`;
+    if(apiRoute.includes('[userGuid]')){
+      const userGuid = this.sessionService.getUserDetails().guid;
+      apiRoute = apiRoute.replace('[userGuid]', userGuid);
+    }
+
+    return this.http.get<T>(apiRoute).pipe(
       catchError(this.handleError)
     );
   }
 
   // Generic method to handle HTTP POST requests
   post<T>(path: string, data: any): Observable<T> {
-    var url = `${this.apiUrl}/${path}`
+    var apiRoute = `${this.apiUrl}/${path}`;
     if(path.startsWith('http'))
-      url = path;
-    return this.http.post<T>(url, data, this.getRequestOptions()).pipe(
+      apiRoute = path;
+    if(apiRoute.includes('[userGuid]')){
+      const userGuid = this.sessionService.getUserDetails().guid;
+      apiRoute = apiRoute.replace('[userGuid]', userGuid);
+    }
+    return this.http.post<T>(apiRoute, data, this.getRequestOptions()).pipe(
       catchError(this.handleError)
     );
   }

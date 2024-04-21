@@ -38,7 +38,7 @@
 
             <mat-form-field>
                 <mat-label for="fName">Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" type="text" id="phoneNumber" formControlName="firstName">
+                <input matInput placeholder="Phone Number" type="text" id="phoneNumber" formControlName="phoneNumber">
             </mat-form-field>
         </div>
         <div formArrayName="partners">
@@ -68,110 +68,21 @@
             <mat-form-field>
                 <mat-label>Room Type</mat-label>
                 <mat-select #roomTypes (selectionChange)="onSelected(roomTypes.value)">
-                  <mat-option id="1" value="one">First option</mat-option>
-                  <mat-option id="2" value="two">Second option</mat-option>
+                  <mat-option *ngFor="let type of roomTypesData" [value]="type.id">{{type.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <div>
+        <div *ngIf="loadedRooms">
             <h2>Available Rooms</h2>
             <div class="roomList">
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
+                <mat-card *ngFor="let room of roomsData" class="checkboxselect text-center little-profile workspacetype roomCard">
                     <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
+                        <mat-checkbox (change)="onCheckboxChange($event)" class="multipleselect"></mat-checkbox>
                         <div class="workspacetypeimage">
                             <i class="bgi bgi-certificate"></i>
                         </div>
                         <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
-                        </mat-card-actions>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="checkboxselect text-center little-profile workspacetype roomCard">
-                    <mat-card-content>
-                        <mat-checkbox class="multipleselect"></mat-checkbox>
-                        <div class="workspacetypeimage">
-                            <i class="bgi bgi-certificate"></i>
-                        </div>
-                        <mat-card-actions>
-                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: 101</h4>
+                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: {{room.roomNumber}}</h4>
                         </mat-card-actions>
                     </mat-card-content>
                 </mat-card>
@@ -184,3 +95,4 @@
     </form>
 </mat-card>
 </div>
+<h1>{{loadedRooms}}</h1>

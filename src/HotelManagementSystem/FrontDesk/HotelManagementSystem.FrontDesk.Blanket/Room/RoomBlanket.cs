@@ -25,6 +25,8 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Room
                     .Select(x => new RoomTypeModel() { Id = x.Id, MaxCapacity = x.MaxCapacity, Name = x.Name, Price = x.Price })
                     .ToList();
 
+                retVal = 1;
+
                 data = roomTypesModel;
             }
             catch (Exception ex)
@@ -49,6 +51,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Room
                 List<RoomModel> roomModel = rooms.Where(x => x.RoomTypeId == roomTypeId)
                     .Select(x => new RoomModel() { Id = x.RoomId, RoomName = x.RoomName, RoomNumber = x.RoomNumber, RoomTypeId = x.RoomTypeId })
                     .ToList();
+                retVal = 1;
 
                 data = roomModel;
             }

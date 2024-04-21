@@ -10,8 +10,6 @@ using System.Security.Claims;
 namespace HotelManagementSystem.FrontDesk.API.Controllers
 {
     [ApiController]
-    [Route("[controller]/api")]
-    [Authorize]
     public class BookingController : ControllerBase
     {
         private readonly UserService _userService;
