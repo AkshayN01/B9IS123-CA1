@@ -12,6 +12,7 @@ import { BookingDetailsComponent } from './pages/protected/booking-details/booki
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
 import { BookingRegisterComponent } from './pages/protected/booking-register/booking-register.component';
+import { BookingsComponent } from './pages/protected/bookings/bookings.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home',},
@@ -34,7 +35,8 @@ const routes: Routes = [
       },
       {path: 'home', component: HomeComponent},
       {path: 'room', component: RoomComponent},
-      {path: 'booking-register', component: BookingRegisterComponent}
+      {path: 'booking-register', component: BookingRegisterComponent},
+      {path: 'all-bookings', component: BookingsComponent}
     ]
   },
 ];

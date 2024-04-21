@@ -21,7 +21,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 
 import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
@@ -76,6 +77,7 @@ import { BookingRegisterComponent } from './pages/protected/booking-register/boo
     MatCardModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatTableModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],
@@ -93,7 +95,8 @@ import { BookingRegisterComponent } from './pages/protected/booking-register/boo
       multi: true
     },
     provideAnimationsAsync(),
-    provideNativeDateAdapter()
+    provideNativeDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })
