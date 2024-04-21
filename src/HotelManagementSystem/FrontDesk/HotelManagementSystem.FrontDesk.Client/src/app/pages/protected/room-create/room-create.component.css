@@ -1,28 +1,21 @@
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
   body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+    margin: 15;
+    padding: 0;
   }
   
   .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
   }
   
   .card {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
   }
   
   .card-header {
@@ -30,7 +23,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: #fff;
-    padding: 20px;
+    padding: 15px;
   }
   
   .card-header h2 {
@@ -40,31 +33,82 @@
   .card-body {
     padding: 20px;
   }
-  
-  .form-group {
-    margin-bottom: 20px;
+
+  .table-container {
+    overflow-x: auto;
   }
-  
-  .form-group label {
-    font-weight: bold;
-  }
-  
-  .form-control {
+
+  table {
     width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
   }
   
-  .btn {
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+  
+
+  Copy code
+.availability-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content button {
+  color: black;
+  padding: 8px 12px;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-content button:hover {
+  background-color: #ddd;
+}
+
+.availability-dropdown:hover .dropdown-content {
+  display: block;
+}
+  
+  .button {
     background-color: #003580;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease;
   }
   
   .btn:hover {

@@ -14,6 +14,14 @@ export class RoomCreateComponent {
   selectedRoom: Room | null = null;
   searchType: string = '';
   searchCapacity: number | null = null;
+  newRoomNumber: string = '';
+  newRoomType: string = '';
+  newRoomCapacity: number | null = null;
+  newRoomPrice: number | null = null;
+  newRoomAvailable: boolean = false;
+  showAddRoomForm: boolean = false;
+
+
 
   constructor (private roomservice: RoomService, private formBuilder: FormBuilder) {
     this.roomForm = this.formBuilder.group({
@@ -23,25 +31,40 @@ export class RoomCreateComponent {
       price: [''],
       available: [false]
     });
-    this.rooms = this.roomService.getAllRooms();
+    this.rooms = this.roomservice.getAllRooms();
   }
 
-  addRoom(): void {
-    const newRoom: Room = this.roomForm.value;
-    this.roomService.addRoom(newRoom);
-    this.resetForm();
-    this.rooms = this.roomService.getAllRooms();
-  }
+
+  openAddRoomForm(): void {
+    this.showAddRoomForm = true;
+
+    addRoom(): void {
+      const newRoom: Room = {
+        roomNumber: this.newRoomNumber,
+        type: this.newRoomType,
+        capacity: this.newRoomCapacity,
+        price: this.newRoomPrice,
+        available: this.newRoomAvailable
+      };
+
+      this.roomService.addRoom(newRoom);
+      this.resetAddRoomForm();
+    }
+
+      cancelAddRoom(): void {
+        cancelAddRoom(): void {
+          this.resetAddRoomForm();
+        }
     
   updateRoom(): void {
     if (this.selectedRoom) {
-      this.roomService.updateRoom(this.selectedRoom)
+      this.roomservice.updateRoom(this.selectedRoom)
     }
 }
 
   deleteRoom(roomId: number): void {
-    this.roomService.deleteRoom(roomId);
-    this.rooms = this.roomService.getAllRooms();
+    this.roomservice.deleteRoom(roomId);
+    this.rooms = this.roomservice.getAllRooms();
   }
 
   getAllRooms(): Room[] {
@@ -58,27 +81,7 @@ export class RoomCreateComponent {
     this.selectedRoom = null;
   }
 
-  search(): void {
-    this.rooms = this.roomService.getAllRooms().filter(room => {
-      const typeMatch = this.searchType ? room.type.toLowerCase().includes(this.searchType.toLowerCase()) : true;
-      const capacityMatch = this.searchCapacity ? room.capacity >= this.searchCapacity : true;
-      return typeMatch && capacityMatch;
-    });
-  }
-
-  resetSearch(): void {
-    this.searchType = '';
-    this.searchCapacity = null;
-    this.rooms = this.roomService.getAllRooms();
-  }
-
-  private resetForm(): void {
-    this.roomForm.reset({
-      roomNumber: '',
-      type: '',
-      capacity: '',
-      price: '',
-      available: false
-    });
-  }
+  filterByAvailability(available: boolean): void {
+    this.rooms = this.roomservice.getAllRooms().filter(room => room.available === available);
+}
 }

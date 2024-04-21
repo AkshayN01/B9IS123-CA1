@@ -5,81 +5,84 @@
   <link rel="stylesheet" href="room-create.component.css">
   <title>Room Creation</title>
 </head>
-<body>
-  <div class="container">
+<html>
+  <body class="container">
     <div class="card">
       <div class="card-header">
         <h2>Room Creation</h2>
       </div>
-      <div class="card-body">
-       <div class="search-container">
-        <input type="text" placeholder="Search by room type" [(ngModel)]="searchType">
-        <input type="number" placeholder="Search by capacity" [(ngModel)]="searchCapacity">
-        <button (click)="search()">Search</button>
-        <button (click)="resetSearch()">Reset</button>
-      </div>
+
       <div class="table-container">
         <table>
           <thead>
             <tr>
               <th>Room ID</th>
-          <th>Room Type</th>
-          <th>Room Capacity</th>
-          <th>Room Price</th>
-          <th>Room Availability</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
+              <th>Room Type</th>
+              <th>Room Capacity</th>
+              <th>Room Price</th>
+              <th>Room Availability
+                <div class="availability-dropdown">
+                  <button class="dropbtn">Filter</button>
+                  <div class="dropdown-content">
+                    <button (click)="filterByAvailability(true)">Available</button>
+                    <button (click)="filterByAvailability(false)">Not Available</button>
+                    <td>
+                      <button (click)="updateRoom(room)">Update</button>
+                      <button (click)="deleteRoom(room)">Delete</button>
+                    </td>
+      
+                  </div>
+                </div>
+              </th>
+            </tr>
+          </thead>
+        <tbody>
           <tr *ngFor="let room of rooms">
             <td>{{ room.roomNumber }}</td>
             <td>{{ room.type }}</td>
             <td>{{ room.capacity }}</td>
             <td>{{ room.price }}</td>
             <td>{{ room.available ? 'Available' : 'Not Available' }}</td>
-            <td>
-            <button (click)="selectRoom(room)">Add</button>
-            <button (click)="selectRoom(room)">Update</button>
-            <button (click)="deleteRoom(room.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </div>  
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
      
        <div *ngIf="selectedRoom">
-        <h2>Edit Room</h2>
-        <form (ngSubmit)="updateRoom()">
-          <div>
-            <label for="roomNumber">Room Number:</label>
-            <input type="text" id="roomNumber" [(ngModel)]="selectedRoom.roomNumber" name="roomNumber" required>
+        <h2>Add Room</h2>
+
+        <div class="add-room-container">
+          <button (click)="openAddRoomForm()">Add Room</button>
+        </div>
+        <div *ngIf="showAddRoomForm" class="add-room-form">
+          <h2>Add Room</h2>
+          <form (ngSubmit)="addRoom()">
+            <div>
+            <label for="newroomNumber">Room Number:</label>
+            <input type="text" id="newroomNumber" [(ngModel)]="selectedRoom.roomNumber" name="newroomNumber" required>
           </div>
           <div>
-            <label for="type">Type:</label>
-            <input type="text" id="type" [(ngModel)]="selectedRoom.type" name="type" required>
+            <label for="newroomtype">Type:</label>
+            <input type="text" id="newroomtype" [(ngModel)]="selectedRoom.type" name="newroomtype" required>
           </div>
           <div>
-            <label for="capacity">Capacity:</label>
-            <input type="number" id="capacity" [(ngModel)]="selectedRoom.capacity" name="capacity" required>
+            <label for="newroomcapacity">Capacity:</label>
+            <input type="number" id="newroomcapacity" [(ngModel)]="selectedRoom.capacity" name="newroomcapacity" required>
           </div>
           <div>
-            <label for="price">Price:</label>
-            <input type="number" id="price" [(ngModel)]="selectedRoom.price" name="price" required>
+            <label for="newroomprice">Price:</label>
+            <input type="number" id="newroomprice" [(ngModel)]="selectedRoom.price" name="newroomprice" required>
           </div>
           <div>
-            <label for="available">Available:</label>
-            <input type="checkbox" id="available" [(ngModel)]="selectedRoom.available" name="available">
+            <label for="newroomavailable">Available:</label>
+            <input type="checkbox" id="newroomavailable" [(ngModel)]="selectedRoom.available" name="newroomavailable">
           </div>
-          <button type="submit">Update</button>
+          <button type="submit">Add</button>
           <button type="button" (click)="cancel()">Cancel</button>
         </form>
       </div>
-    </div>
-  </body>
-  </html> 
-
-
-
-
-
-
-
+      </div>
+    </body>
+    </html>
