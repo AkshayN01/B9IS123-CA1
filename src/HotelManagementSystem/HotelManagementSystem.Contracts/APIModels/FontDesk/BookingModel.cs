@@ -18,9 +18,14 @@ namespace HotelManagementSystem.Contracts.APIModels.FontDesk
 
     public class BookingSummary
     {
+        public int totalData { get; set; }
+        public List<BookingInfo> BookingInfo { get; set; } = new List<BookingInfo>();
+    }
+
+    public class BookingInfo
+    {
         public int Id { get; set; }
-        public string VisitorFirstName { get; set; }
-        public string VisitorLastName { get; set; }
+        public string VisitorName { get; set; }
         public string status { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Booking } from '../../models/booking.model';
 import { Router } from '@angular/router';
+import { BookingService } from '../../../services/booking/booking.service';
+import { ResponseHandlerService } from '../../../services/shared/resposne/resposne-handler.service';
+import { Booking } from '../../../models/booking/view-bookings.model';
+import { bookingStatus } from '../../../models/booking/booking-status.model';
 
 @Component({
   selector: 'app-bookings',
@@ -8,65 +11,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./bookings.component.css']
 })
 export class BookingsComponent implements OnInit {
-  bookings: Booking[] = [];
-  pagedBookings: Booking[] = [];
-  pageSize = 10;
-  fromDate: string | null = null;
-  toDate: string | null = null;
+  selectedDate!: Date;
+  bookings!: Booking;
+  status: string | null =  null;
+  pageSize = 10; 
+  pageNumber = 1;
+  fromDate!: Date;
+  toDate!: Date;
+  fromDateString!: string;
+  toDateString!: string;
+  bookingStatuses: any = bookingStatus;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private bookingService: BookingService, private responseHandler : ResponseHandlerService) {}
 
   ngOnInit(): void {
-    this.bookings = [
-      {
-        id: 0,
-        fromDate: "2024-04-21",
-        toDate: "2024-04-25",
-        branchId: 0,
-        visitorDetails: {
-          visitorId: 1,
-          firstName: "John",
-          middleName: "A",
-          lastName: "Doe",
-          emailId: "john@example.com",
-          phoneNo: "1234567890",
-          isPrimary: 1
-        }
-      },
-      {
-        id: 2,
-        fromDate: "2024-04-21",
-        toDate: "2024-04-25",
-        branchId: 1,
-        visitorDetails: {
-          visitorId: 2,
-          firstName: "Jane",
-          middleName: "A",
-          lastName: "Smith",
-          emailId: "jane@example.com",
-          phoneNo: "9876543210",
-          isPrimary: 1
-        },
-      },
-      {
-        id: 3,
-        fromDate: "2024-04-26",
-        toDate: "2024-04-30",
-        branchId: 2,
-        visitorDetails: {
-          visitorId: 3,
-          firstName: "Alice",
-          middleName: "A",
-          lastName: "Johnson",
-          emailId: "alice@example.com",
-          phoneNo: "5678901234",
-          isPrimary: 1
-        },
-      }
-    ];
-
+    this.getAllBookings();
     console.log(this.bookings)
-   this.applyFilter();
+    this.applyFilter();
+  }
+
+  getAllBookings(): void{
+    this.bookingService.viewAllBookings(this.fromDateString, this.toDateString, this.status, this.pageNumber, this.pageSize).subscribe(res => {
+      this.bookings = this.responseHandler.checkResponse(res);
+    });
   }
 
 
@@ -75,25 +42,48 @@ export class BookingsComponent implements OnInit {
   }
 
   onPageChange(event: any): void {
-    const startIndex = event.pageIndex * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.pagedBookings = this.bookings.slice(startIndex, endIndex);
+    console.log(event.pageIndex);
+    this.pageNumber = event.pageIndex;
   }
 
+  onSelected(value:string):void {
+    console.log("Selected")
+    console.log(value);
+    this.status = value;
+	}
+
   applyFilter(): void {
-    this.pagedBookings = this.bookings.filter(booking => {
-      let fromDateMatch = true;
-      let toDateMatch = true;
+    console.log("clicked");
+    console.log(this.fromDate);
+    console.log(this.toDate);
+    if(this.fromDate != undefined)
+      this.fromDateString = this.convertDate(this.fromDate.toString());
+    
+    if(this.toDate != undefined)
+      this.toDateString = this.convertDate(this.toDate.toString());
+    this.getAllBookings();
+  }
 
-      if (this.fromDate && new Date(booking.fromDate) < new Date(this.fromDate)) {
-        fromDateMatch = false;
-      }
+  convertDate(dateString: string): string {
 
-      if (this.toDate && new Date(booking.toDate) > new Date(this.toDate)) {
-        toDateMatch = false;
-      }
+    // Create a new Date object
+    const date = new Date(dateString);
 
-      return fromDateMatch && toDateMatch;
-    });
+    // Get the day, month, and year components
+    const day = ("0" + date.getDate()).slice(-2); // Zero padding
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Months are zero-based
+    const year = date.getFullYear();
+
+    // Get the hours, minutes, and seconds components
+    const hours = ("0" + date.getHours()).slice(-2);
+    const minutes = ("0" + date.getMinutes()).slice(-2);
+    const seconds = ("0" + date.getSeconds()).slice(-2);
+
+    // Format the date in the desired format
+    const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
+    console.log(formattedDate); // Output: "01/04/2024 00:00:00"
+
+    return formattedDate;
   }
 }

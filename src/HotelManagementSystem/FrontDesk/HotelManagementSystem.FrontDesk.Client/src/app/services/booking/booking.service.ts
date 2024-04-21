@@ -15,4 +15,26 @@ export class BookingService {
 
     return this.apiService.post(url, model);
   }
+
+  viewAllBookings(fromDate: string | null, toDate: string | null, status :string | null, pageNumber: Number, pageSize: Number): Observable<any>{
+
+    var params = "";
+    if(fromDate != null){
+      params += `fromDate=${fromDate}&`
+    }
+    if(toDate != null){
+      params += `toDate=${toDate}&`
+    }
+    if(status != null){
+      params += `status=${status}&`
+    }
+
+    params += `pageNumber=${pageNumber}&pageSize=${pageSize}`;
+
+    const url = `userGuid/[userGuid]/bookings?${params}`;
+
+    console.log(url);
+    return this.apiService.get(url);
+    // return new Observable();
+  }
 }

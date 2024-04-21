@@ -15,7 +15,7 @@ import { BookingRegisterComponent } from './pages/protected/booking-register/boo
 import { BookingsComponent } from './pages/protected/bookings/bookings.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home',},
+  {path: '', pathMatch: 'full', redirectTo: 'all-bookings',},
 
   {path: 'login', component: LoginComponent},
   {path: 'login-completed', component: LoginCompletedComponent},
@@ -27,13 +27,8 @@ const routes: Routes = [
     component: HeaderComponent,
     canActivate: [isAuthGuard],
     children: [
-      {path: 'home', 
-      component: HomeComponent
-      },
-      {path: 'bookin-details', 
-      component: BookingDetailsComponent
-      },
       {path: 'home', component: HomeComponent},
+      {path: 'booking-details', component: BookingDetailsComponent},
       {path: 'room', component: RoomComponent},
       {path: 'booking-register', component: BookingRegisterComponent},
       {path: 'all-bookings', component: BookingsComponent}

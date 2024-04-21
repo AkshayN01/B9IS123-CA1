@@ -245,13 +245,15 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
             try
             {
+                if (pageNumber <= 0 || pageSize <= 0)
+                    throw new Exception("Invalid page size and number");
 
                 List<Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>>> expressions =
                     new List<Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>>>();
 
                 //Get current brnachId
                 var branch = await _hotelBranchService.GetCurrentInstance();
-                List<BookingSummary> bookingSummary = new List<BookingSummary>();
+                BookingSummary bookingSummary = new BookingSummary();
 
                 Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> branchExpression = x => x.Branchd == branch.Id;
                 expressions.Add(branchExpression);
@@ -280,13 +282,16 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                 // Combine the conditions
                 var combinedCondition = Library.Generic.Generic.CombineConditions<Contracts.Entities.FrontDesk.Booking>(expressions);
 
-                List<Contracts.Entities.FrontDesk.Booking> bookings =  await _frontDeskUnitOfWork.BookingRepository.GetAllBookingDetails(combinedCondition);
+                var bookingsData =  _frontDeskUnitOfWork.BookingRepository.GetAllBookingDetails(combinedCondition);
+                bookingSummary.totalData = bookingsData.Count();
+                List<Contracts.Entities.FrontDesk.Booking> bookings = bookingsData.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
 
                 if (bookings.Any())
                 {
                     foreach(var booking in bookings)
                     {
-                        BookingSummary summary = new BookingSummary()
+                        BookingInfo info = new BookingInfo()
                         {
                             Id = booking.BookingId,
                             FromDate = booking.BookingFromDate,
@@ -295,12 +300,11 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                         };
                         Visitor visitor = await _frontDeskUnitOfWork.VisitorRepository.GetAsync(booking.VisitorId);
 
-                        summary.VisitorFirstName = visitor.FirstName;
-                        summary.VisitorLastName = visitor.LastName;
+                        info.VisitorName = visitor.FirstName + " " + visitor.MiddleName + " " + visitor.LastName;
 
-                        bookingSummary.Add(summary);
+                        bookingSummary.BookingInfo.Add(info);
                     }
-
+                    retVal = 1;
                     data = bookingSummary;
                 }
             }

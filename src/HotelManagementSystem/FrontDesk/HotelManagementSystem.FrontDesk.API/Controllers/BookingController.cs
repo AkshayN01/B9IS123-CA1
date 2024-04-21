@@ -71,7 +71,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
 
         [HttpGet]
         [Route("/api/userguid/{userGuid}/bookings")]
-        public async Task<IActionResult> GetAllBookings(string userGuid, string fromDate, string toDate, string status, int pageNumber, int pageSize)
+        public async Task<IActionResult> GetAllBookings(string userGuid, string? fromDate, string? toDate, string? status, int pageNumber, int pageSize)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 

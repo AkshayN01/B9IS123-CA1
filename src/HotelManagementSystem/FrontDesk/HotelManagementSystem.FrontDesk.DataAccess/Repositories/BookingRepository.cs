@@ -29,9 +29,9 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
             return booking.BookingId;
         }
 
-        public async Task<List<Booking>> GetAllBookingDetails(Expression<Func<Booking, bool>> condition)
+        public IEnumerable<Booking> GetAllBookingDetails(Expression<Func<Booking, bool>> condition)
         {
-            return await _books.Where(condition).ToListAsync();
+            return _books.Where(condition).AsEnumerable();
         }
     }
 }
