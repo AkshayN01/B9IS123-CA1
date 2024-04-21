@@ -1,5 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { RoomService } from '../../../services/room/room.service';
+import { ResponseHandlerService } from '../../../services/shared/resposne/resposne-handler.service';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { BookingRegisterModel } from '../../../models/booking/booking-register.model';
 
 @Component({
   selector: 'app-booking-register',
@@ -8,18 +12,29 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 })
 export class BookingRegisterComponent {
   bookingForm!: FormGroup;
+  roomTypesData!: any;
+  roomsData!: any;
+  loadedRooms: boolean = false;
+  roomIds!: Number[];
+  bookingModel!: BookingRegisterModel;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private roomService: RoomService, private responseHandler: ResponseHandlerService) {}
 
   ngOnInit(): void {
+    this.getRoomData();
     this.initializeForm();
+  }
+
+  getRoomData(): void{
+    this.roomService.getRoomTypes().subscribe(response => {
+      this.roomTypesData = this.responseHandler.checkResponse(response);
+    });
   }
 
   initializeForm(): void { 
     this.bookingForm = this.fb.group({
       fromDate: ['', [Validators.required]],
       toDate: ['', [Validators.required]],
-      roomIds: this.fb.array([]),
       primaryVisitor: this.fb.group({
         firstName: ['', [Validators.required, Validators.maxLength(50)]], 
         middleName: ['', [Validators.required, Validators.maxLength(50)]], 
@@ -46,15 +61,51 @@ export class BookingRegisterComponent {
   get partners(): FormArray {
     return this.bookingForm.get('partners') as FormArray;
   }
+
 	onSelected(value:string):void {
     console.log("Selected")
     console.log(value);
+    this.getAllAvailableRooms(value);
 	}
 
-  onSubmit() {
-    if (this.bookingForm.invalid) {
-      return;
+  getAllAvailableRooms(roomTypeId: string): void{
+    this.roomService.getAllRooms(roomTypeId).subscribe(response => {
+      this.roomsData = this.responseHandler.checkResponse(response);
+      this.loadedRooms = true;
+      console.log(this.roomsData);
+    });
+  }
+  onCheckboxChange(event: MatCheckboxChange): void {
+    // event.checked will give you the checked state
+    console.log(event.source.value)
+    var value = Number(event.source.value);
+    if(event.checked){
+      this.roomIds.push(value);
     }
-    console.log(this.bookingForm.value);
+    else{
+      var index = this.roomIds.indexOf(value);
+      if (index !== -1) {
+        this.roomIds.splice(index, 1);
+      }
+    }
+  }
+  
+
+  onSubmit() {
+    // if (this.bookingForm.invalid) {
+    //   return;
+    // }
+    
+    this.bookingModel = {
+      fromDate : this.bookingForm.get('fromDate')?.value,
+      toDate: this.bookingForm.get('toDate')?.value,
+      roomIds: this.roomIds,
+      visitors: []
+    }
+
+    this.bookingModel.visitors.push(this.bookingForm.get('primaryVisitor')?.value);
+    this.bookingModel.visitors.concat(this.bookingForm.get('partners')?.value)
+
+    console.log(this.bookingModel);
   }
 }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 interface Config {
   apiUrl: string;
+  loginAPIUrl: string
   oAuth: oAuthConfig;
 }
 interface oAuthConfig {

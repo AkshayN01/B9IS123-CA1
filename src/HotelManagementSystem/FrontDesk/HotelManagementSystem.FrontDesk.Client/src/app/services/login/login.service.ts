@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../shared/http/api.service';
+import { AppConfig } from '../../app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private appConfig: AppConfig) { }
 
   // Method to perform login
   login(loginInfo: any): Observable<any> {
     // Replace 'login-endpoint' with your actual login endpoint
-    return this.apiService.post<any>('http://172.190.104.34:5003/login', loginInfo);
+    return this.apiService.post<any>(this.appConfig.config.loginAPIUrl, loginInfo);
   }
 
   // Method to perform logout

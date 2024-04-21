@@ -53,11 +53,22 @@ namespace HotelManagementSystem.Admin.DataAccess.Data
                 new Permission(){PermissionId = 21, Name = "frontdesk:booking:delete", Description = "Permission to delete a visitor booking", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
                 new Permission(){PermissionId = 22, Name = "frontdesk:booking:approve", Description = "Permission to approve a visitor booking", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
                 new Permission(){PermissionId = 23, Name = "frontdesk:booking:decline", Description = "Permission to decline a visitor booking", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
-                new Permission(){PermissionId = 24, Name = "frontdesk:visior:add", Description = "Permission to add a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
-                new Permission(){PermissionId = 25, Name = "frontdesk:visior:view", Description = "Permission to view a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
-                new Permission(){PermissionId = 26, Name = "frontdesk:visior:edit", Description = "Permission to edit a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
-                new Permission(){PermissionId = 27, Name = "frontdesk:visior:delete", Description = "Permission to delete a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
 
+                new Permission(){PermissionId = 24, Name = "frontdesk:visitor:add", Description = "Permission to add a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 25, Name = "frontdesk:visitor:view", Description = "Permission to view a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 26, Name = "frontdesk:visitor:edit", Description = "Permission to edit a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 27, Name = "frontdesk:visitor:delete", Description = "Permission to delete a visitor", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+
+
+                new Permission(){PermissionId = 28, Name = "frontdesk:room:add", Description = "Permission to Add a room", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 29, Name = "frontdesk:room:view", Description = "Permission to View a room", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 30, Name = "frontdesk:room:edit", Description = "Permission to Edit a room", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 31, Name = "frontdesk:room:delete", Description = "Permission to Delete a room", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+
+                new Permission(){PermissionId = 32, Name = "frontdesk:roomType:add", Description = "Permission to Add a room Type", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 33, Name = "frontdesk:roomType:view", Description = "Permission to View a room Type", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 34, Name = "frontdesk:roomType:edit", Description = "Permission to Edit a room Type", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
+                new Permission(){PermissionId = 35, Name = "frontdesk:roomType:delete", Description = "Permission to Delete a room Type", HotelBranchId = 1, CreatedAt = DateTime.UtcNow},
             };
         }
 
@@ -138,6 +149,16 @@ namespace HotelManagementSystem.Admin.DataAccess.Data
                 new PermissionAssignment(){PermissionAssignmentId = 29, HotelBranchId = 1, PermissionId = 22, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 30, HotelBranchId = 1, PermissionId = 24, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
                 new PermissionAssignment(){PermissionAssignmentId = 31, HotelBranchId = 1, PermissionId = 25, RoleId = 4, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+
+                //Manager
+                new PermissionAssignment(){PermissionAssignmentId = 40, HotelBranchId = 1, PermissionId = 28, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 33, HotelBranchId = 1, PermissionId = 29, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 34, HotelBranchId = 1, PermissionId = 30, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 35, HotelBranchId = 1, PermissionId = 31, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 36, HotelBranchId = 1, PermissionId = 32, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 37, HotelBranchId = 1, PermissionId = 33, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 38, HotelBranchId = 1, PermissionId = 34, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
+                new PermissionAssignment(){PermissionAssignmentId = 39, HotelBranchId = 1, PermissionId = 35, RoleId = 3, CreatedAt= DateTime.UtcNow, CreatedBy= "System", IsDeleted = false},
             };
         }
     }

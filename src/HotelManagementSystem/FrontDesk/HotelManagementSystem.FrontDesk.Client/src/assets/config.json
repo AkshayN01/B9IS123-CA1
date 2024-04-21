@@ -1,6 +1,7 @@
 {
     "production": true,
-    "apiUrl": "",
+    "apiUrl": "http://localhost:5005/api",
+    "loginAPIUrl": "http://localhost:5003/login",
     "oAuth": {
       "issuer": "https://localhost:7016",
       "redirectUri": "https://localhost:4002/login-completed",
