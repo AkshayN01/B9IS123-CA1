@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/protected/home/home.component';
 import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
+import { BookingRegisterComponent } from './pages/protected/booking-register/booking-register.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home',},
@@ -23,7 +24,7 @@ const routes: Routes = [
   {
     path: '',
     component: HeaderComponent,
-    canActivate: [isAuthGuard],
+    // canActivate: [isAuthGuard],
     children: [
       {path: 'home', 
       component: HomeComponent
@@ -32,7 +33,8 @@ const routes: Routes = [
       component: BookingDetailsComponent
       },
       {path: 'home', component: HomeComponent},
-      {path: 'room', component: RoomComponent}
+      {path: 'room', component: RoomComponent},
+      {path: 'booking-register', component: BookingRegisterComponent}
     ]
   },
 ];

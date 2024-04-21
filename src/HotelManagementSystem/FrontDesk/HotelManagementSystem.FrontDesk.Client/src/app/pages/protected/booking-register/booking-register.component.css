@@ -1,0 +1,37 @@
+.container {
+    margin: 0 3em 1em;
+}
+
+.page-title{
+    margin: 1em;
+}
+
+.nameDiv{
+    display: flex;
+}
+
+.nameInput{
+    margin-right: 1em;
+}
+
+
+.bookingForm{
+    padding: 1em;
+}
+
+.submitBtn{
+    text-align: center;
+    margin: 1em;
+}
+
+.roomList{
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.roomCard{
+    width: 13em;
+    display: inline-block;
+    text-decoration: none;
+    margin-left: 1em;
+}
