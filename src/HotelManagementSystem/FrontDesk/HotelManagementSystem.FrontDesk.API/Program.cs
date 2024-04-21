@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System.Configuration;
 using HotelManagementSystem.Library;
 using HotelManagementSystem.Library.Extensions;
+using HotelManagementSystem.Library.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<FrontDeskDbContext>(options => options.UseMySQL(fr
 builder.Services.AddScoped<IFrontDeskUnitOfWork, FrontDeskUnitOfWork>();
 builder.Services.AddTransient<BookingService>();
 builder.Services.AddTransient<RoomService>();
+builder.Services.AddTransient<HeaderValidationMiddleware>(provider => new HeaderValidationMiddleware("K7gNU3sdo+OL0wNhqoVWhr3g6s1xYv72ol/pe/Unols="));
 
 var authorizer = builder.Configuration.GetSection("Identity").GetSection("Authorizer").Value;
 var clientId = builder.Configuration.GetSection("Identity").GetSection("clientId").Value;
@@ -120,6 +122,7 @@ app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(
 
 //app.UseAuthentication();
 //app.UseAuthorization();
+app.UseMiddleware<HeaderValidationMiddleware>();
 
 app.MapControllers();
 

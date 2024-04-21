@@ -42,6 +42,7 @@ import { CommonModule } from '@angular/common';
 import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
 import { BookingRegisterComponent } from './pages/protected/booking-register/booking-register.component';
 import { UserComponent } from './pages/protected/user/user.component';
+import { HeadersInterceptor } from './interceptors/headers';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,10 @@ import { UserComponent } from './pages/protected/user/user.component';
     },
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using HotelManagementSystem.Library;
 using HotelManagementSystem.Library.Extensions;
+using HotelManagementSystem.Library.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddScoped<IAdminUnitOfWork, AdminUnitOfWork>();
 builder.Services.AddTransient<HotelBranchService>();
 builder.Services.AddTransient<ManagementService>();
 builder.Services.AddTransient<UserService>();
+builder.Services.AddTransient<HeaderValidationMiddleware>(provider => new HeaderValidationMiddleware("K7gNU3sdo+OL0wNhqoVWhr3g6s1xYv72ol/pe/Unols="));
 
 var authorizer = builder.Configuration.GetSection("Identity").GetSection("Authorizer").Value;
 var clientId = builder.Configuration.GetSection("Identity").GetSection("clientId").Value;
@@ -118,6 +120,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 //app.UseAuthentication();
+
+app.UseMiddleware<HeaderValidationMiddleware>();
 
 //app.UseAuthorization();
 
