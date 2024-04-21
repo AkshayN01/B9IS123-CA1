@@ -26,33 +26,63 @@
                   <div class="dropdown-content">
                     <button (click)="filterByAvailability(true)">Available</button>
                     <button (click)="filterByAvailability(false)">Not Available</button>
-                    <td>
-                      <button (click)="updateRoom(room)">Update</button>
-                      <button (click)="deleteRoom(room)">Delete</button>
-                    </td>
-      
+                    <th>Action</th>     
                   </div>
                 </div>
               </th>
             </tr>
           </thead>
         <tbody>
-          <tr *ngFor="let room of rooms">
-            <td>{{ room.roomNumber }}</td>
-            <td>{{ room.type }}</td>
-            <td>{{ room.capacity }}</td>
-            <td>{{ room.price }}</td>
-            <td>{{ room.available ? 'Available' : 'Not Available' }}</td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <tr *ngFor="let room of rooms">
+              <td>{{ room.roomNumber }}</td>
+              <td>{{ room.type }}</td>
+              <td>{{ room.capacity }}</td>
+              <td>{{ room.price }}</td>
+              <td>{{ room.available ? 'Available' : 'Not Available' }}</td>
+              <td>
+                <button (click)="updateRoom(room)">Update</button>
+                <button (click)="deleteRoom(room)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-     
-       <div *ngIf="selectedRoom">
-        <h2>Add Room</h2>
 
+    <div *ngIf="selectedRoom">
+      <h2>Update Room</h2>
+      <div class="update-room-form">
+        <form (ngSubmit)="updateRoomSubmit()">
+          <div>
+            <label for="roomNumber">Room Number:</label>
+            <input type="text" id="roomNumber" [(ngModel)]="selectedRoom.roomNumber" name="roomNumber" required>
+          </div>
+          <div>
+            <label for="type">Type:</label>
+            <input type="text" id="type" [(ngModel)]="selectedRoom.type" name="type" required>
+          </div>
+          <div>
+            <label for="capacity">Capacity:</label>
+            <input type="number" id="capacity" [(ngModel)]="selectedRoom.capacity" name="capacity" required>
+          </div>
+          <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" [(ngModel)]="selectedRoom.price" name="price" required>
+          </div>
+          <div>
+            <label for="available">Available:</label>
+            <input type="checkbox" id="available" [(ngModel)]="selectedRoom.available" name="available">
+          </div>
+          <button type="submit">Update</button>
+          <button type="button" (click)="cancelUpdate()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+
+       <div>
+        <h2>Add Room</h2>
         <div class="add-room-container">
           <button (click)="openAddRoomForm()">Add Room</button>
         </div>

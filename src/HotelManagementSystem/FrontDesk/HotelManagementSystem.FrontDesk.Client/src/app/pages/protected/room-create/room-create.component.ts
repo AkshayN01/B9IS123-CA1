@@ -10,15 +10,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class RoomCreateComponent {
   roomForm: FormGroup = new FormGroup({}); 
-  rooms: Room[] = [];
+  rooms: Room[] =[];
   selectedRoom: Room | null = null;
-  searchType: string = '';
-  searchCapacity: number | null = null;
-  newRoomNumber: string = '';
-  newRoomType: string = '';
-  newRoomCapacity: number | null = null;
-  newRoomPrice: number | null = null;
-  newRoomAvailable: boolean = false;
   showAddRoomForm: boolean = false;
 
 
@@ -39,28 +32,29 @@ export class RoomCreateComponent {
     this.showAddRoomForm = true;
 
     addRoom(): void {
-      const newRoom: Room = {
-        roomNumber: this.newRoomNumber,
-        type: this.newRoomType,
-        capacity: this.newRoomCapacity,
-        price: this.newRoomPrice,
-        available: this.newRoomAvailable
-      };
-
-      this.roomService.addRoom(newRoom);
-      this.resetAddRoomForm();
+      const newRoom: Room = this.roomForm.value;
+    this.roomService.addRoom(newRoom);
+    this.resetForm();
+    this.rooms = this.roomService.getAllAvailableRooms();
+    this.showAddRoomForm = false;
     }
+  
 
-      cancelAddRoom(): void {
-        cancelAddRoom(): void {
-          this.resetAddRoomForm();
-        }
+    cancelAddRoom(): void {
+      this.resetForm();
+      this.showAddRoomForm = false;
+    }
     
-  updateRoom(): void {
-    if (this.selectedRoom) {
-      this.roomservice.updateRoom(this.selectedRoom)
+    updateRoom(): void {
+      if (this.selectedRoom) {
+        this.roomService.updateRoom(this.selectedRoom);
+        this.selectedRoom = null;
+      }
     }
-}
+
+    cancelUpdate(): void {
+      this.selectedRoom = null;
+    }
 
   deleteRoom(roomId: number): void {
     this.roomservice.deleteRoom(roomId);
@@ -71,15 +65,6 @@ export class RoomCreateComponent {
     return this.rooms;
   }
   
-  selectRoom(room: Room): void {
-    this.selectedRoom = room;
-    this.roomForm.patchValue(room);
-  }
-
-  cancel(): void {
-    this.resetForm();
-    this.selectedRoom = null;
-  }
 
   filterByAvailability(available: boolean): void {
     this.rooms = this.roomservice.getAllRooms().filter(room => room.available === available);
