@@ -38,14 +38,16 @@
 
             <mat-form-field>
                 <mat-label for="fName">Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" type="text" id="phoneNumber" formControlName="phoneNumber">
+                <input matInput placeholder="Phone Number" type="text" id="phone" formControlName="phone">
             </mat-form-field>
         </div>
         <div formArrayName="partners">
             <h2>Travel Partners</h2>
-            <button mat-raised-button color="primary" (click)="addTravelPartners()">+ Add another partner</button>
+            <button mat-raised-button color="primary" (click)="addTravelPartners()">+ Add another partner</button><br>
           
+            <div *ngIf="partners.controls.length > 0">
             <div *ngFor="let partner of partners.controls; let i=index">
+                <div formGroupName="{{i}}">
               <!-- The repeated partner template -->
                 <label for="partner-{{ i }}">Travel Partner:</label><br>
                 <mat-form-field class="nameInput">
@@ -63,6 +65,8 @@
                     <input matInput placeholder="Last Name" type="text" id="partner-{{ i }}" formControlName="lastName">
                 </mat-form-field>
             </div>
+            </div>
+            </div>
         </div>
         <div>
             <mat-form-field>
@@ -77,7 +81,7 @@
             <div class="roomList">
                 <mat-card *ngFor="let room of roomsData" class="checkboxselect text-center little-profile workspacetype roomCard">
                     <mat-card-content>
-                        <mat-checkbox (change)="onCheckboxChange($event)" class="multipleselect"></mat-checkbox>
+                        <mat-checkbox (change)="onCheckboxChange($event, room)" class="multipleselect"></mat-checkbox>
                         <div class="workspacetypeimage">
                             <i class="bgi bgi-certificate"></i>
                         </div>
@@ -95,4 +99,3 @@
     </form>
 </mat-card>
 </div>
-<h1>{{loadedRooms}}</h1>

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReasonModalComponent } from '../reason-modal/reason-modal.component';
-import { RoomService } from '../../../services/room.service';
 import { RoomAssignmentDialogComponent } from '../room-assignment-dialog/room-assignment-dialog.component';
+import { ActivatedRoute } from '@angular/router';
+import { BookingService } from '../../../services/booking/booking.service';
+import { ResponseHandlerService } from '../../../services/shared/resposne/resposne-handler.service';
+import { RoomService } from '../../../services/room/room.service';
 
 @Component({
   selector: 'app-booking-details',
@@ -10,6 +13,7 @@ import { RoomAssignmentDialogComponent } from '../room-assignment-dialog/room-as
   styleUrls: ['./booking-details.component.css']
 })
 export class BookingDetailsComponent implements OnInit {
+  id!:string;
   bookingDetails: any;
   availableRooms!: any[];
   roomSelected: boolean = false;
@@ -18,82 +22,30 @@ export class BookingDetailsComponent implements OnInit {
   showAcceptDeclineButtons: boolean = true;
   
   
-  constructor(private dialog: MatDialog, private room: RoomService) 
+  constructor(private dialog: MatDialog, private bookingService: BookingService, private roomService: RoomService, private route: ActivatedRoute, private responseHandler: ResponseHandlerService) 
   {
-   }
+  }
 
   ngOnInit() {
-    this.fetchBookingDetails();
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      // Use this.id as needed in your component
+      this.fetchBookingDetails();
+    });
   }
 
   fetchBookingDetails()
   {
-    this.bookingDetails={
-  "id": 0,
-  "fromDate": "0001-01-01T00:00:00",
-  "toDate": "0001-01-01T00:00:00",
-  "branchId": 0,
-  "room": [
-    {
-      "id": 1,
-      "level": 1,
-      "roomNumber": 101,
-      "roomName": "101",
-      "roomTypeId": 0,
-      "roomType": {
-        "id": 4,
-        "name": "Dormitory",
-        "price": 60,
-        "maxCapacity": 8
-      }
-    }
-  ],
-  "visitors": [
-    {
-      "id": 15,
-      "firstName": "Akshay",
-      "middleName": "Mohanan",
-      "lastName": "Nambly",
-      "email": "test1@test.com",
-      "phone": "1234567",
-      "isPrimary": 1
-    },
-    {
-      "id": 16,
-      "firstName": "Abhiram",
-      "middleName": "Mohanan",
-      "lastName": "Nambly",
-      "email": null,
-      "phone": null,
-      "isPrimary": 0
-    },
-    {
-      "id": 17,
-      "firstName": "Mohanan",
-      "middleName": "Kumaran",
-      "lastName": "Nambly",
-      "email": null,
-      "phone": null,
-      "isPrimary": 0
-    },
-    {
-      "id": 18,
-      "firstName": "Sudha",
-      "middleName": "Mohanan",
-      "lastName": "Nambly",
-      "email": null,
-      "phone": null,
-      "isPrimary": 0
-    }
-  ]
-}
-this.primaryVisitor = this.bookingDetails.visitors.find((visitor: any) => visitor.isPrimary);
-this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visitor.isPrimary);
-}
+    this.bookingService.getBookingDetails(this.id).subscribe(res => {
+      this.bookingDetails = this.responseHandler.checkResponse(res);
+      this.primaryVisitor = this.bookingDetails.visitors.find((visitor: any) => visitor.isPrimary);
+      this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visitor.isPrimary);
+    });
+  }
 
 
   acceptBooking() {
-    this.room.getAvailableRooms(this.bookingDetails.roomType.id)
+    this.roomService.getAllRooms(this.bookingDetails.roomType.id)
       .subscribe((response: any) => {
         this.availableRooms = response;
         this.openRoomAssignmentDialog();
@@ -122,9 +74,9 @@ this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visi
     };
 
     
-    this.room.assignRoom(this.bookingDetails.roomDetails)
-      .subscribe((response: any) => {
-      });
+    // this.roomService.assignRoom(this.bookingDetails.roomDetails)
+    //   .subscribe((response: any) => {
+    //   });
 
     this.roomSelected = true;
   }
@@ -138,10 +90,10 @@ this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visi
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
 
-        this.room.declineBooking(this.bookingDetails.id, result)
-          .subscribe((response: any) => {
+        // this.room.declineBooking(this.bookingDetails.id, result)
+        //   .subscribe((response: any) => {
            
-          });
+        //   });
       }
     });
   }

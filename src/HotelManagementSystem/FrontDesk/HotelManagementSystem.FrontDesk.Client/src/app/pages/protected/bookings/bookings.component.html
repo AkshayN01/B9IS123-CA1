@@ -2,32 +2,26 @@
 <div class="container">
   <div class="filter">
     <mat-form-field>
-      <mat-label>From date</mat-label>
-      <input matInput [matDatepicker]="fromDate">
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="fromDate"></mat-datepicker-toggle>
-      <mat-datepicker #fromDate></mat-datepicker>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="fromDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-  
     <mat-form-field>
-      <mat-label>To date</mat-label>
-      <input matInput [matDatepicker]="toDate">
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="toDate"></mat-datepicker-toggle>
-      <mat-datepicker #toDate></mat-datepicker>
+      <input matInput [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="toDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
-
+    
     <mat-form-field>
       <mat-label>Status</mat-label>
-      <mat-select #roomTypes>
-        <mat-option id="1" value="one">First option</mat-option>
-        <mat-option id="2" value="two">Second option</mat-option>
+      <mat-select #status (selectionChange)="onSelected(status.value)">
+        <mat-option *ngFor="let status of bookingStatuses" [value]="status.name">{{status.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Search</button>
+    <button mat-raised-button color="primary" type="submit" (click)="applyFilter()">Search</button>
   </div>
-  <div div class="bookings-container">
+  <div div class="bookings-container" *ngIf="bookings != undefined">
     <table class="bookings-table">
        <thead>
          <tr>
@@ -38,8 +32,8 @@
          </tr>
        </thead>
        <tbody>
-          <tr *ngFor="let booking of pagedBookings">
-             <td>{{ booking.visitorDetails.firstName }} {{ booking.visitorDetails.lastName }}</td>
+          <tr *ngFor="let booking of bookings.bookingInfo">
+             <td>{{ booking.visitorName }}</td>
              <td>{{ booking.fromDate | date }}</td>
              <td>{{ booking.toDate | date }}</td>
              <td><button mat-raised-button color="primary" (click)="viewBooking(booking.id)">View</button></td>
@@ -48,8 +42,8 @@
      </table>
      </div>
     
-     <div class="pagination-container">
-     <mat-paginator [length]="bookings.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+  <div class="pagination-container" *ngIf="bookings != undefined">
+     <mat-paginator [length]="bookings.totalData" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
    </div>
 </div>
 
