@@ -12,7 +12,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgxSpinnerModule } from "ngx-spinner";
+
 import { MaterialModule } from './material/material.module';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { provideNativeDateAdapter } from '@angular/material/core';
+
 import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { LoginCompletedComponent } from './pages/login-completed/login-completed.component';
@@ -29,9 +39,7 @@ import { RoomCreateComponent } from './pages/protected/room-create/room-create.c
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment-dialog/room-assignment-dialog.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCardModule } from '@angular/material/card';
+import { BookingRegisterComponent } from './pages/protected/booking-register/booking-register.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +55,8 @@ import { MatCardModule } from '@angular/material/card';
     HeaderComponent,
     RoomComponent,
     RoomCreateComponent,
-    RoomAssignmentDialogComponent
+    RoomAssignmentDialogComponent,
+    BookingRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -61,8 +70,12 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     CommonModule,
     MatFormFieldModule,
+    MatDatepickerModule,
+    MatInputModule,
     MatSelectModule,
     MatCardModule,
+    MatButtonModule,
+    MatCheckboxModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['/'],
@@ -79,7 +92,8 @@ import { MatCardModule } from '@angular/material/card';
       deps: [AppConfig],
       multi: true
     },
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })
