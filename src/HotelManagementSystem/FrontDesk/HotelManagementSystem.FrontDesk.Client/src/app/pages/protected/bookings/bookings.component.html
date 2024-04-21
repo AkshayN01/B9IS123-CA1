@@ -1,0 +1,49 @@
+
+<div class="container">
+  <div class="filter">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="fromDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="toDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select #status (selectionChange)="onSelected(status.value)">
+        <mat-option *ngFor="let status of bookingStatuses" [value]="status.name">{{status.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" (click)="applyFilter()">Search</button>
+  </div>
+  <div div class="bookings-container" *ngIf="bookings != undefined">
+    <table class="bookings-table">
+       <thead>
+         <tr>
+           <th>Visitor Name</th>
+           <th>From Date</th>
+           <th>To Date</th>
+           <th>Action</th>
+         </tr>
+       </thead>
+       <tbody>
+          <tr *ngFor="let booking of bookings.bookingInfo">
+             <td>{{ booking.visitorName }}</td>
+             <td>{{ booking.fromDate | date }}</td>
+             <td>{{ booking.toDate | date }}</td>
+             <td><button mat-raised-button color="primary" (click)="viewBooking(booking.id)">View</button></td>
+         </tr>
+       </tbody>
+     </table>
+     </div>
+    
+  <div class="pagination-container" *ngIf="bookings != undefined">
+     <mat-paginator [length]="bookings.totalData" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+   </div>
+</div>
+

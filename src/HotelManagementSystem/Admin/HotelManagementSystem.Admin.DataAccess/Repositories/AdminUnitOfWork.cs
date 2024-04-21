@@ -13,6 +13,7 @@ namespace HotelManagementSystem.DataAccess.Repositories
         private IHotelBranchRepository _hotelBranchRepository;
         private IRoleRepository _roleRepository;
         private IPermissionRepository _permissionRepository;
+        private IPermissionAssignmentRepository _permissionAssginmentRepository;
 
         private readonly AdminDbContext _context;
 
@@ -48,6 +49,11 @@ namespace HotelManagementSystem.DataAccess.Repositories
         public IPermissionRepository PermissionRepository
         {
             get { return _permissionRepository ??= new PermissionRepository(_context); }
+        }
+
+        public IPermissionAssignmentRepository PermissionAssignmentRepository
+        {
+            get { return _permissionAssginmentRepository ??= new PermissionAssignmentRepository(_context); }
         }
 
         public void Dispose()

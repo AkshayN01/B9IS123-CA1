@@ -149,5 +149,46 @@ namespace HotelManagementSystem.Library.Services
 
             return hasPermission;
         }
+        public async Task<User> ValidateUserAsync(int branchId, string username, string password)
+        {
+            User user = null;
+
+            try
+            {
+                user = await GetUserByUsernameAsync(branchId, username);
+                if (user != null)
+                {
+                    bool IsValid = password == user.Password;
+                    if(IsValid)
+                    {
+                        return user;
+                    }
+                }
+            }
+            catch (Exception ex) { }
+
+            return user;
+        }
+
+        public async Task<(List<string>, List<string>)> GetUserRolesAndPermissionsAsync(int userId, int branchId)
+        {
+            List<Role> userRoles = await GetUserRolesAsync(userId, branchId);
+            var roles = userRoles?.Select(x => x.Name).ToList();
+
+            List<String> permissions = new List<String>();
+
+            if (roles != null && roles.Count > 0)
+            {
+                foreach (Role role in userRoles)
+                {
+                    var permissionByRole = await GetRolePermissionsAsync(role.RoleId, role.HotelBranchId);
+                    if (permissionByRole.Any())
+                    {
+                        permissions.AddRange(permissionByRole?.Select(x => x.Name).ToList());
+                    }
+                }
+            }
+            return (roles, permissions);
+        }
     }
 }

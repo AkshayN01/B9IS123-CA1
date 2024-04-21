@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using HotelManagementSystem.Library;
+using HotelManagementSystem.Library.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,29 +26,30 @@ var scope = builder.Configuration.GetSection("Identity").GetSection("scope").Val
 var secret = builder.Configuration.GetSection("Identity").GetSection("secret").Value;
 
 builder.Services.AddControllers();
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer("Bearer", options =>
-{
-    options.Authority = "https://localhost:7016";
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateAudience = false,
-        ValidateIssuer = false
-    };
-});
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//})
+//.AddJwtBearer("Bearer", options =>
+//{
+//    options.Authority = "https://localhost:7016";
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateAudience = false,
+//        ValidateIssuer = false
+//    };
+//    options.RequireHttpsMetadata = false;
+//});
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("ApiScope", policy =>
-    {
-        policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", scope);
-    });
-});
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("ApiScope", policy =>
+//    {
+//        policy.RequireAuthenticatedUser();
+//        policy.RequireClaim("scope", scope);
+//    });
+//});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -56,34 +58,46 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel Management Admin API", Version = "v1" });
 
     // Define the OAuth2 scheme
-    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-    {
-        Type = SecuritySchemeType.OAuth2,
-        Flows = new OpenApiOAuthFlows
-        {
-            ClientCredentials = new OpenApiOAuthFlow
-            {
-                AuthorizationUrl = new Uri($"{authorizer}/connect/authorize"),
-                TokenUrl = new Uri($"{authorizer}/connect/token"),
-                Scopes = new Dictionary<string, string> { { scope, clientName } }
-            }
-        }
-    });
+    //c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    //{
+    //    Type = SecuritySchemeType.OAuth2,
+    //    Flows = new OpenApiOAuthFlows
+    //    {
+    //        ClientCredentials = new OpenApiOAuthFlow
+    //        {
+    //            AuthorizationUrl = new Uri($"{authorizer}/connect/authorize"),
+    //            TokenUrl = new Uri($"{authorizer}/connect/token"),
+    //            Scopes = new Dictionary<string, string> { { scope, clientName } }
+    //        }
+    //    }
+    //});
 
-    // Define the security requirements
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
-            {
-                new OpenApiSecurityScheme
-                {
-                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
-                },
-                new[] { scope }
-            }
-        });
+    //// Define the security requirements
+    //c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    //    {
+    //        {
+    //            new OpenApiSecurityScheme
+    //            {
+    //                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
+    //            },
+    //            new[] { scope }
+    //    }
+    //});
 });
 
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAngularApp",
+//         builder => builder.WithOrigins("http://172.190.104.34")
+//             .AllowAnyHeader()
+//             .AllowAnyMethod());
+// });
+
+
 var app = builder.Build();
+
+//app.EnsureDbCreated<AdminDbContext>();
+app.EnsureMigrationOfContext<AdminDbContext>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -93,19 +107,19 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel Management Admin API V1");
 
         // Configure OAuth2
-        c.OAuthClientId(clientId);
-        c.OAuthClientSecret(secret);
-        c.OAuthAppName(clientName);
-        c.OAuthUsePkce();
+        //c.OAuthClientId(clientId);
+        //c.OAuthClientSecret(secret);
+        //c.OAuthAppName(clientName);
+        //c.OAuthUsePkce();
     });
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-app.UseAuthentication();
+//app.UseAuthentication();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Visitor\**" />
+    <EmbeddedResource Remove="Visitor\**" />
+    <None Remove="Visitor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Room\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HotelManagementSystem.FrontDesk.DataAccess\HotelManagementSystem.FrontDesk.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>

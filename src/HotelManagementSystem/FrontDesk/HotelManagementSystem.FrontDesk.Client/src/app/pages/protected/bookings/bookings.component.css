@@ -1,0 +1,48 @@
+.container{
+  padding: 2em;;
+}
+  
+  .bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 1em;
+  }
+  
+  .bookings-table th,
+  .bookings-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .bookings-table th {
+    background-color: #0078ff;
+    color: #fff;
+  }
+  
+  .bookings-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .bookings-table tr:hover {
+    background-color: #ddd;
+  }
+
+  .filter{
+    display: flex;
+    border: darkgrey;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 10px 10px 34px -4px lightgrey;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+
+  .filter mat-form-field{
+    margin: 0 1em;
+  }
+
+  .filter button{
+    right: 5em;
+    position: absolute;
+  }

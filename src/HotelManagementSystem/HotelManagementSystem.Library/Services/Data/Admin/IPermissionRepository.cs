@@ -10,5 +10,7 @@ namespace HotelManagementSystem.Library.Services.Data.Admin
     public interface IPermissionRepository : IRepository<Permission>
     {
         Task<List<Permission>> GetRolePermissionsAsync(int roleId, int branchId);
+
+        Task<int> AddPermissions(List<Permission> permissions);
     }
 }

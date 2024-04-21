@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { authCodeFlowConfig } from './oauth/oauth-config';
 import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { filter } from 'rxjs/internal/operators/filter';
+import { SessionStorageService } from './services/shared/session/session-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +12,21 @@ import { filter } from 'rxjs/internal/operators/filter';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private router: Router, private oauthService: OAuthService, private appConfig: AppConfig) {
-    this.configureCodeFlow();
+  constructor(private router: Router, private oauthService: OAuthService, private appConfig: AppConfig, private sesseionStorageService: SessionStorageService) {
+    // this.configureCodeFlow();
+  }
+
+  private checkUserLogin(){
+    const isLoggedIn = this.sesseionStorageService.isLoggedIn();
+    
   }
 
   private configureCodeFlow() {
     console.log(this.appConfig.config.oAuth.issuer)
     authCodeFlowConfig.issuer = this.appConfig.config.oAuth.issuer;
     authCodeFlowConfig.postLogoutRedirectUri = this.appConfig.config.oAuth.postLogoutRedirectUri;
-
+    const sameSiteCookie = window.location.protocol === 'https:' ? 'None' : 'None';
+    document.cookie = `idsrv.session=...; SameSite=${sameSiteCookie}`;
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();

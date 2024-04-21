@@ -1,0 +1,101 @@
+
+<h1 class="page-title">Add a new booking</h1><br>
+<div class="container">
+    <mat-card>
+    <form [formGroup]="bookingForm" class="bookingForm">
+        <mat-form-field>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date" formControlName="fromDate">
+                <input matEndDate placeholder="End date" formControlName="toDate">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <div formGroupName="primaryVisitor"> 
+            <h2>Primary Visitor Details</h2>
+            <div class="nameDiv">
+            <mat-form-field class="nameInput">
+                <mat-label for="firstName">First Name</mat-label>
+                <input matInput placeholder="First Name" type="text" id="firstNameP" formControlName="firstName" required>
+            </mat-form-field>
+
+            <mat-form-field class="nameInput">
+                <mat-label for="middleName">Middle Name</mat-label>
+                <input matInput placeholder="Middle Name" type="text" id="middleNameP" formControlName="middleName">
+            </mat-form-field>
+
+            <mat-form-field class="nameInput">
+                <mat-label for="lastName">Last Name</mat-label>
+            <input matInput placeholder="Last Name" type="text" id="lastNameP" formControlName="lastName">
+            </mat-form-field><br>
+        </div>
+            <mat-form-field>
+                <mat-label for="email">Email Id</mat-label>
+                <input matInput placeholder="pat@example.com" type="text" id="emailId" formControlName="email">
+            </mat-form-field><br>
+
+            <mat-form-field>
+                <mat-label for="fName">Phone Number</mat-label>
+                <input matInput placeholder="Phone Number" type="text" id="phone" formControlName="phone">
+            </mat-form-field>
+        </div>
+        <div formArrayName="partners">
+            <h2>Travel Partners</h2>
+            <button mat-raised-button color="primary" (click)="addTravelPartners()">+ Add another partner</button><br>
+          
+            <div *ngIf="partners.controls.length > 0">
+            <div *ngFor="let partner of partners.controls; let i=index">
+                <div formGroupName="{{i}}">
+              <!-- The repeated partner template -->
+                <label for="partner-{{ i }}">Travel Partner:</label><br>
+                <mat-form-field class="nameInput">
+                    <mat-label for="firstName">First Name</mat-label>
+                    <input matInput placeholder="First Name" type="text" id="partner-{{ i }}" formControlName="firstName">
+                </mat-form-field>
+
+                <mat-form-field class="nameInput">
+                    <mat-label for="middleName">Middle Name</mat-label>
+                    <input matInput placeholder="Middle Name" type="text" id="partner-{{ i }}" formControlName="middleName">
+                </mat-form-field>
+
+                <mat-form-field class="nameInput">
+                   <mat-label for="lastName">Last Name</mat-label>
+                    <input matInput placeholder="Last Name" type="text" id="partner-{{ i }}" formControlName="lastName">
+                </mat-form-field>
+            </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Room Type</mat-label>
+                <mat-select #roomTypes (selectionChange)="onSelected(roomTypes.value)">
+                  <mat-option *ngFor="let type of roomTypesData" [value]="type.id">{{type.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="loadedRooms">
+            <h2>Available Rooms</h2>
+            <div class="roomList">
+                <mat-card *ngFor="let room of roomsData" class="checkboxselect text-center little-profile workspacetype roomCard">
+                    <mat-card-content>
+                        <mat-checkbox (change)="onCheckboxChange($event, room)" class="multipleselect"></mat-checkbox>
+                        <div class="workspacetypeimage">
+                            <i class="bgi bgi-certificate"></i>
+                        </div>
+                        <mat-card-actions>
+                            <h4 class="m-t-0 m-b-0 typetitle">Room Number: {{room.roomNumber}}</h4>
+                        </mat-card-actions>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            
+        </div>
+        <div class="submitBtn">
+            <button mat-raised-button color="warn" type="submit" (click)="onSubmit()">Submit</button>
+        </div>
+    </form>
+</mat-card>
+</div>

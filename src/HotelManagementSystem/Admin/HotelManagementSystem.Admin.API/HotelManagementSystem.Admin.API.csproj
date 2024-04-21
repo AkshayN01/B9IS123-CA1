@@ -4,6 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>ec6b951b-5588-4d5f-8404-5f11dc7cbfad</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,11 +16,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj" />
+    <ProjectReference Include="..\..\HotelManagementSystem.Library\HotelManagementSystem.Library.csproj" />
+    <ProjectReference Include="..\HotelManagementSystem.Admin.Blanket\HotelManagementSystem.Admin.Blanket.csproj" />
   </ItemGroup>
 
 </Project>

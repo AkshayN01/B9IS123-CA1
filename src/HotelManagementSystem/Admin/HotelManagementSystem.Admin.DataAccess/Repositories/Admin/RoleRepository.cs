@@ -22,6 +22,13 @@ namespace HotelManagementSystem.Admin.DataAccess.Repositories.Admin
             _dbSetRoleAssignment = _context.Set<RoleAssignment>();
         }
 
+        public async Task<int> AddRoleAsync(Role role)
+        {
+            _context.Add<Role>(role);
+            await _context.SaveChangesAsync();
+            return role.RoleId;
+        }
+
         public async Task<List<Role>> GetRoleByBranchIdAsync(int branchId)
         {
             return await _dbSet.Where(x => x.HotelBranchId == branchId).ToListAsync();
@@ -36,6 +43,20 @@ namespace HotelManagementSystem.Admin.DataAccess.Repositories.Admin
                 .Select(x => x.Role).ToListAsync();
 
             return role;
+        }
+
+        public async Task<int> AssignRoleToAUser(RoleAssignment roleAssignment)
+        {
+            int retVal = 0;
+
+            try
+            {
+                _context.Add<RoleAssignment>(roleAssignment);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex) { }
+
+            return retVal;
         }
     }
 }

@@ -8,11 +8,14 @@ import { LogoutCompletedComponent } from './pages/logout-completed/logout-comple
 import { isAuthGuard } from './oauth/oauth.guard';
 
 import { HomeComponent } from './pages/protected/home/home.component';
+import { BookingDetailsComponent } from './pages/protected/booking-details/booking-details.component';
 import { HeaderComponent } from './pages/protected/header/header.component';
 import { RoomComponent } from './pages/protected/room/room.component';
+import { BookingRegisterComponent } from './pages/protected/booking-register/booking-register.component';
+import { BookingsComponent } from './pages/protected/bookings/bookings.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home',},
+  {path: '', pathMatch: 'full', redirectTo: 'all-bookings',},
 
   {path: 'login', component: LoginComponent},
   {path: 'login-completed', component: LoginCompletedComponent},
@@ -25,7 +28,10 @@ const routes: Routes = [
     canActivate: [isAuthGuard],
     children: [
       {path: 'home', component: HomeComponent},
+      {path: 'booking-details/:id', component: BookingDetailsComponent},
       {path: 'room', component: RoomComponent},
+      {path: 'booking-register', component: BookingRegisterComponent},
+      {path: 'all-bookings', component: BookingsComponent}
     ]
   },
 ];

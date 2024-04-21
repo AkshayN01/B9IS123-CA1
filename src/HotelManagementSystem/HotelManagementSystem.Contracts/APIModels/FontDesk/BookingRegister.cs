@@ -10,9 +10,9 @@ namespace HotelManagementSystem.Contracts.APIModels.FontDesk
     public class BookingRegisterModel
     {
         [Required]
-        public DateTime FromDate { get; set; }
+        public string FromDate { get; set; }
         [Required]
-        public DateTime ToDate { get; set; }
+        public string ToDate { get; set; }
         public List<int> RoomIds { get; set; }
         public List<VisitorModel> Visitors { get; set; }
     }
