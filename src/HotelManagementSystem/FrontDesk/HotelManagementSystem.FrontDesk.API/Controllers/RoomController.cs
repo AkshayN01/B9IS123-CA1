@@ -25,11 +25,9 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/rooms")]
-        public async Task<IActionResult> GetAllRooms(int roomTypeId)
+        [Route("/api/userGuid/{userGuid}/rooms")]
+        public async Task<IActionResult> GetAllRooms(string userGuid, int roomTypeId)
         {
-            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
-
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewRoom };
@@ -51,11 +49,9 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
 
 
         [HttpGet]
-        [Route("/api/roomTypes")]
-        public async Task<IActionResult> GetAllRoomTypes()
+        [Route("/api/userGuid/{userGuid}/roomTypes")]
+        public async Task<IActionResult> GetAllRoomTypes(string userGuid)
         {
-            string userGuid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
-
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<string> requiredPermission = new List<string>() { FrontDeskPermissions.ViewRoom };
