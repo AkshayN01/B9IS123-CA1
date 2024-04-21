@@ -16,6 +16,11 @@ export class BookingService {
     return this.apiService.post(url, model);
   }
 
+  getBookingDetails(bookingId: string): Observable<any>{
+    const url = "userGuid/[userGuid]/booking/"+bookingId;
+
+    return this.apiService.get(url);
+  }
   viewAllBookings(fromDate: string | null, toDate: string | null, status :string | null, pageNumber: Number, pageSize: Number): Observable<any>{
 
     var params = "";

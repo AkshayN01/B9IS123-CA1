@@ -38,7 +38,7 @@ export class BookingsComponent implements OnInit {
 
 
   viewBooking(bookingId: number): void {
-    this.router.navigate(['/booking', bookingId]);
+    this.router.navigate(['/booking-details', bookingId]);
   }
 
   onPageChange(event: any): void {

@@ -28,7 +28,7 @@ const routes: Routes = [
     canActivate: [isAuthGuard],
     children: [
       {path: 'home', component: HomeComponent},
-      {path: 'booking-details', component: BookingDetailsComponent},
+      {path: 'booking-details/:id', component: BookingDetailsComponent},
       {path: 'room', component: RoomComponent},
       {path: 'booking-register', component: BookingRegisterComponent},
       {path: 'all-bookings', component: BookingsComponent}

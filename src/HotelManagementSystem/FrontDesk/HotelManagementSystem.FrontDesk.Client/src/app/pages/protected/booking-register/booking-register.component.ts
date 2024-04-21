@@ -60,6 +60,8 @@ export class BookingRegisterComponent {
       firstName: ['', [Validators.required, Validators.maxLength(50)]], 
       middleName: ['', [Validators.required, Validators.maxLength(50)]], 
       lastName: ['', [Validators.required, Validators.maxLength(50)]], 
+      email: [''], 
+      phone: [''], 
       isPrimary: [0]
     });
 
