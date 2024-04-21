@@ -31,6 +31,8 @@ import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { UpdateRoomComponent } from './pages/protected/update-room/update-room.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { MatCardModule } from '@angular/material/card';
     BookingDetailsComponent,
     HeaderComponent,
     RoomCreateComponent,
-    RoomAssignmentDialogComponent
+    RoomAssignmentDialogComponent,
+    UpdateRoomComponent
   ],
   imports: [
     BrowserModule,

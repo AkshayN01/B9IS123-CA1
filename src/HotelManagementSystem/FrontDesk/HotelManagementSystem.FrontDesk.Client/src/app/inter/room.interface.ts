@@ -1,6 +1,6 @@
 // room.interface.ts
 export interface Room {
-    id: number;
+    roomid: number;
     roomNumber: string;
     type: string;
     capacity: number;
