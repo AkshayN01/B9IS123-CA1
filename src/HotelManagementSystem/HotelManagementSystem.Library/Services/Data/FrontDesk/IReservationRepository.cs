@@ -10,6 +10,8 @@ namespace HotelManagementSystem.Library.Services.Data.FrontDesk
     public interface IReservationRepository : IRepository<RoomReservation>
     {
         Task AddReservationDetails(List<RoomReservation> roomReservations);
+
+        Task UpdateReservationDetails(List<RoomReservation> roomReservations);
         IEnumerable<RoomReservation> GetRoomReservationsByBookingId(int bookingId);
     }
 }

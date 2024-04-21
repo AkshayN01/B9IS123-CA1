@@ -62,5 +62,28 @@ namespace HotelManagementSystem.Admin.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpPut]
+        [Route("/api/userGuid/{userGuid}/assign-role")]
+        public async Task<IActionResult> AssignRoleToUser(string userGuid, [FromBody] UserRoleAssignModel userModel)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            List<string> requiredPermission = new List<string>() { AdministratorPermissions.EditUser };
+
+            bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
+            if (!hasPermission)
+                return Unauthorized();
+
+            try
+            {
+                var httpResponse = await _userBlanket.AssignRoleToUser(userModel, userGuid);
+                return Ok(httpResponse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
     }
 }

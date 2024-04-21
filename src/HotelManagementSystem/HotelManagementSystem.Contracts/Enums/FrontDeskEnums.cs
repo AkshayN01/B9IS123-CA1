@@ -17,6 +17,7 @@ namespace HotelManagementSystem.Contracts.Enums
     {
         Booked = 1,
         Vacant = 2,
-        CleaningInProgress = 3
+        CleaningInProgress = 3,
+        Cancelled = 4
     }
 }

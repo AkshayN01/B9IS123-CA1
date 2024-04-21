@@ -104,7 +104,61 @@ namespace HotelManagementSystem.Admin.Blanket.User
 
                     data = retVal;
                 }
+
+                _adminUnitOfWork.Commit();
                 
+            }
+            catch (Exception ex)
+            {
+                return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, ex.Message);
+            }
+
+            return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
+        }
+        public async Task<HTTPResponse> AssignRoleToUser(UserRoleAssignModel userModel, string userGuid)
+        {
+            Object data = default(Object);
+            string message = string.Empty;
+            int retVal = -40;
+            try
+            {
+                if (userModel.RoleId == 0 || userModel.UserId == 0)
+                    throw new Exception("Invalid userId or RoledId");
+
+                //Get Current branch Details
+                var branch = await _branchService.GetCurrentInstance();
+
+                Contracts.Entities.Admin.User user = await _adminUnitOfWork.UserRepository.GetAsync(userModel.UserId);
+                if (user == null)
+                    throw new Exception("User not found");
+
+                Contracts.Entities.Admin.Role role = await _adminUnitOfWork.RoleRepository.GetAsync(userModel.RoleId);
+                if (role == null)
+                    throw new Exception("Role not found");
+
+                Contracts.Entities.Admin.RoleAssignment roleAssignment1 = await _adminUnitOfWork.RoleAssignmentRepository.GetRoleAssignmentByUserId(user.UserId);
+                //There was no role assigned to this user before
+                if (roleAssignment1 == null)
+                {
+                    roleAssignment1 = new RoleAssignment()
+                    {
+                        RoleId = userModel.RoleId,
+                        UserId = user.UserId,
+                        CreatedAt = DateTime.UtcNow,
+                        CreatedBy = userGuid,
+                        HotelBranchId = branch.Id
+                    };
+                }
+                else
+                {
+                    roleAssignment1.RoleId = role.RoleId;
+                }
+                retVal = await _adminUnitOfWork.RoleRepository.AssignRoleToAUser(roleAssignment1);
+
+                _adminUnitOfWork.Commit();
+
+                data = retVal;
+
             }
             catch (Exception ex)
             {

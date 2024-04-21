@@ -17,4 +17,10 @@ namespace HotelManagementSystem.Contracts.APIModels.Admin
         [Required]
         public List<int> PermissionIds { get; set; } = new List<int>();
     }
+
+    public class PermissionAssignModel
+    {
+        public int RoleId { get; set; }
+        public List<int> PermissionIds { get; set; } = new List<int>();
+    }
 }

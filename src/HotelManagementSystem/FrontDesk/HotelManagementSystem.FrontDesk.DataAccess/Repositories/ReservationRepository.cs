@@ -33,5 +33,15 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
         {
             return _dbSet.Where(x => x.BookingId == bookingId).AsEnumerable<RoomReservation>();
         }
+
+        public async Task UpdateReservationDetails(List<RoomReservation> roomReservations)
+        {
+
+            foreach (RoomReservation reservation in roomReservations)
+            {
+                _context.Update<RoomReservation>(reservation);
+            }
+            await _context.SaveChangesAsync();
+        }
     }
 }

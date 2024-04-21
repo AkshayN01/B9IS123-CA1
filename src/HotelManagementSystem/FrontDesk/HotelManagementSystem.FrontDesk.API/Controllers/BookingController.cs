@@ -46,6 +46,29 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("/api/userGuid/{userGuid}/booking")]
+        public async Task<IActionResult> UpdateBookingDetails(string userGuid, [FromBody] BookingUpdateModel bookingModel)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.EditBooking };
+
+            bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
+            if (!hasPermission || userGuid == "System")
+                return Unauthorized();
+
+            try
+            {
+                var httpResponse = await _BookingBlanket.UpdateBooking(bookingModel, userGuid);
+                return Ok(httpResponse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
         [HttpGet]
         [Route("/api/userGuid/{userGuid}/booking/{bookingId}")]
         public async Task<IActionResult> GetBookingDetails(string userGuid, int bookingId)

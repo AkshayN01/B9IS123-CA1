@@ -33,4 +33,11 @@ namespace HotelManagementSystem.Contracts.APIModels.Admin
         public string? Zipcode { get; set; }
         public int RoleId { get; set; }
     }
+    public class UserRoleAssignModel
+    {
+        [Required]
+        public int UserId { get; set; }
+        [Required]
+        public int RoleId { get; set; }
+    }
 }

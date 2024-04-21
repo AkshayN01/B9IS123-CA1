@@ -134,6 +134,68 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
             return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
         }
+        public async Task<HTTPResponse> UpdateBooking(BookingUpdateModel bookingModel, string userGuid)
+        {
+            Object data = default(Object);
+            int retVal = -40;
+            string message = string.Empty;
+
+            try
+            {
+                if (bookingModel.BookingId <= 0)
+                    throw new Exception("Invalid booking id");
+
+                if (!bookingModel.RoomIds.Any())
+                    throw new Exception("No room ids provided");
+
+                //get booking details
+                Contracts.Entities.FrontDesk.Booking booking = await _frontDeskUnitOfWork.BookingRepository.GetAsync(bookingModel.BookingId);
+                if (booking == null)
+                    throw new Exception("No Booking found");
+
+                //get booking reservations and make them inactive
+                List<RoomReservation> reservations = _frontDeskUnitOfWork.ReservationRepository.GetRoomReservationsByBookingId(booking.BookingId).ToList();
+
+                if (reservations.Any())
+                {
+                    foreach(RoomReservation reservation in reservations)
+                    {
+                        reservation.IsActive = 0;
+                        reservation.RoomStatusId = (int)RoomStatusEnum.Cancelled;
+                    }
+                    await _frontDeskUnitOfWork.ReservationRepository.UpdateReservationDetails(reservations);
+                }
+
+                //add new reservations
+                List<RoomReservation> reservations1 = new List<RoomReservation>();
+                foreach (var room in bookingModel.RoomIds)
+                {
+                    reservations1.Add(new RoomReservation()
+                    {
+                        BookingId = booking.BookingId,
+                        BranchId = 1,
+                        CheckInDate = booking.BookingFromDate,
+                        CheckOutDate = booking.BookingToDate,
+                        IsActive = 1,
+                        RoomId = room,
+                        UserGuid = userGuid,
+                        RoomStatusId = (int)RoomStatusEnum.Booked
+                    });
+                }
+                await _frontDeskUnitOfWork.ReservationRepository.AddReservationDetails(reservations);
+
+                retVal = 1;
+                data = retVal;
+            }
+            catch (Exception ex)
+            {
+                retVal = -50;
+                message = ex.Message;
+                return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, message);
+            }
+
+            return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
+        }
 
         public async Task<HTTPResponse> GetBookingDetails(int bookingId)
         {

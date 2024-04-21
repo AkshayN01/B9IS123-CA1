@@ -17,4 +17,12 @@ namespace HotelManagementSystem.Contracts.APIModels.FontDesk
         public List<VisitorModel> Visitors { get; set; }
     }
 
+    public class BookingUpdateModel
+    {
+        [Required]
+        public int BookingId { get; set; }
+        [Required]
+        public List<int> RoomIds { get; set; }
+    }
+
 }
