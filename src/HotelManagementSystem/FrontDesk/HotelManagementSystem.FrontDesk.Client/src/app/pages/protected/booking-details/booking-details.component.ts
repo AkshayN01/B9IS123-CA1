@@ -93,7 +93,7 @@ this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visi
 
 
   acceptBooking() {
-    this.room.getAvailableRooms(this.bookingDetails.roomType.id)
+    this.room.getAvailableRooms(this.bookingDetails.room[0].roomType.id)
       .subscribe((response: any) => {
         this.availableRooms = response;
         this.openRoomAssignmentDialog();
@@ -144,6 +144,5 @@ this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visi
           });
       }
     });
-  }
 }
 
