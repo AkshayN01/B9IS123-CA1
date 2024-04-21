@@ -12,7 +12,7 @@ export class RoomCreateComponent {
   roomForm: FormGroup = new FormGroup({}); 
   rooms: Room[] = [];
   selectedRoom: Room | null = null;
-  serachType: string = '';
+  searchType: string = '';
   searchCapacity: number | null = null;
 
   constructor (private roomservice: RoomService, private formBuilder: FormBuilder) {
@@ -81,6 +81,4 @@ export class RoomCreateComponent {
       available: false
     });
   }
-}
-  
 }

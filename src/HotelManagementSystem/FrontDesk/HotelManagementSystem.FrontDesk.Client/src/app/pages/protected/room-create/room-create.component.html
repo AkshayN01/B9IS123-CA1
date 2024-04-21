@@ -12,22 +12,43 @@
         <h2>Room Creation</h2>
       </div>
       <div class="card-body">
-          <div *ngFor="let room of rooms">
-            <div>{{ room.roomNumber }}</div>
-            <div>{{ room.type }}</div>
-            <div>{{ room.capacity }}</div>
-            <div>{{ room.price }}</div>
-            <div>{{ room.available ? 'Available' : 'Not Available' }}</div>
-            <button (click)="selectRoom(room)">Edit</button>
+       <div class="search-container">
+        <input type="text" placeholder="Search by room type" [(ngModel)]="searchType">
+        <input type="number" placeholder="Search by capacity" [(ngModel)]="searchCapacity">
+        <button (click)="search()">Search</button>
+        <button (click)="resetSearch()">Reset</button>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Room ID</th>
+          <th>Room Type</th>
+          <th>Room Capacity</th>
+          <th>Room Price</th>
+          <th>Room Availability</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let room of rooms">
+            <td>{{ room.roomNumber }}</td>
+            <td>{{ room.type }}</td>
+            <td>{{ room.capacity }}</td>
+            <td>{{ room.price }}</td>
+            <td>{{ room.available ? 'Available' : 'Not Available' }}</td>
+            <td>
+            <button (click)="selectRoom(room)">Add</button>
+            <button (click)="selectRoom(room)">Update</button>
             <button (click)="deleteRoom(room.id)">Delete</button>
-          </div>
-        </div>
-       </div>  
-
-       
+          </td>
+        </tr>
+      </tbody>
+    </div>  
+     
        <div *ngIf="selectedRoom">
         <h2>Edit Room</h2>
-        <form (ngSubmit)="updateRoom(selectedRoom)">
+        <form (ngSubmit)="updateRoom()">
           <div>
             <label for="roomNumber">Room Number:</label>
             <input type="text" id="roomNumber" [(ngModel)]="selectedRoom.roomNumber" name="roomNumber" required>
