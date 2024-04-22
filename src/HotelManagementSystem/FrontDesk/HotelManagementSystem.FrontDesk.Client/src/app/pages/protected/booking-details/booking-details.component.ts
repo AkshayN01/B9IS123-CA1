@@ -38,8 +38,8 @@ export class BookingDetailsComponent implements OnInit {
   {
     this.bookingService.getBookingDetails(this.id).subscribe(res => {
       this.bookingDetails = this.responseHandler.checkResponse(res);
-      this.primaryVisitor = this.bookingDetails.visitors.find((visitor: any) => visitor.isPrimary);
-      this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => !visitor.isPrimary);
+      this.primaryVisitor = this.bookingDetails.visitors.find((visitor: any) => visitor.isPrimary == 1);
+      this.travelPartner = this.bookingDetails.visitors.filter((visitor: any) => visitor.isPrimary == 0);
     });
   }
 

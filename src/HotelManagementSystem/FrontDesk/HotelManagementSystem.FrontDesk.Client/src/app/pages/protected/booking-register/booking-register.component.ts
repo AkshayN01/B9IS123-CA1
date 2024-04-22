@@ -6,6 +6,9 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { BookingRegisterModel } from '../../../models/booking/booking-register.model';
 import { BookingService } from '../../../services/booking/booking.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../../modals/confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-register',
@@ -21,7 +24,9 @@ export class BookingRegisterComponent {
   roomIds!: Number[];
   bookingModel!: BookingRegisterModel;
 
-  constructor(private fb: FormBuilder, private roomService: RoomService, private responseHandler: ResponseHandlerService, private boojingService: BookingService, private matSnackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, private roomService: RoomService, 
+    private responseHandler: ResponseHandlerService, private boojingService: BookingService, 
+    private matSnackBar: MatSnackBar, private dialog: MatDialog, private router: Router) {
     this.roomIds = [];
   }
 
@@ -124,12 +129,24 @@ export class BookingRegisterComponent {
     this.boojingService.addBooking(this.bookingModel).subscribe(res => {
       var response = this.responseHandler.checkResponse(res);
       if(response.bookingId != 0){
-        this.matSnackBar.open("Booking was successfully Added", 'Close', {
-          panelClass: ['bg-danger']
-        });
+        this.openConfirmationDialog();
       }
-
     })
+  }
+
+  openConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '300px',
+      data: { title: 'Confirmation', message: 'Do you want to add another booking?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.initializeForm();
+      } else {
+        this.router.navigate(['/all-bookings']);
+      }
+    });
   }
 
   convertDate(dateString: string): string {

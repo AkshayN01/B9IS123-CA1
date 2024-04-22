@@ -43,6 +43,7 @@ import { RoomAssignmentDialogComponent } from './pages/protected/room-assignment
 import { BookingRegisterComponent } from './pages/protected/booking-register/booking-register.component';
 import { UserComponent } from './pages/protected/user/user.component';
 import { HeadersInterceptor } from './interceptors/headers';
+import { ConfirmationDialogComponent } from './modals/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { HeadersInterceptor } from './interceptors/headers';
     RoomCreateComponent,
     RoomAssignmentDialogComponent,
     BookingRegisterComponent,
-    UserComponent
+    UserComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
