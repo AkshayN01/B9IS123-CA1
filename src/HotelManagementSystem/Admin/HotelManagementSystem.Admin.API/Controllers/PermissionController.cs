@@ -41,6 +41,29 @@ namespace HotelManagementSystem.Admin.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-        
+
+        [HttpGet]
+        [Route("/api/userGuid/{userGuid}/permissions")]
+        public async Task<IActionResult> GetPermission(string userGuid)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            List<string> requiredPermission = new List<string>() { AdministratorPermissions.ViewPermission };
+
+            bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
+            if (!hasPermission || userGuid == "System")
+                return Unauthorized();
+
+            try
+            {
+                var httpResponse = await permissionBlanket.ViewPermission();
+                return Ok(httpResponse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
     }
 }

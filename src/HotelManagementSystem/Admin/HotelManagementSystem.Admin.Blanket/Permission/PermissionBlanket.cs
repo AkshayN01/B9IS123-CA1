@@ -52,5 +52,24 @@ namespace HotelManagementSystem.Admin.Blanket.Permission
 
             return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
         }
+        public async Task<HTTPResponse> ViewPermission()
+        {
+            int retVal = -40;
+            string message = string.Empty;
+            Object data = default(Object);
+
+            try
+            {
+                data = await _adminUnitOfWork.PermissionRepository.GetAllAsync();
+                retVal = 1;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, message);
+            }
+
+            return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
+        }
     }
 }
