@@ -32,6 +32,8 @@ export class BookingsComponent implements OnInit {
   }
 
   getAllBookings(): void{
+    if(this.pageNumber == 0)
+      this.pageNumber = 1;
     this.bookingService.viewAllBookings(this.fromDateString, this.toDateString, this.status, this.pageNumber, this.pageSize).subscribe(res => {
       this.bookings = this.responseHandler.checkResponse(res);
     });
@@ -45,7 +47,7 @@ export class BookingsComponent implements OnInit {
   onPageChange(event: PageEvent): void {
     console.log(event.pageIndex);
     this.pageSize = event.pageSize;
-    this.pageNumber = event.pageIndex;
+    this.pageNumber = event.pageIndex + 1;
     this.getAllBookings();
   }
 
