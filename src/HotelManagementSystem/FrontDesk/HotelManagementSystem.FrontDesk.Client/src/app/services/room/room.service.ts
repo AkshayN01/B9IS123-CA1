@@ -16,7 +16,7 @@ export class RoomService {
   }
 
   getAllRooms(roomTypeId: string): Observable<any>{
-    const url = "userGuid/[userGuid]/rooms?roomTypeId="+roomTypeId;
+    const url = "userGuid/[userGuid]/rooms?roomTypeId=" + roomTypeId +"&statusId=2";
 
     return this.apiService.get(url);
   }

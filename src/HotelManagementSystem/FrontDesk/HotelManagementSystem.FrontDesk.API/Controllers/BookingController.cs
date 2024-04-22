@@ -1,11 +1,9 @@
 using HotelManagementSystem.Library.Services;
 using HotelManagementSystem.Library;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using HotelManagementSystem.Contracts.Permissions;
 using HotelManagementSystem.Library.Services.Data.FrontDesk;
 using HotelManagementSystem.Contracts.APIModels.FontDesk;
-using System.Security.Claims;
 
 namespace HotelManagementSystem.FrontDesk.API.Controllers
 {
@@ -61,6 +59,29 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
             try
             {
                 var httpResponse = await _BookingBlanket.UpdateBooking(bookingModel, userGuid);
+                return Ok(httpResponse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("/api/userGuid/{userGuid}/booking/{bookingId}")]
+        public async Task<IActionResult> UpdateBookingStatus(string userGuid, int bookingId, [FromBody]int statudId)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            List<string> requiredPermission = new List<string>() { FrontDeskPermissions.DeclineBooking };
+
+            bool hasPermission = await _userService.HasPermissions(userGuid, requiredPermission);
+            if (!hasPermission || userGuid == "System")
+                return Unauthorized();
+
+            try
+            {
+                var httpResponse = await _BookingBlanket.UpdateBookingStatus(bookingId, statudId, userGuid);
                 return Ok(httpResponse);
             }
             catch (Exception ex)

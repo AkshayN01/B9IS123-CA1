@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,9 +20,9 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Repositories
             _rooms = _context.Set<Room>();
         }
 
-        public Task<List<Room>> GetAllRooms(int branchId, int roomLevel, int isActive)
+        public async Task<List<Room>> GetAllRooms(Expression<Func<Room, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await _rooms.Include(r => r.Reservations).Where(expression).ToListAsync();
         }
 
         public Task<Room> GetRoomByBookingId(int branchId, int bookingId)

@@ -8,6 +8,7 @@ using HotelManagementSystem.Library.Services.Data.FrontDesk;
 using System.Globalization;
 using System.Linq.Expressions;
 using static Mysqlx.Expect.Open.Types;
+using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 
 namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 {
@@ -26,19 +27,31 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
             Object data = default(Object);
             int retVal = -40;
             string message = string.Empty;
+            string format = "dd/MM/yyyy HH:mm:ss";
 
             try
             {
+                //Check if Valid dates
+                DateTime fromDate = DateTime.ParseExact(bookingModel.FromDate, format, null);
+                DateTime toDate = DateTime.ParseExact(bookingModel.ToDate, format, null);
+                DateTime todaysDate = DateTime.Now;
+
+                if (fromDate.Date > toDate.Date)
+                    throw new Exception("From date is greater than toDate");
+                if(fromDate.Date < todaysDate.Date)
+                    throw new Exception("Cannot book for previous dates");
+
                 Contracts.Entities.FrontDesk.Booking booking = new Contracts.Entities.FrontDesk.Booking()
                 {
-                    BookingFromDate = DateTime.Parse(bookingModel.FromDate),
-                    BookingToDate = DateTime.Parse(bookingModel.ToDate),
+                    BookingFromDate = fromDate,
+                    BookingToDate = toDate,
                     BookinStatusId = (int)BookinStatusEnum.Approved,
                     Branchd = 1,
                     CreatedAt = DateTime.UtcNow,
                     CreatedBy = userGuid
                 };
                 List<int> travelPartnerIds = new List<int>();
+
                 //Add Visitors
                 if (bookingModel.Visitors.Any())
                 {
@@ -59,6 +72,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                         IsActive = true,
                         IsDeleted = false                        
                     };
+
                     booking.VisitorId = await _frontDeskUnitOfWork.VisitorRepository.AddVisitorDetails(visitor);
                     if (bookingModel.Visitors.Count > 1)
                     {
@@ -134,6 +148,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
             return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
         }
+        
         public async Task<HTTPResponse> UpdateBooking(BookingUpdateModel bookingModel, string userGuid)
         {
             Object data = default(Object);
@@ -205,14 +220,23 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
             try
             {
-                BookingModel bookingModel = new BookingModel();
-
                 Contracts.Entities.FrontDesk.Booking booking = await _frontDeskUnitOfWork.BookingRepository.GetAsync(bookingId);
 
                 if (booking == null)
                 {
                     return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, "No such BookingId exists");
                 }
+
+                BookingModel bookingModel = new BookingModel()
+                {
+                    Id  = booking.BookingId,
+                    BranchId = booking.Branchd,
+                    FromDate = booking.BookingFromDate,
+                    ToDate = booking.BookingToDate
+                };
+
+                var bookingStatus = (BookinStatusEnum)booking.BookinStatusId;
+                bookingModel.Status = bookingStatus.ToString();
 
                 //If Booking is approved, get visitor and Room details
                 if (booking.BookinStatusId == (int)BookinStatusEnum.Approved)
@@ -287,6 +311,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
                 {
 
                 }
+                retVal = 1;
                 data = bookingModel;
             }
             catch (Exception ex)
@@ -379,6 +404,52 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
             return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
         }
+        public async Task<HTTPResponse> UpdateBookingStatus(int id, int statusId, string userGuid)
+        {
+            Object data = default(Object);
+            int retVal = -40;
+            string message = string.Empty;
+            try
+            {
+                //Check if Valid booking
+                Contracts.Entities.FrontDesk.Booking booking = await _frontDeskUnitOfWork.BookingRepository.GetAsync(id);
+
+                if (booking == null)
+                    throw new Exception("Invalid booking");
+
+                //Get Room Reservation
+                List<Contracts.Entities.FrontDesk.RoomReservation> roomReservations = _frontDeskUnitOfWork.ReservationRepository.GetRoomReservationsByBookingId(booking.BookingId).ToList();
+
+                if(roomReservations.Any())
+                {
+                    foreach(var reservation in roomReservations)
+                    {
+                        reservation.RoomStatusId = (int)RoomStatusEnum.Cancelled;
+                        reservation.IsActive = 0;
+                    }
+
+                    await _frontDeskUnitOfWork.ReservationRepository.UpdateReservationDetails(roomReservations);
+                }
+
+                booking.BookinStatusId = (int)((BookinStatusEnum)statusId);
+                booking.UpdatedBy = userGuid;
+
+                _frontDeskUnitOfWork.BookingRepository.Update(booking);
+
+                _frontDeskUnitOfWork.Commit();
+
+                retVal = 1;
+                data = retVal;
+            }
+            catch (Exception ex)
+            {
+                retVal = -50;
+                message = ex.Message;
+                return Library.Generic.APIResponse.ConstructExceptionResponse(retVal, message);
+            }
+
+            return Library.Generic.APIResponse.ConstructHTTPResponse(data, retVal, message);
+        }
 
         private int GetBookingStatusByName(string name)
         {
@@ -416,6 +487,10 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
                 case 3:
                     name = "declined";
+                    break;
+
+                case 4:
+                    name = "cancelled";
                     break;
             }
 

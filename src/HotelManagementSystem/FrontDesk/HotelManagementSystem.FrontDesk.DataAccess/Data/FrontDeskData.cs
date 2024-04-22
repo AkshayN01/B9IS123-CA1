@@ -32,6 +32,7 @@ namespace HotelManagementSystem.FrontDesk.DataAccess.Data
                 new BookingStatus() { Guid = Guid.NewGuid(), Id = 1, Name = "Pending" },
                 new BookingStatus() { Guid = Guid.NewGuid(), Id = 2, Name = "Approved" },
                 new BookingStatus() { Guid = Guid.NewGuid(), Id = 3, Name = "Declined" },
+                new BookingStatus() { Guid = Guid.NewGuid(), Id = 4, Name = "Status" },
             };
         }
 

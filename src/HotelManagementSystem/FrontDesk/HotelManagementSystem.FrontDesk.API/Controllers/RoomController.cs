@@ -24,7 +24,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
 
         [HttpGet]
         [Route("/api/userGuid/{userGuid}/rooms")]
-        public async Task<IActionResult> GetAllRooms(string userGuid, int roomTypeId)
+        public async Task<IActionResult> GetAllRooms(string userGuid, int roomTypeId, int statusId)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -36,7 +36,7 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
 
             try
             {
-                var httpResponse = await _RoomBlanket.GetAllRoom(roomTypeId);
+                var httpResponse = await _RoomBlanket.GetAllRoom(roomTypeId, statusId);
                 return Ok(httpResponse);
             }
             catch (Exception ex)
