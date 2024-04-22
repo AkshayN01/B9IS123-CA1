@@ -4,6 +4,7 @@ import { BookingService } from '../../../services/booking/booking.service';
 import { ResponseHandlerService } from '../../../services/shared/resposne/resposne-handler.service';
 import { Booking } from '../../../models/booking/view-bookings.model';
 import { bookingStatus } from '../../../models/booking/booking-status.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-bookings',
@@ -41,9 +42,11 @@ export class BookingsComponent implements OnInit {
     this.router.navigate(['/booking-details', bookingId]);
   }
 
-  onPageChange(event: any): void {
+  onPageChange(event: PageEvent): void {
     console.log(event.pageIndex);
+    this.pageSize = event.pageSize;
     this.pageNumber = event.pageIndex;
+    this.getAllBookings();
   }
 
   onSelected(value:string):void {
