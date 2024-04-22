@@ -138,6 +138,9 @@ namespace HotelManagementSystem.Library.Services
                 List<string> userPermissions = await GetUserPermissions(user.UserId, currentBranch.Id);
                 if (userPermissions.Any())
                 {
+                    if (userPermissions.Contains("superadmin"))
+                        return true;
+
                     foreach (var p in permissions)
                     {
                         if (!userPermissions.Contains(p)) { return false; }
