@@ -1,7 +1,5 @@
 using HotelManagementSystem.Admin.Blanket.Permission;
 using HotelManagementSystem.Contracts.APIModels.Admin;
-using HotelManagementSystem.Contracts.APIModels.FontDesk;
-using HotelManagementSystem.Contracts.Entities.Admin;
 using HotelManagementSystem.Contracts.Permissions;
 using HotelManagementSystem.Library.Services;
 using HotelManagementSystem.Library.Services.Data.Admin;

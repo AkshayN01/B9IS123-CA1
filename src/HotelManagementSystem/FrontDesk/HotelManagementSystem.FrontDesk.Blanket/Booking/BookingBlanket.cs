@@ -329,6 +329,7 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
             Object data = default(Object);
             int retVal = -40;
             string message = string.Empty;
+            string format = "dd/MM/yyyy HH:mm:ss";
 
             try
             {
@@ -347,14 +348,14 @@ namespace HotelManagementSystem.FrontDesk.Blanket.Booking
 
                 //Add From date condition to search the repository
                 if (!string.IsNullOrEmpty(fromDate)) {
-                    Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> expression = x => x.BookingFromDate >= DateTime.Parse(fromDate);
+                    Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> expression = x => x.BookingFromDate >= DateTime.ParseExact(fromDate, format, null);
                     expressions.Add(expression);
                 }
 
                 //Add to date condition to search the repository
                 if (!string.IsNullOrEmpty(toDate))
                 {
-                    Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> expression = x => x.BookingToDate <= DateTime.Parse(toDate);
+                    Expression<Func<Contracts.Entities.FrontDesk.Booking, bool>> expression = x => x.BookingToDate <= DateTime.ParseExact(toDate, format, null);
                     expressions.Add(expression);
                 }
 
