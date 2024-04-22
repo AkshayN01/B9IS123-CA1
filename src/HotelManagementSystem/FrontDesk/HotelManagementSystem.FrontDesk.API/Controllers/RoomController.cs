@@ -15,11 +15,11 @@ namespace HotelManagementSystem.FrontDesk.API.Controllers
         private readonly ILogger<RoomController> _logger;
         private readonly Blanket.Room.RoomBlanket _RoomBlanket;
 
-        public RoomController(ILogger<RoomController> logger, IFrontDeskUnitOfWork frontDeskUnitOfWork, ManagementService managementService, UserService userService)
+        public RoomController(ILogger<RoomController> logger, IFrontDeskUnitOfWork frontDeskUnitOfWork, ManagementService managementService, UserService userService, HotelBranchService hotelBranchService)
         {
             _logger = logger;
             _userService = userService;
-            _RoomBlanket = new Blanket.Room.RoomBlanket(frontDeskUnitOfWork);
+            _RoomBlanket = new Blanket.Room.RoomBlanket(frontDeskUnitOfWork, hotelBranchService);
         }
 
         [HttpGet]
